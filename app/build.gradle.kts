@@ -1,19 +1,20 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.compose.compiler) apply false
+    alias(libs.plugins.compose.compiler)
     alias(libs.plugins.hilt) apply false
     alias(libs.plugins.ksp) apply false
 }
 
+apply {
+    from("$rootDir/common-config.gradle")
+}
+
 android {
     namespace = "com.miltent.dnd5echaractersheet"
-    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.miltent.dnd5echaractersheet"
-        minSdk = 24
-        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 

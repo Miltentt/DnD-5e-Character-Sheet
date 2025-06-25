@@ -22,6 +22,9 @@ dependencyResolutionManagement {
 rootProject.name = "DnD 5e Character Sheet"
 include(":app")
 include(":core")
-include(":core:model")
-include(":core:database")
+include(":database")
 include("common-config.gradle.kts")
+include(":domain")
+include(":resources")
+include(":featureDashboard")
+include(":designSystem")

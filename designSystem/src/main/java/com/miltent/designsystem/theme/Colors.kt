@@ -1,0 +1,10 @@
+package com.miltent.designsystem.theme
+
+import androidx.compose.ui.graphics.Color
+
+object Colors {
+
+    val primary = Color(0xFFece6dd)
+    val onPrimary = Color(0xFF000000)
+
+}

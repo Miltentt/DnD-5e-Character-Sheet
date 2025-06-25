@@ -3,7 +3,12 @@ plugins {
     alias(libs.plugins.kotlin.android)
 }
 
+apply {
+    from("$rootDir/common-config.gradle")
+}
+
 android {
+
     namespace = "com.miltent.core"
     compileSdk = 34
 
@@ -24,16 +29,17 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_18
+        targetCompatibility = JavaVersion.VERSION_18
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "18"
     }
 }
 
 dependencies {
 
+    implementation(project(":domain"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
