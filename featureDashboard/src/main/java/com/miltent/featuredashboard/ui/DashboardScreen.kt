@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -12,25 +13,30 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import com.miltent.designsystem.buttons.ProgressButton
 import com.miltent.designsystem.theme.Colors
 import com.miltent.designsystem.theme.DNDSheetTheme
 import com.miltent.designsystem.theme.Spacing
+import com.miltent.domain.model.DashboardCharacter
 import com.miltent.featuredashboard.event.DashboardEvent
+import com.miltent.featuredashboard.intent.DashboardIntent
 import com.miltent.featuredashboard.state.DashboardViewState
 import com.miltent.featuredashboard.ui.composables.CharacterTile
 import com.miltent.resources.R as ResR
 
 @Composable
-fun DashboardScreen() {
+internal fun DashboardScreen(onEvent: (DashboardEvent) -> Unit) {
     val viewModel: DashboardViewModel = hiltViewModel()
     val viewState: DashboardViewState = viewModel.viewState.collectAsState().value
 
-    DashboardScreen(viewState = viewState, onEvent = viewModel::setEvent)
+    if(viewState is DashboardViewState.Loaded) {
+        DashboardScreen(viewState = viewState, onIntent = viewModel::setIntent)
+    }
 }
 
 @Composable
-private fun DashboardScreen(viewState: DashboardViewState.Loaded, onEvent: (DashboardEvent) -> Unit) {
+private fun DashboardScreen(viewState: DashboardViewState.Loaded, onIntent: (DashboardIntent) -> Unit) {
     DNDSheetTheme {
         Scaffold(
             modifier = Modifier.background(Colors.primary),
@@ -39,18 +45,25 @@ private fun DashboardScreen(viewState: DashboardViewState.Loaded, onEvent: (Dash
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(
-                            start = Spacing.extraSmall,
-                            bottom = Spacing.medium,
-                            end = Spacing.extraSmall
+                            start = Spacing.spacing4,
+                            bottom = Spacing.spacing16,
+                            end = Spacing.spacing4
                         ), buttonText = stringResource(ResR.string.button_create_character),
-                    onClick = { onEvent.invoke(DashboardEvent.OnCharacterCreateClicked) }
+                    onClick = { onIntent.invoke(DashboardIntent.OnCharacterCreateClicked) }
                 )
             },
             content = { paddingValues: PaddingValues ->
                 LazyColumn(modifier = Modifier
-                    .padding(Spacing.extraSmall)
+                    .padding(Spacing.spacing4)
                     .padding(paddingValues)) {
-                    item { CharacterTile() }
+                    items(viewState.characterList, itemContent = { character: DashboardCharacter ->
+                        CharacterTile(
+                            name = character.name,
+                            race = character.race.toString(),
+                            level = character.level,
+                            characterClass = character.characterClass
+                        )
+                    })
                 }
             }
         )
@@ -60,5 +73,5 @@ private fun DashboardScreen(viewState: DashboardViewState.Loaded, onEvent: (Dash
 @Composable
 @Preview
 fun DashboardScreen_Preview() {
-    DashboardScreen()
+    DashboardScreen(onEvent = {})
 }

@@ -26,7 +26,7 @@ fun ProgressButton(
         onClick = onClick,
         icon = {
             Icon(
-                modifier = Modifier.background(color = Colors.primary).padding(Spacing.small),
+                modifier = Modifier.background(color = Colors.primary).padding(Spacing.spacing8),
                 painter = painterResource(ResR.drawable.ic_arrow),
                 contentDescription = null,
                 tint = Colors.onPrimary

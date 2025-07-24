@@ -23,5 +23,6 @@ val mockCharacter = Character(
     baseStrength = 19,
     baseDexterity = 14,
     baseWisdom = 13,
-    level = 7
+    level = 7,
+    characterClass = "Fighter"
 )

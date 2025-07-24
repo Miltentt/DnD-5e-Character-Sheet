@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.serialization.json)
 }
 
 apply {
@@ -12,7 +14,7 @@ android {
     namespace = "com.miltent.featuredashboard"
 
     buildFeatures {
-        compose =  true
+        compose = true
     }
 
     defaultConfig {
@@ -29,13 +31,6 @@ android {
                 "proguard-rules.pro"
             )
         }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_18
-        targetCompatibility = JavaVersion.VERSION_18
-    }
-    kotlinOptions {
-        jvmTarget = "18"
     }
 }
 
@@ -59,4 +54,5 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     debugImplementation(libs.ui.tooling)
+    implementation(libs.serialization.json)
 }

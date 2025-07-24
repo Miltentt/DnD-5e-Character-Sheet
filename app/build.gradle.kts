@@ -2,8 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.compose.compiler)
-    alias(libs.plugins.hilt) apply false
     alias(libs.plugins.ksp) apply false
+    id("org.jetbrains.kotlin.kapt")
 }
 
 apply {
@@ -33,13 +33,7 @@ android {
             )
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_18
-        targetCompatibility = JavaVersion.VERSION_18
-    }
-    kotlinOptions {
-        jvmTarget = "18"
-    }
+
     buildFeatures {
         compose = true
     }
@@ -52,6 +46,9 @@ android {
 
 dependencies {
 
+    implementation(project(":featureDashboard"))
+    implementation(project(":featureCharacterCreation"))
+    implementation(project(":designSystem"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)

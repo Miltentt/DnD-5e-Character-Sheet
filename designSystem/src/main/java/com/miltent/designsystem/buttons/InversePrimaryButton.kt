@@ -30,7 +30,7 @@ fun InversePrimaryButton(
         modifier = modifier
             .background(Colors.onPrimary)
             .clickable(onClick = onClick, enabled = enabled)
-            .padding(Spacing.semiMedium),
+            .padding(Spacing.spacing12),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
@@ -38,7 +38,7 @@ fun InversePrimaryButton(
             text = buttonText,
             color = Colors.primary,
             fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(end = Spacing.small)
+            modifier = Modifier.padding(end = Spacing.spacing8)
         )
         if (icon != null) {
             icon()

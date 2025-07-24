@@ -1,7 +1,8 @@
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-parcelize'
 apply plugin: 'com.google.devtools.ksp'
-apply plugin: 'dagger.hilt.android.plugin'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.dagger.hilt.android'
 
 android {
     compileSdkVersion libs.versions.compileSdk.get().toInteger()
@@ -18,12 +19,17 @@ android {
         sourceCompatibility = JavaVersion.VERSION_18
         targetCompatibility = JavaVersion.VERSION_18
     }
+
+    kotlinOptions {
+        jvmTarget = "18"
+    }
 }
 
 dependencies {
-    implementation(libs.hilt)
-    ksp libs.hiltKsp
+    implementation(libs.hilt.android)
+    kapt libs.hilt.compiler
+    kapt libs.hiltKsp
     implementation libs.hiltNavigation
-    implementation libs.hiltWork
-    ksp libs.hiltAndroidKapt
+    implementation libs.navigationCompose
+    implementation libs.runtime.ktx
 }

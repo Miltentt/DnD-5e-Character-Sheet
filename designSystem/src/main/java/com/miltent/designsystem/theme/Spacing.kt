@@ -7,12 +7,12 @@ import androidx.compose.ui.unit.dp
 
 @Immutable
 object Spacing {
-    val extraSmall: Dp = 4.dp
-    val small: Dp = 8.dp
-    val semiMedium = 12.dp
-    val medium: Dp = 16.dp
-    val large: Dp = 24.dp
-    val extraLarge: Dp = 32.dp
+    val spacing4: Dp = 4.dp
+    val spacing8: Dp = 8.dp
+    val spacing12 = 12.dp
+    val spacing16: Dp = 16.dp
+    val spacing24: Dp = 24.dp
+    val spacing32: Dp = 32.dp
 }
 
 val LocalSpacing = staticCompositionLocalOf { Spacing }

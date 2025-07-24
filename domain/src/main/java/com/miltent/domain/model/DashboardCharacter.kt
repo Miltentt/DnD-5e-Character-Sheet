@@ -4,4 +4,5 @@ interface DashboardCharacter {
     val name: String
     val level: Int
     val race: Race
+    val characterClass: String
 }

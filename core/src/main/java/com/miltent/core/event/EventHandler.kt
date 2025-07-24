@@ -1,6 +1,12 @@
 package com.miltent.core.event
 
-interface EventHandler<in T: Event> {
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
 
-    fun handle(event: T)
+abstract class EventHandler<T: Event> {
+
+    private val _event: MutableSharedFlow<T> = MutableSharedFlow()
+    val event: SharedFlow<T> = _event
+
+    fun emitEvent(event: T) { this._event.tryEmit(event) }
 }
