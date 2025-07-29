@@ -20,6 +20,7 @@ hiltCompose-version = "1.2.0"
 hilt-compose-navigation-version = "1.2.0"
 navigation-compose-version = "2.9.2"
 hilt-plugin-version = "2.57"
+dagger-version = "2.57"
 jetbrainsKotlinJvm = "2.2.0"
 uiTooling = "1.8.3"
 runtimeKtx = "2.10.2"
@@ -39,6 +40,8 @@ androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", versi
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt-version" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt-version" }
 androidx-ui = { group = "androidx.compose.ui", name = "ui" }
+dagger = { module = "com.google.dagger:dagger", version.ref = "dagger-version" }
+daggerKsp = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger-version" }
 androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }

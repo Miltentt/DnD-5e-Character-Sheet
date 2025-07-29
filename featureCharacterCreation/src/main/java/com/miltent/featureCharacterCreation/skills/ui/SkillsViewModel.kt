@@ -1,5 +1,6 @@
 package com.miltent.featureCharacterCreation.skills.ui
 
+import androidx.lifecycle.viewModelScope
 import com.miltent.core.event.Event
 import com.miltent.core.event.EventHandler
 import com.miltent.core.intent.Intent
@@ -14,11 +15,12 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class SkillsViewModel @Inject constructor(
-    @Skills viewmodelScope: CoroutineScope,
+    @Skills private val viewmodelScope: CoroutineScope,
     private val intentHandler: IntentHandler<SkillsIntent>,
     viewStateProvider: ViewStateProvider<SkillsViewState>,
     eventHandler: EventHandler<SkillsEvent>
@@ -29,6 +31,8 @@ class SkillsViewModel @Inject constructor(
     override val event: SharedFlow<Event> = eventHandler.event
 
     override fun setIntent(intent: Intent) {
+        viewmodelScope.launch {
         intentHandler.handle(intent as SkillsIntent)
+    }
     }
 }

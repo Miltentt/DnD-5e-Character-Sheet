@@ -11,6 +11,6 @@ data class BaseInfoUiState(
     val intelligence: Int,
     val wisdom: Int,
     val charisma: Int,
-    val race: Race?,
-    val characterClass: CharacterClass?
+    val race: Race,
+    val characterClass: CharacterClass
 )

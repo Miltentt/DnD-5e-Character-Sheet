@@ -1,0 +1,7 @@
+package com.miltent.featureCharacterCreation.fightingStyle.navigation
+
+import com.miltent.featureCharacterCreation.navigation.CharacterCreationRoute
+import kotlinx.serialization.Serializable
+
+@Serializable
+data object FightingStyleRoute: CharacterCreationRoute

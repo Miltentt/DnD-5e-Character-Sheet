@@ -7,7 +7,8 @@ import kotlinx.coroutines.flow.update
 abstract class ViewStateProvider<T: ViewState> {
 
     protected abstract val _viewState: MutableStateFlow<T>
-    val viewState: StateFlow<T> = _viewState
+
+    val viewState: StateFlow<T> get() = _viewState
 
     fun updateState(state: T) = _viewState.update { state }
 }

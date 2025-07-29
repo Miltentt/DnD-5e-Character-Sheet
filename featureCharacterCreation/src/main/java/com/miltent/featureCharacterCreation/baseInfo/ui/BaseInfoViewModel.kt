@@ -1,6 +1,5 @@
 package com.miltent.featureCharacterCreation.baseInfo.ui
 
-import com.miltent.core.event.Event
 import com.miltent.core.event.EventHandler
 import com.miltent.core.intent.Intent
 import com.miltent.core.intent.IntentHandler
@@ -14,23 +13,24 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class BaseInfoViewModel @Inject constructor(
-    @BaseInfo viewmodelScope: CoroutineScope,
+    @BaseInfo private val viewModelScope: CoroutineScope,
     private val intentHandler: IntentHandler<BaseInfoIntent>,
     viewStateProvider: ViewStateProvider<BaseInfoViewState>,
     eventHandler: EventHandler<BaseInfoEvent>
-) : BaseViewModel<BaseInfoViewState>(viewmodelScope) {
+) : BaseViewModel<BaseInfoViewState>(viewModelScope) {
 
     override val viewState: StateFlow<BaseInfoViewState> = viewStateProvider.viewState
 
-    override val event: SharedFlow<Event> = eventHandler.event
+    override val event: SharedFlow<BaseInfoEvent> = eventHandler.event
 
     override fun setIntent(intent: Intent) {
-     intentHandler.handle(intent as BaseInfoIntent)
+        viewModelScope.launch {
+            intentHandler.handle(intent as BaseInfoIntent)
+        }
     }
-
-
 }

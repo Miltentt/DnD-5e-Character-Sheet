@@ -1,7 +1,10 @@
 package com.miltent.core.useCase
 
+import com.miltent.domain.model.Attribute
 import com.miltent.domain.model.Character
+import com.miltent.domain.model.CharacterClass
 import com.miltent.domain.model.DashboardCharacter
+import com.miltent.domain.model.MovementSpeed
 import com.miltent.domain.model.Race
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
@@ -17,12 +20,19 @@ class GetDashBoardCharactersUseCase @Inject constructor() {
 val mockCharacter = Character(
     name = "Tul-Duru",
     race = Race.Dwarf,
-    baseConstitution = 16,
-    baseIntelligence = 9,
-    baseCharisma = 12,
-    baseStrength = 19,
-    baseDexterity = 14,
-    baseWisdom = 13,
+    baseConstitution = Attribute(0),
+    baseIntelligence = Attribute(0),
+    baseCharisma = Attribute(0),
+    baseStrength = Attribute(0),
+    baseDexterity = Attribute(0),
+    baseWisdom = Attribute(0),
     level = 7,
-    characterClass = "Fighter"
+    temporaryChaModifier = Attribute(0),
+    temporaryConModifier = Attribute(0),
+    temporaryDexModifier = Attribute(0),
+    temporaryIntModifier = Attribute(0),
+    temporaryStrModifier = Attribute(0),
+    temporaryWisModifier = Attribute(0),
+    movementSpeed = MovementSpeed(0.0),
+    characterClass = CharacterClass.Fighter
 )

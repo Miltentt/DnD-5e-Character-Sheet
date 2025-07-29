@@ -6,7 +6,9 @@ import kotlinx.coroutines.flow.SharedFlow
 abstract class EventHandler<T: Event> {
 
     private val _event: MutableSharedFlow<T> = MutableSharedFlow()
-    val event: SharedFlow<T> = _event
+    val event: SharedFlow<T> get() = _event
 
-    fun emitEvent(event: T) { this._event.tryEmit(event) }
+    suspend fun emitEvent(event: T) {
+        this._event.emit(event)
+    }
 }

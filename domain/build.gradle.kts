@@ -1,5 +1,6 @@
 plugins {
     id("java-library")
+    id("kotlin-kapt")
     alias(libs.plugins.jetbrains.kotlin.jvm)
 }
 java {
@@ -12,6 +13,7 @@ kotlin {
     }
 
     dependencies {
-
+        implementation(libs.dagger)
+        kapt(libs.daggerKsp)
     }
 }

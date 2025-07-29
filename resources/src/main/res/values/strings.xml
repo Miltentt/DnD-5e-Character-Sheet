@@ -3,4 +3,5 @@
 
     <string name="button_create_character">Stwórz postać</string>
     <string name="character_tile_level">Level: %s</string>
+    <string name="common_button_next">Następny</string>
 </resources>

@@ -4,4 +4,5 @@ import com.miltent.core.intent.Intent
 
 sealed interface SkillsIntent : Intent {
 
+    data class OnSkillToggled(val id: Int,val isChecked: Boolean): SkillsIntent
 }

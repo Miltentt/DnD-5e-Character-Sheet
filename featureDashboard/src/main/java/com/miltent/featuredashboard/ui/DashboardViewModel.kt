@@ -1,5 +1,6 @@
 package com.miltent.featuredashboard.ui
 
+import androidx.lifecycle.viewModelScope
 import com.miltent.core.event.EventHandler
 import com.miltent.core.intent.Intent
 import com.miltent.core.intent.IntentHandler
@@ -22,7 +23,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 internal class DashboardViewModel @Inject constructor(
-    @Dashboard viewmodelScope: CoroutineScope,
+    @Dashboard private val viewmodelScope: CoroutineScope,
     private val intentHandler: IntentHandler<DashboardIntent>,
     eventHandler: EventHandler<DashboardEvent>,
     viewStateProvider: ViewStateProvider<DashboardViewState>,
@@ -33,6 +34,8 @@ internal class DashboardViewModel @Inject constructor(
     override val viewState: StateFlow<DashboardViewState> = viewStateProvider.viewState
 
     override fun setIntent(intent: Intent) {
-        intentHandler.handle(intent as DashboardIntent)
+        viewmodelScope.launch {
+            intentHandler.handle(intent as DashboardIntent)
+        }
     }
 }

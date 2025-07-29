@@ -1,6 +1,7 @@
 package com.miltent.featureCharacterCreation.baseInfo.navigation
 
+import com.miltent.featureCharacterCreation.navigation.CharacterCreationRoute
 import kotlinx.serialization.Serializable
 
 @Serializable
-data object BaseInfoRoute
+data object BaseInfoRoute: CharacterCreationRoute

@@ -5,13 +5,15 @@ import com.miltent.core.useCase.GetDashBoardCharactersUseCase
 import com.miltent.domain.model.DashboardCharacter
 import com.miltent.featuredashboard.di.Dashboard
 import com.miltent.featuredashboard.state.DashboardViewState
+import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class DashboardViewStateProvider @Inject constructor(
+@ViewModelScoped
+internal class DashboardViewStateProvider @Inject constructor(
     private val getDashBoardCharactersUseCase: GetDashBoardCharactersUseCase,
     @Dashboard private val viewModelScope: CoroutineScope
 ): ViewStateProvider<DashboardViewState>() {

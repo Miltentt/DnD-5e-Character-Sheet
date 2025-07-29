@@ -10,4 +10,5 @@ sealed interface BaseInfoIntent: Intent {
     data class OnStatisticChanged(val statisticValue: String, val statisticType: StatisticType) : BaseInfoIntent
     data class OnCharacterClassChosen(val characterClass: CharacterClass) : BaseInfoIntent
     data class OnRaceChosen(val race: Race) : BaseInfoIntent
+    object OnNextClicked : BaseInfoIntent
 }

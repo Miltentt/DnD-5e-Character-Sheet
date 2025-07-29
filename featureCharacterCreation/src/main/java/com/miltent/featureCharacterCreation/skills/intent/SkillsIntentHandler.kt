@@ -5,7 +5,7 @@ import javax.inject.Inject
 
 internal class SkillsIntentHandler @Inject internal constructor(
 ) : IntentHandler<SkillsIntent> {
-    override fun handle(intent: SkillsIntent) {
+    override suspend fun handle(intent: SkillsIntent) {
 
     }
 

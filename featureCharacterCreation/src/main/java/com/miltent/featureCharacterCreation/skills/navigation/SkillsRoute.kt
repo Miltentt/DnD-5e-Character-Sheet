@@ -1,6 +1,7 @@
 package com.miltent.featureCharacterCreation.skills.navigation
 
+import com.miltent.featureCharacterCreation.navigation.CharacterCreationRoute
 import kotlinx.serialization.Serializable
 
 @Serializable
-internal data object SkillsRoute
+internal data object SkillsRoute: CharacterCreationRoute
