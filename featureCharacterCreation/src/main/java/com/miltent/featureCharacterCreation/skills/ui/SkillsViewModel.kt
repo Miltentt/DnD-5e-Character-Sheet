@@ -1,6 +1,5 @@
 package com.miltent.featureCharacterCreation.skills.ui
 
-import androidx.lifecycle.viewModelScope
 import com.miltent.core.event.Event
 import com.miltent.core.event.EventHandler
 import com.miltent.core.intent.Intent
@@ -28,11 +27,11 @@ class SkillsViewModel @Inject constructor(
 
     override val viewState: StateFlow<SkillsViewState> = viewStateProvider.viewState
 
-    override val event: SharedFlow<Event> = eventHandler.event
+    override val event: SharedFlow<SkillsEvent> = eventHandler.event
 
     override fun setIntent(intent: Intent) {
         viewmodelScope.launch {
-        intentHandler.handle(intent as SkillsIntent)
-    }
+            intentHandler.handle(intent as SkillsIntent)
+        }
     }
 }

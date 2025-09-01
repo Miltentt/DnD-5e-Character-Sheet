@@ -18,7 +18,7 @@ class BaseInfoViewStateFactoryImpl @Inject constructor(): BaseInfoViewState.Fact
             wisdom = 0,
             charisma = 0,
             race = Race.Dwarf,
-            characterClass = CharacterClass.Fighter
+            characterClass = CharacterClass.Fighter(1)
         )
     )
 }

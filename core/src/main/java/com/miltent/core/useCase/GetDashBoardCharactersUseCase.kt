@@ -26,7 +26,7 @@ val mockCharacter = Character(
     baseStrength = Attribute(0),
     baseDexterity = Attribute(0),
     baseWisdom = Attribute(0),
-    level = 7,
+    level = 8,
     temporaryChaModifier = Attribute(0),
     temporaryConModifier = Attribute(0),
     temporaryDexModifier = Attribute(0),
@@ -34,5 +34,5 @@ val mockCharacter = Character(
     temporaryStrModifier = Attribute(0),
     temporaryWisModifier = Attribute(0),
     movementSpeed = MovementSpeed(0.0),
-    characterClass = CharacterClass.Fighter
+    characterClass = CharacterClass.Fighter(8)
 )

@@ -1,6 +1,6 @@
 package com.miltent.featureCharacterCreation.creationNavigator
 
-import com.miltent.domain.model.CharacterProgression
+import com.miltent.core.characterprogression.CharacterProgression
 import com.miltent.featureCharacterCreation.navigation.CharacterCreationRoute
 
 interface CharacterCreationNavigationStateHolder {

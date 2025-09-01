@@ -2,5 +2,5 @@ package com.miltent.domain.di
 
 import dagger.Module
 
-@Module(includes = [BuilderModule::class])
+@Module(includes = [])
 interface DomainModule

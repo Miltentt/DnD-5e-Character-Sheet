@@ -33,13 +33,9 @@ data class Character(
             baseCharisma: Attribute,
         )
 
-        fun skills(
-            skills: List<Skill>
-        )
+        fun skills(skills: List<Skill>)
 
-        fun specialAbility(
-            vararg specialAbility: SpecialAbility
-        )
+        fun specialAbility(vararg specialAbility: SpecialAbility)
 
         fun build(): Character
     }

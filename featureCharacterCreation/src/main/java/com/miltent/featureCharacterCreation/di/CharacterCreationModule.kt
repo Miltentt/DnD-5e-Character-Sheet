@@ -1,5 +1,7 @@
 package com.miltent.featureCharacterCreation.di
 
+import com.miltent.domain.model.Character
+import com.miltent.featureCharacterCreation.builder.Character1stLevelBuilderImpl
 import com.miltent.featureCharacterCreation.creationNavigator.CharacterCreationNavigationStateHolder
 import com.miltent.featureCharacterCreation.creationNavigator.CharacterCreationNavigationStateHolderImpl
 import dagger.Binds
@@ -13,4 +15,7 @@ interface CharacterCreationModule {
 
     @Binds
     fun bindCharacterCreationNavigationStateHolder(holder: CharacterCreationNavigationStateHolderImpl): CharacterCreationNavigationStateHolder
+
+    @Binds
+    fun bindCharacter1stLevelBuilder(builder: Character1stLevelBuilderImpl): Character.Builder1stLevel
 }

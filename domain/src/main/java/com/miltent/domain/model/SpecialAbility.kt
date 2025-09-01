@@ -1,13 +1,14 @@
 package com.miltent.domain.model
 
 data class SpecialAbility(
+    val name: String,
     val description: String,
-    val strengthModifier: Attribute,
-    val dexterityModifier: Attribute,
-    val charismaModifier: Attribute,
-    val constitutionModifier: Attribute,
-    val intelligenceModifier: Attribute,
-    val wisdomModifier: Attribute,
-    val movementSpeedModifier: MovementSpeed,
-    val armorClassModifier: ArmorClass
+    val strengthModifier: Attribute = Attribute(0),
+    val dexterityModifier: Attribute = Attribute(0),
+    val charismaModifier: Attribute= Attribute(0),
+    val constitutionModifier: Attribute= Attribute(0),
+    val intelligenceModifier: Attribute= Attribute(0),
+    val wisdomModifier: Attribute= Attribute(0),
+    val movementSpeedModifier: MovementSpeed = MovementSpeed(0.0),
+    val armorClassModifier: ArmorClass = ArmorClass(0)
 )

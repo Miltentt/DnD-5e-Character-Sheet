@@ -16,6 +16,7 @@ composeBom = "2025.07.00"
 appcompat = "1.7.1"
 material = "1.12.0"
 hilt-version = "2.57"
+room-version = "2.6.1"
 hiltCompose-version = "1.2.0"
 hilt-compose-navigation-version = "1.2.0"
 navigation-compose-version = "2.9.2"
@@ -56,6 +57,9 @@ hiltKsp = { module = "androidx.hilt:hilt-compiler", version.ref = "hiltCompose-v
 navigationCompose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation-compose-version" }
 hilt-compose-navigation = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hilt-compose-navigation-version" }
 ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "uiTooling" }
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room-version" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room-version" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room-version" }
 
 [plugins]
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp-version" }

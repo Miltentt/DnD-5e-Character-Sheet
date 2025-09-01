@@ -1,15 +1,19 @@
 package com.miltent.domain.model
 
 sealed class CharacterClass(
+    open val level: Int,
     val name: String,
-    val characterCreationProgression: List<CharacterProgression>,
     val movementSpeedModifier: MovementSpeed
 ) {
 
-    data object Fighter :
+    data class Fighter(override val level: Int) :
         CharacterClass(
-            "Fighter",
-            listOf(CharacterProgression.FightingStyle),
+            level = level,
+            name,
             MovementSpeed(0.0)
-        )
+        ) {
+            companion object {
+                const val name = "Fighter"
+            }
+        }
 }

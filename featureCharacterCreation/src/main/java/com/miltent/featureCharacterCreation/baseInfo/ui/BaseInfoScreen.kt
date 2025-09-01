@@ -121,7 +121,7 @@ fun BaseInfoScreenPreview() {
             BaseInfoUiState(
                 name = "Tul duru",
                 race = Race.Dwarf,
-                characterClass = CharacterClass.Fighter,
+                characterClass = CharacterClass.Fighter(8),
                 strength = 10,
                 dexterity = 10,
                 constitution = 10,

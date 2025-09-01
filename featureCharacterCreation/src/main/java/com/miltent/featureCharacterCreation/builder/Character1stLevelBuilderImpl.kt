@@ -1,4 +1,4 @@
-package com.miltent.domain.builder
+package com.miltent.featureCharacterCreation.builder
 
 import com.miltent.domain.model.Attribute
 import com.miltent.domain.model.Character
@@ -14,13 +14,19 @@ class Character1stLevelBuilderImpl @Inject constructor() : Character.Builder1stL
 
     private var name: String = ""
     private var race: Race = Race.Dwarf
-    private var characterClass: CharacterClass = CharacterClass.Fighter
-    private var baseStrength: Attribute = Attribute(0)
-    private var baseDexterity: Attribute = Attribute(0)
-    private var baseConstitution: Attribute = Attribute(0)
-    private var baseIntelligence: Attribute = Attribute(0)
-    private var baseWisdom: Attribute = Attribute(0)
-    private var baseCharisma: Attribute = Attribute(0)
+    private var characterClass: CharacterClass = CharacterClass.Fighter(1)
+    var baseStrength: Attribute = Attribute(0)
+        private set
+    var baseDexterity: Attribute = Attribute(0)
+        private set
+    var baseConstitution: Attribute = Attribute(0)
+        private set
+    var baseIntelligence: Attribute = Attribute(0)
+        private set
+    var baseWisdom: Attribute = Attribute(0)
+        private set
+    var baseCharisma: Attribute = Attribute(0)
+        private set
     private var skills: List<Skill> = emptyList()
     private var specialAbility: List<SpecialAbility> = emptyList()
 
@@ -51,7 +57,7 @@ class Character1stLevelBuilderImpl @Inject constructor() : Character.Builder1stL
     }
 
     override fun specialAbility(vararg specialAbility: SpecialAbility) {
-        this.specialAbility = specialAbility.toList()
+        this.specialAbility = this.specialAbility + specialAbility.toList()
     }
 
     override fun build(): Character {

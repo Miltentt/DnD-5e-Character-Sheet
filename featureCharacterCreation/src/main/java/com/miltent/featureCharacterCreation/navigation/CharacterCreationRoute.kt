@@ -5,11 +5,13 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
+import com.miltent.domain.model.Skill
 import com.miltent.featureCharacterCreation.baseInfo.event.BaseInfoEvent
 import com.miltent.featureCharacterCreation.baseInfo.navigation.BaseInfoRoute
 import com.miltent.featureCharacterCreation.baseInfo.ui.BaseInfoScreen
 import com.miltent.featureCharacterCreation.fightingStyle.navigation.FightingStyleRoute
 import com.miltent.featureCharacterCreation.fightingStyle.ui.FightingStyleScreen
+import com.miltent.featureCharacterCreation.skills.event.SkillsEvent
 import com.miltent.featureCharacterCreation.skills.navigation.SkillsRoute
 import com.miltent.featureCharacterCreation.skills.ui.SkillsScreen
 import kotlinx.serialization.Serializable
@@ -34,7 +36,16 @@ fun NavGraphBuilder.characterCreation(navController: NavController) {
         }
 
         composable<SkillsRoute> {
-            SkillsScreen()
+            SkillsScreen(onEvent = {
+                when (it) {
+                    is SkillsEvent.FinishProcess ->  {
+                        // navController.navigate(it.nextStepRoute)
+                    }
+                    is SkillsEvent.NavigateToError -> {
+
+                    }
+                }
+            })
         }
 
         composable<FightingStyleRoute> {
