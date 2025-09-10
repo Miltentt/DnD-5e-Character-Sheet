@@ -1,4 +1,4 @@
-package com.miltent.featureCharacterCreation.baseInfo.model
+package com.miltent.domain.model
 
 enum class StatisticType {
     STR,

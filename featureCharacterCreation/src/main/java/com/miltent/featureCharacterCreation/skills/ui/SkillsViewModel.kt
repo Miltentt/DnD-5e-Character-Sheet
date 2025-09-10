@@ -1,6 +1,5 @@
 package com.miltent.featureCharacterCreation.skills.ui
 
-import com.miltent.core.event.Event
 import com.miltent.core.event.EventHandler
 import com.miltent.core.intent.Intent
 import com.miltent.core.intent.IntentHandler

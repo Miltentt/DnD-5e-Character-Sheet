@@ -1,25 +1,18 @@
 package com.miltent.database.entities
 
 import androidx.annotation.Keep
-import androidx.room.Entity
-import com.miltent.domain.model.ArmorClass
-import com.miltent.domain.model.MovementSpeed
 
-@Entity
+@Keep
 data class SpecialAbilityEntity(
+    val id: String,
+    val name: String,
     val description: String,
-    @Keep
-    val strengthModifier: AttributeEntity,
-    @Keep
-    val dexterityModifier: AttributeEntity,
-    @Keep
-    val charismaModifier: AttributeEntity,
-    @Keep
-    val constitutionModifier: AttributeEntity,
-    @Keep
-    val intelligenceModifier: AttributeEntity,
-    @Keep
-    val wisdomModifier: AttributeEntity,
-    val movementSpeedModifier: MovementSpeedEntity,
-    val armorClassModifier: ArmorClass
+    val strengthModifier: Int,
+    val dexterityModifier: Int,
+    val charismaModifier: Int,
+    val constitutionModifier: Int,
+    val intelligenceModifier: Int,
+    val wisdomModifier: Int,
+    val movementSpeedModifier: Double,
+    val armorClassModifier: Int
 )

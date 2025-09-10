@@ -18,12 +18,12 @@ internal class SkillsIntentHandler @Inject internal constructor(
     private val insertCharacterUseCase: InsertCharacterUseCase,
 ) : IntentHandler<SkillsIntent> {
     override suspend fun handle(intent: SkillsIntent) = when (intent) {
-        is SkillsIntent.OnSkillToggled -> Unit
+        is SkillsIntent.OnSkillClicked -> Unit
         is SkillsIntent.OnNextClicked -> onNextClicked()
     }
 
     private suspend fun onNextClicked() {
-        characterBuilder1stLevel.skills(viewStateProvider.viewState.value.skillList)
+        characterBuilder1stLevel.skills(viewStateProvider.viewState.value.skillList.keys.toList())
         runCatching {
             insertCharacterUseCase.invoke(characterBuilder1stLevel.build())
         }.onFailure {
@@ -31,5 +31,17 @@ internal class SkillsIntentHandler @Inject internal constructor(
         }.onSuccess {
             eventHandler.emitEvent(SkillsEvent.FinishProcess)
         }
+    }
+
+    private fun onSkillClicked(id: String) {
+        /*
+        viewStateProvider.updateState(
+            viewStateProvider.viewState.value.copy(
+                uiState = viewStateProvider.viewState.value.uiState.copy(
+                    selectedQueue = viewStateProvider.viewState.value.uiState.selectedQueue.enqueue(id))
+            )
+        )
+
+         */
     }
 }

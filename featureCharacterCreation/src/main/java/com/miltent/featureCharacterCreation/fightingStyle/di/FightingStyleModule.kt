@@ -10,6 +10,8 @@ import com.miltent.featureCharacterCreation.fightingStyle.intent.FightingStyleIn
 import com.miltent.featureCharacterCreation.fightingStyle.state.FightingStyleViewState
 import com.miltent.featureCharacterCreation.fightingStyle.state.factory.FightingStyleViewStateFactoryImpl
 import com.miltent.featureCharacterCreation.fightingStyle.state.provider.FightingStyleStateProvider
+import com.miltent.featureCharacterCreation.fightingStyle.validation.FightingStyleValidator
+import com.miltent.featureCharacterCreation.fightingStyle.validation.FightingStyleValidatorImpl
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -38,6 +40,9 @@ internal interface FightingStyleModule {
 
     @Binds
     fun bindFightingStyleViewStateFactory(factory: FightingStyleViewStateFactoryImpl): FightingStyleViewState.Factory
+
+    @Binds
+    fun bindFightingStyleValidator(validator: FightingStyleValidatorImpl): FightingStyleValidator
 
     companion object {
         @Provides

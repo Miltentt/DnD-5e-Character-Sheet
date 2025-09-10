@@ -2,9 +2,11 @@ package com.miltent.featureCharacterCreation.baseInfo.state.provider
 
 import com.miltent.core.ui.ViewStateProvider
 import com.miltent.featureCharacterCreation.baseInfo.state.BaseInfoViewState
+import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
 
+@ViewModelScoped
 class BaseInfoViewStateProvider @Inject constructor(
     viewStateFactory: BaseInfoViewState.Factory
 ) : ViewStateProvider<BaseInfoViewState>() {

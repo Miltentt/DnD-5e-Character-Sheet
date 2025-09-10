@@ -2,7 +2,10 @@ package com.miltent.featuredashboard.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -15,6 +18,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.miltent.core.compose.ObserveEvents
 import com.miltent.designsystem.buttons.ProgressButton
+import com.miltent.designsystem.formatter.CharacterClassFormatter
 import com.miltent.designsystem.theme.Colors
 import com.miltent.designsystem.theme.DNDSheetTheme
 import com.miltent.designsystem.theme.Spacing
@@ -49,6 +53,7 @@ private fun DashboardScreen(
                 ProgressButton(
                     modifier = Modifier
                         .fillMaxWidth()
+                        .padding(WindowInsets.navigationBars.asPaddingValues())
                         .padding(
                             start = Spacing.spacing4,
                             bottom = Spacing.spacing16,
@@ -60,7 +65,7 @@ private fun DashboardScreen(
             content = { paddingValues: PaddingValues ->
                 LazyColumn(
                     modifier = Modifier
-                        .padding(Spacing.spacing4)
+                        .padding(Spacing.spacing16)
                         .padding(paddingValues)
                 ) {
                     items(viewState.characterList, itemContent = { character: DashboardCharacter ->
@@ -68,7 +73,7 @@ private fun DashboardScreen(
                             name = character.name,
                             race = character.race.toString(),
                             level = character.level,
-                            characterClass = character.characterClass.name
+                            characterClass = stringResource(CharacterClassFormatter.formatCharacterClass(character.characterClass::class))
                         )
                     })
                 }

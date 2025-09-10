@@ -27,7 +27,7 @@ class FightingStyleViewModel @Inject constructor(
 
     override val viewState: StateFlow<FightingStyleViewState> = viewStateProvider.viewState
 
-    override val event: SharedFlow<Event> = eventHandler.event
+    override val event: SharedFlow<FightingStyleEvent> = eventHandler.event
 
     override fun setIntent(intent: Intent) {
         viewmodelScope.launch {

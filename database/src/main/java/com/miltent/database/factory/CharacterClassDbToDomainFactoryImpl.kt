@@ -7,11 +7,11 @@ class CharacterClassDbToDomainFactoryImpl @Inject constructor(): CharacterClassD
 
     override fun createCharacterClass(
         level: Int,
-        className: String
+        classIdentifier: String
     ): CharacterClass {
-        return when (className) {
-            CharacterClass.Fighter.name -> CharacterClass.Fighter(level)
-            else -> throw IllegalArgumentException("Unknown character class: $className")
+        return when (classIdentifier) {
+            CharacterClass.Fighter.identifier -> CharacterClass.Fighter(level)
+            else -> throw IllegalArgumentException("Unknown character class: $classIdentifier")
         }
     }
 }

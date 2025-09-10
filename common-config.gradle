@@ -27,8 +27,8 @@ android {
 
 dependencies {
     implementation(libs.hilt.android)
-    kapt libs.hilt.compiler
-    kapt libs.hiltKsp
+    ksp libs.hilt.compiler
+    ksp libs.hiltKsp
     implementation libs.hiltNavigation
     implementation libs.navigationCompose
     implementation libs.runtime.ktx

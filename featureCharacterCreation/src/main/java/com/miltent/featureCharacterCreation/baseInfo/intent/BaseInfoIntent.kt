@@ -3,7 +3,7 @@ package com.miltent.featureCharacterCreation.baseInfo.intent
 import com.miltent.core.intent.Intent
 import com.miltent.domain.model.CharacterClass
 import com.miltent.domain.model.Race
-import com.miltent.featureCharacterCreation.baseInfo.model.StatisticType
+import com.miltent.domain.model.StatisticType
 
 sealed interface BaseInfoIntent: Intent {
     data class OnNameChanged(val name: String) : BaseInfoIntent

@@ -1,7 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Common -->
+    <string name="common_button_next">Następny</string>
+    <string name="unknown_error">Nieznany błąd</string>
 
+
+    <!-- Classes -->
+    <string name="class_fighter">Wojownik</string>
+
+    <!-- Races -->
+    <string name="race_dwarf">Krasnolud</string>
+
+    <!-- Stats -->
+    <string name="statistic_short_strength">STR</string>
+    <string name="statistic_short_dexterity">DEX</string>
+    <string name="statistic_short_constitution">CON</string>
+    <string name="statistic_short_intelligence">INT</string>
+    <string name="statistic_short_wisdom">WIS</string>
+    <string name="statistic_short_charisma">CHAR</string>
+
+    <!-- Dashboard -->
     <string name="button_create_character">Stwórz postać</string>
     <string name="character_tile_level">Level: %s</string>
-    <string name="common_button_next">Następny</string>
+
+    <!-- Character creation -->
+    <string name="character_creation_name">Imię</string>
+    <string name="character_creation_name_placeholder">Wpisz imię postaci</string>
+    <string name="base_info_error_empty_name">Imię nie może być puste</string>
+    <string name="base_info_error_empty_race">Rasa nie może być pusta</string>
+    <string name="base_info_error_empty_class">Klasa nie może być pusta</string>
+    <string name="base_info_error_statistic_too_high">Wartość statystyki nie może być większa niż 18</string>"
+    <string name="base_info_choose_race_title">Rasa</string>
+    <string name="base_info_choose_race_subtitle">Wybierz swoją rasę</string>
+    <string name="base_info_choose_class_title">Klasa</string>
+    <string name="base_info_choose_class_subtitle">Wybierz swoją klasę</string>
+    <string name="fighting_style_title">Styl walki</string>
+    <string name="fighting_style_subtitle">Wybierz styl walki</string>
+    <string name="fighting_style_empty">Styl walki nie może być pusty</string>
 </resources>

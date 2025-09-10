@@ -10,6 +10,8 @@ import com.miltent.featureCharacterCreation.baseInfo.intent.BaseInfoIntentHandle
 import com.miltent.featureCharacterCreation.baseInfo.state.BaseInfoViewState
 import com.miltent.featureCharacterCreation.baseInfo.state.factory.BaseInfoViewStateFactoryImpl
 import com.miltent.featureCharacterCreation.baseInfo.state.provider.BaseInfoViewStateProvider
+import com.miltent.featureCharacterCreation.baseInfo.validator.BaseInfoValidator
+import com.miltent.featureCharacterCreation.baseInfo.validator.BaseInfoValidatorImpl
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -39,6 +41,9 @@ interface BaseInfoModule {
 
     @Binds
     fun bindViewStateFactory(factory: BaseInfoViewStateFactoryImpl): BaseInfoViewState.Factory
+
+    @Binds
+    fun bindBaseInfoValidator(validator: BaseInfoValidatorImpl): BaseInfoValidator
 
     companion object {
         @Provides

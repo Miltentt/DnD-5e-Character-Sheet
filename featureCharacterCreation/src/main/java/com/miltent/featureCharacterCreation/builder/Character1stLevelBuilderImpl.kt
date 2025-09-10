@@ -13,8 +13,10 @@ import javax.inject.Inject
 class Character1stLevelBuilderImpl @Inject constructor() : Character.Builder1stLevel {
 
     private var name: String = ""
-    private var race: Race = Race.Dwarf
-    private var characterClass: CharacterClass = CharacterClass.Fighter(1)
+    var race: Race = Race.Dwarf
+    private set
+    var characterClass: CharacterClass = CharacterClass.Fighter(1)
+    private set
     var baseStrength: Attribute = Attribute(0)
         private set
     var baseDexterity: Attribute = Attribute(0)
@@ -66,12 +68,12 @@ class Character1stLevelBuilderImpl @Inject constructor() : Character.Builder1stL
             level = 1,
             race = race,
             characterClass = characterClass,
-            baseStrength = baseStrength,
-            baseDexterity = baseDexterity,
-            baseConstitution = baseConstitution,
-            baseIntelligence = baseIntelligence,
-            baseWisdom = baseWisdom,
-            baseCharisma = baseCharisma,
+            baseStrength = baseStrength + race.extraModifierStrength,
+            baseDexterity = baseDexterity + race.extraModifierDex,
+            baseConstitution = baseConstitution + race.extraModifierCon,
+            baseIntelligence = baseIntelligence + race.extraModifierInt,
+            baseWisdom = baseWisdom + race.extraModifierWis,
+            baseCharisma = baseCharisma + race.extraModifierCha,
             temporaryChaModifier = Attribute(0),
             temporaryConModifier = Attribute(0),
             temporaryDexModifier = Attribute(0),

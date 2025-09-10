@@ -1,5 +1,6 @@
 package com.miltent.core.useCase
 
+import com.miltent.core.repository.CharacterRepository
 import com.miltent.domain.model.Attribute
 import com.miltent.domain.model.Character
 import com.miltent.domain.model.CharacterClass
@@ -10,9 +11,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import javax.inject.Inject
 
-class GetDashBoardCharactersUseCase @Inject constructor() {
+class GetDashBoardCharactersUseCase @Inject constructor(private val characterRepository: CharacterRepository) {
 
-    operator fun invoke(): Flow<List<DashboardCharacter>> = flowOf(listOf(mockCharacter))
+    suspend operator fun invoke(): Flow<List<DashboardCharacter>> = flowOf(listOf(mockCharacter))
 }
 
 

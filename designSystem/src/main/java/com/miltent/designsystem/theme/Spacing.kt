@@ -7,6 +7,7 @@ import androidx.compose.ui.unit.dp
 
 @Immutable
 object Spacing {
+    val spacing0: Dp = 0.dp
     val spacing4: Dp = 4.dp
     val spacing8: Dp = 8.dp
     val spacing12 = 12.dp

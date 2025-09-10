@@ -4,5 +4,5 @@ import com.miltent.core.event.Event
 import com.miltent.featureCharacterCreation.navigation.CharacterCreationRoute
 
 sealed interface FightingStyleEvent : Event {
-    data class NextStep(val characterCreationRoute: CharacterCreationRoute) : FightingStyleEvent
+    data class NextStep(val nextStepRoute: CharacterCreationRoute) : FightingStyleEvent
 }

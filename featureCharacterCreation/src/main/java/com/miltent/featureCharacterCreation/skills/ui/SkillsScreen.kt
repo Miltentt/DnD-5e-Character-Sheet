@@ -16,12 +16,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.miltent.core.compose.ObserveEvents
+import com.miltent.core.utility.Queue
 import com.miltent.designsystem.buttons.ProgressButton
+import com.miltent.designsystem.formatter.StatisticTypeFormatter
 import com.miltent.designsystem.skills.SelectableSkill
 import com.miltent.designsystem.theme.Colors
 import com.miltent.designsystem.theme.DNDSheetTheme
 import com.miltent.designsystem.theme.Spacing
 import com.miltent.domain.model.Skill
+import com.miltent.domain.model.StatisticType
 import com.miltent.featureCharacterCreation.skills.event.SkillsEvent
 import com.miltent.featureCharacterCreation.skills.intent.SkillsIntent
 import com.miltent.featureCharacterCreation.skills.state.SkillsUiState
@@ -57,20 +60,24 @@ private fun SkillsScreen(viewState: SkillsViewState, onIntent: (SkillsIntent) ->
             },
             content = { paddingValues: PaddingValues ->
                 Column(modifier = Modifier.padding(paddingValues)) {
-                    viewState.skillList.forEach { skill: Skill ->
+                    viewState.skillList.forEach { (skill, modifier) ->
                         SelectableSkill(
                             isChecked = false,
-                            onCheckedChange = {
+                            onClick = {
                                 onIntent.invoke(
-                                    SkillsIntent.OnSkillToggled(
+                                    SkillsIntent.OnSkillClicked(
                                         skill.id,
-                                        it
+                                        true
                                     )
                                 )
                             },
-                            modificator = skill.modificator,
+                            modificator = stringResource(
+                                StatisticTypeFormatter.formatStatisticTypeShort(
+                                    skill.statisticType
+                                )
+                            ),
                             name = skill.name,
-                            value = "+2"
+                            value = modifier.toString()
                         )
                     }
                 }
@@ -83,14 +90,18 @@ private fun SkillsScreen(viewState: SkillsViewState, onIntent: (SkillsIntent) ->
 @Composable
 @Preview
 fun SkillsScreenPreview() {
-    SkillsScreen(
-        viewState = SkillsViewState(
-            SkillsUiState(), listOf(
-                Skill(1, "Acrobatics", "DEX"),
-                Skill(2, "Animal Handling", "WIS"),
-                Skill(3, "Arcana", "INT"),
-                Skill(4, "Athletics", "STR"),
-            )
-        ), onIntent = {}
-    )
+    DNDSheetTheme {
+        SkillsScreen(
+            viewState = SkillsViewState(
+                SkillsUiState(
+                    Queue(4)
+                ), mapOf(
+                    Skill(1, "Acrobatics", StatisticType.DEX) to 4,
+                    Skill(2, "Animal Handling", StatisticType.WIS) to 4,
+                    Skill(3, "Arcana", StatisticType.INT) to 4,
+                    Skill(4, "Athletics", StatisticType.STR) to 4,
+                )
+            ), onIntent = {}
+        )
+    }
 }

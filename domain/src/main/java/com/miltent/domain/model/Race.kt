@@ -1,24 +1,28 @@
 package com.miltent.domain.model
 
 sealed class Race(
-    val extraModifierStrength: Int,
-    val extraModifierDex: Int,
-    val extraModifierCon: Int,
-    val extraModifierInt: Int,
-    val extraModifierWis: Int,
-    val extraModifierCha: Int,
+    val identifier: String,
+    val extraModifierStrength: Attribute,
+    val extraModifierDex: Attribute,
+    val extraModifierCon: Attribute,
+    val extraModifierInt: Attribute,
+    val extraModifierWis: Attribute,
+    val extraModifierCha: Attribute,
     val specialAbility: List<SpecialAbility>?,
+    val skillPoints: Int,
     val movementSpeed: MovementSpeed
 ) {
 
     data object Dwarf : Race(
-        extraModifierStrength = 2,
-        extraModifierDex = 0,
-        extraModifierCon = 0,
-        extraModifierInt = 0,
-        extraModifierWis = 0,
-        extraModifierCha = 0,
+        identifier = "Dwarf",
+        extraModifierStrength = Attribute(2),
+        extraModifierDex = Attribute(0),
+        extraModifierCon = Attribute(2),
+        extraModifierInt = Attribute(0),
+        extraModifierWis = Attribute(0),
+        extraModifierCha = Attribute(0),
         specialAbility = null,
+        skillPoints= 0,
         movementSpeed = MovementSpeed(7.5)
     )
 }

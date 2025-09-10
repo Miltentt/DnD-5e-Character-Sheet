@@ -1,5 +1,6 @@
 package com.miltent.featureCharacterCreation.baseInfo.state.factory
 
+import com.miltent.domain.model.Attribute
 import com.miltent.domain.model.CharacterClass
 import com.miltent.domain.model.Race
 import com.miltent.featureCharacterCreation.baseInfo.state.BaseInfoUiState
@@ -11,14 +12,15 @@ class BaseInfoViewStateFactoryImpl @Inject constructor(): BaseInfoViewState.Fact
     override fun createEmpty(): BaseInfoViewState = BaseInfoViewState(
         uiState = BaseInfoUiState(
             name = "",
-            strength = 0,
-            dexterity = 0,
-            constitution = 0,
-            intelligence = 0,
-            wisdom = 0,
-            charisma = 0,
-            race = Race.Dwarf,
-            characterClass = CharacterClass.Fighter(1)
+            strength = Attribute(0),
+            dexterity = Attribute(0),
+            constitution =Attribute(0),
+            intelligence = Attribute(0),
+            wisdom = Attribute(0),
+            charisma = Attribute(0),
+            race = null,
+            characterClass = null,
+            error = null,
         )
     )
 }

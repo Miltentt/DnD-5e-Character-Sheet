@@ -4,5 +4,5 @@ import com.miltent.domain.model.CharacterClass
 
 interface CharacterClassDbToDomainFactory {
 
-    fun createCharacterClass(level: Int, className: String): CharacterClass
+    fun createCharacterClass(level: Int, classIdentifier: String): CharacterClass
 }

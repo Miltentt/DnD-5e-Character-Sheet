@@ -2,12 +2,13 @@ package com.miltent.core.repository
 
 import com.miltent.domain.model.Character
 import com.miltent.domain.model.DashboardCharacter
+import kotlinx.coroutines.flow.Flow
 
 interface CharacterRepository {
 
-    fun getCharacters(): List<DashboardCharacter>
+    suspend fun getCharacters(): Flow<List<DashboardCharacter>>
 
-    fun getCharacterById(id: Int): Character
+    suspend fun getCharacterById(id: Int): Flow<Character>
 
-    fun upsertCharacter(character: Character)
+    suspend fun upsertCharacter(character: Character)
 }

@@ -1,26 +1,19 @@
 package com.miltent.database.di
 
 import com.miltent.core.utility.Mapper
-import com.miltent.database.entities.AttributeEntity
 import com.miltent.database.entities.CharacterClassEntity
 import com.miltent.database.entities.CharacterEntity
-import com.miltent.database.entities.MovementSpeedEntity
 import com.miltent.database.entities.RaceEntity
 import com.miltent.database.entities.SpecialAbilityEntity
-import com.miltent.database.mapper.DbToDomain.AttributeDbToDomainMapper
-import com.miltent.database.mapper.DbToDomain.CharacterDbToDomainMapper
-import com.miltent.database.mapper.DbToDomain.MovementSpeedDbToDomainMapper
-import com.miltent.database.mapper.DbToDomain.RaceDbToDomainMapper
-import com.miltent.database.mapper.DbToDomain.SpecialAbilityDbToDomainMapper
-import com.miltent.database.mapper.domainToDb.AttributesDomainToDbMapper
+import com.miltent.database.mapper.dbToDomain.CharacterDbToDomainMapper
+import com.miltent.database.mapper.dbToDomain.RaceDbToDomainMapper
+import com.miltent.database.mapper.dbToDomain.SpecialAbilityDbToDomainMapper
 import com.miltent.database.mapper.domainToDb.CharacterClassDomainToDbMapper
 import com.miltent.database.mapper.domainToDb.CharacterDomainToEntityMapper
-import com.miltent.database.mapper.domainToDb.MovementSpeedDomainToDbMapper
 import com.miltent.database.mapper.domainToDb.RaceDomainToDbMapper
 import com.miltent.database.mapper.domainToDb.SpecialAbilityDomainToDbMapper
-import com.miltent.domain.model.Attribute
 import com.miltent.domain.model.CharacterClass
-import com.miltent.domain.model.MovementSpeed
+import com.miltent.domain.model.Character
 import com.miltent.domain.model.Race
 import com.miltent.domain.model.SpecialAbility
 import dagger.Binds
@@ -48,42 +41,22 @@ interface MapperModule {
     ): Mapper<CharacterClass, CharacterClassEntity>
 
     @Binds
-    fun bindAttributeDomainToEntityMapper(
-        attributesDomainToEntityMapper: AttributesDomainToDbMapper
-    ): Mapper<Attribute, AttributeEntity>
+    fun bindRaceDbToDomainMapper(
+        raceEntityToDomainMapper: RaceDbToDomainMapper
+    ): Mapper<RaceEntity, Race>
 
     @Binds
-    fun bindAttributeEntityToDomainMapper(
-        attributesEntityToDomainMapper: AttributeDbToDomainMapper
-    ): Mapper<AttributeEntity, Attribute>
+    fun bindRaceDomainToEntityMapper(
+        raceDomainToEntityMapper: RaceDomainToDbMapper
+    ): Mapper<Race, RaceEntity>
 
     @Binds
-    fun bindMovementSpeedDomainToEntityMapper(
-        movementSpeedDomainToDbMapper: MovementSpeedDomainToDbMapper
-    ): Mapper<MovementSpeed, MovementSpeedEntity>
+    fun bindSpecialAbilityDomainToEntityMapper(
+        specialAbilityDomainToEntityMapper: SpecialAbilityDomainToDbMapper
+    ): Mapper<SpecialAbility, SpecialAbilityEntity>
 
     @Binds
-    fun bindMovementSpeedEntityToDomainMapper(
-        movementSpeedDbToDomainMapper: MovementSpeedDbToDomainMapper): Mapper<MovementSpeedEntity, MovementSpeed>
-
-   @Binds
-   fun bindRaceDbToDomainMapper(
-       raceEntityToDomainMapper: RaceDbToDomainMapper
-   ): Mapper<RaceEntity, Race>
-
-   @Binds
-   fun bindRaceDomainToEntityMapper(
-       raceDomainToEntityMapper: RaceDomainToDbMapper
-   ): Mapper<Race, RaceEntity>
-
-   @Binds
-   fun bindSpecialAbilityDomainToEntityMapper(
-       specialAbilityDomainToEntityMapper: SpecialAbilityDomainToDbMapper
-   ): Mapper<SpecialAbility, SpecialAbilityEntity>
-
-   @Binds
-   fun bindSpecialAbilityEntityToDomainMapper(
-       specialAbilityEntityToDomainMapper: SpecialAbilityDbToDomainMapper
-   ): Mapper<SpecialAbilityEntity, SpecialAbility>
-
+    fun bindSpecialAbilityEntityToDomainMapper(
+        specialAbilityEntityToDomainMapper: SpecialAbilityDbToDomainMapper
+    ): Mapper<SpecialAbilityEntity, SpecialAbility>
 }

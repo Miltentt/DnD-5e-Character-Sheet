@@ -2,18 +2,20 @@ package com.miltent.domain.model
 
 sealed class CharacterClass(
     open val level: Int,
-    val name: String,
-    val movementSpeedModifier: MovementSpeed
+    val identifier: String,
+    val movementSpeedModifier: MovementSpeed,
+    val skillPoints: Int,
 ) {
 
     data class Fighter(override val level: Int) :
         CharacterClass(
             level = level,
-            name,
-            MovementSpeed(0.0)
+            identifier,
+            MovementSpeed(0.0),
+            skillPoints = 2,
         ) {
             companion object {
-                const val name = "Fighter"
+                const val identifier = "Fighter"
             }
         }
 }

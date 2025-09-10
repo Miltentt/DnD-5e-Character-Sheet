@@ -1,12 +1,9 @@
 package com.miltent.database.entities
 
 import androidx.annotation.Keep
-import androidx.room.Entity
 
-@Entity
-class CharacterClassEntity(
+@Keep
+data class CharacterClassEntity(
     val level: Int,
-    val name: String,
-    @Keep
-    val movementSpeedModifier: MovementSpeedEntity
+    val characterClassIdentifier: String,
 )
