@@ -4,6 +4,6 @@ import com.miltent.core.intent.Intent
 
 sealed interface SkillsIntent : Intent {
 
-    data class OnSkillClicked(val id: Int,val isChecked: Boolean): SkillsIntent
+    data class OnSkillClicked(val id: Int): SkillsIntent
     data object OnNextClicked: SkillsIntent
 }

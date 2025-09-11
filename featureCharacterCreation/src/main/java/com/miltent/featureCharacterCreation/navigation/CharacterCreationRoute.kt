@@ -41,7 +41,7 @@ fun NavGraphBuilder.characterCreation(navController: NavController) {
             SkillsScreen(onEvent = {
                 when (it) {
                     is SkillsEvent.FinishProcess ->  {
-                        // navController.navigate(it.nextStepRoute)
+                         navController.popBackStack(BaseInfoRoute, inclusive = true)
                     }
                     is SkillsEvent.NavigateToError -> {
 

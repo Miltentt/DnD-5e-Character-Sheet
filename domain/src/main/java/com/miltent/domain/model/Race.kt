@@ -22,7 +22,7 @@ sealed class Race(
         extraModifierWis = Attribute(0),
         extraModifierCha = Attribute(0),
         specialAbility = null,
-        skillPoints= 0,
+        skillPoints= 2,
         movementSpeed = MovementSpeed(7.5)
     )
 }

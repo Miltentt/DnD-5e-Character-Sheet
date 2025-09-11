@@ -19,6 +19,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.miltent.core.compose.ObserveEvents
 import com.miltent.designsystem.buttons.ProgressButton
 import com.miltent.designsystem.formatter.CharacterClassFormatter
+import com.miltent.designsystem.formatter.RaceFormatter
 import com.miltent.designsystem.theme.Colors
 import com.miltent.designsystem.theme.DNDSheetTheme
 import com.miltent.designsystem.theme.Spacing
@@ -71,9 +72,13 @@ private fun DashboardScreen(
                     items(viewState.characterList, itemContent = { character: DashboardCharacter ->
                         CharacterTile(
                             name = character.name,
-                            race = character.race.toString(),
+                            race = stringResource(RaceFormatter.formatRace(character.race)),
                             level = character.level,
-                            characterClass = stringResource(CharacterClassFormatter.formatCharacterClass(character.characterClass::class))
+                            characterClass = stringResource(
+                                CharacterClassFormatter.formatCharacterClass(
+                                    character.characterClass::class
+                                )
+                            )
                         )
                     })
                 }

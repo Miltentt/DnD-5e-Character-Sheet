@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 class GetDashBoardCharactersUseCase @Inject constructor(private val characterRepository: CharacterRepository) {
 
-    suspend operator fun invoke(): Flow<List<DashboardCharacter>> = flowOf(listOf(mockCharacter))
+    operator fun invoke(): Flow<List<DashboardCharacter>> = flowOf(listOf(mockCharacter))
 }
 
 

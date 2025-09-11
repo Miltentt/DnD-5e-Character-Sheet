@@ -8,26 +8,27 @@ import com.miltent.domain.model.Race
 import com.miltent.domain.model.Skill
 import com.miltent.domain.model.SpecialAbility
 import javax.inject.Inject
+import javax.inject.Singleton
 
-
+@Singleton
 class Character1stLevelBuilderImpl @Inject constructor() : Character.Builder1stLevel {
 
     private var name: String = ""
-    var race: Race = Race.Dwarf
+    override var race: Race = Race.Dwarf
     private set
-    var characterClass: CharacterClass = CharacterClass.Fighter(1)
+    override var characterClass: CharacterClass = CharacterClass.Fighter(1)
     private set
-    var baseStrength: Attribute = Attribute(0)
+    override var baseStrength: Attribute = Attribute(0)
         private set
-    var baseDexterity: Attribute = Attribute(0)
+    override var baseDexterity: Attribute = Attribute(0)
         private set
-    var baseConstitution: Attribute = Attribute(0)
+    override var baseConstitution: Attribute = Attribute(0)
         private set
-    var baseIntelligence: Attribute = Attribute(0)
+    override var baseIntelligence: Attribute = Attribute(0)
         private set
-    var baseWisdom: Attribute = Attribute(0)
+    override var baseWisdom: Attribute = Attribute(0)
         private set
-    var baseCharisma: Attribute = Attribute(0)
+    override var baseCharisma: Attribute = Attribute(0)
         private set
     private var skills: List<Skill> = emptyList()
     private var specialAbility: List<SpecialAbility> = emptyList()

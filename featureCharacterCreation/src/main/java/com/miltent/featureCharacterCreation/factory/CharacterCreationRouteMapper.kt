@@ -3,7 +3,7 @@ package com.miltent.featureCharacterCreation.factory
 import com.miltent.core.characterprogression.CharacterProgression
 import com.miltent.featureCharacterCreation.navigation.CharacterCreationRoute
 
-interface CharacterCreationRouteFactory {
+interface CharacterCreationRouteMapper {
 
-    fun mapRoutes(list: List<CharacterProgression>): List<CharacterCreationRoute>
+    fun mapRoute(characterProgression: CharacterProgression): CharacterCreationRoute
 }

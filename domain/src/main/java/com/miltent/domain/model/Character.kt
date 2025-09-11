@@ -21,6 +21,16 @@ data class Character(
 ): DashboardCharacter {
 
     interface Builder1stLevel {
+
+        val baseStrength: Attribute
+        val baseDexterity: Attribute
+        val baseConstitution: Attribute
+        val baseIntelligence: Attribute
+        val baseWisdom: Attribute
+        val baseCharisma: Attribute
+        val race: Race
+        val characterClass: CharacterClass
+
         fun baseInfo(
             name: String,
             race: Race,

@@ -1,5 +1,6 @@
 package com.miltent.featureCharacterCreation.fightingStyle.intent
 
+import com.miltent.core.characterprogression.CharacterProgression
 import com.miltent.core.event.EventHandler
 import com.miltent.core.intent.IntentHandler
 import com.miltent.core.ui.ViewStateProvider
@@ -36,7 +37,7 @@ internal class FightingStyleIntentHandler @Inject constructor(
             eventHandler.emitEvent(
                 FightingStyleEvent.NextStep(
                     nextStepRoute = requireNotNull(
-                        characterCreationNavigationStateHolder.provideNextCharacterCreationStep()
+                        characterCreationNavigationStateHolder.provideNextCharacterCreationStep( currentStep = CharacterProgression.FightingStyle)
                     )
                 )
             )

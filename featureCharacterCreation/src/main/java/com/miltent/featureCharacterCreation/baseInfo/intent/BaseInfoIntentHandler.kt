@@ -1,5 +1,6 @@
 package com.miltent.featureCharacterCreation.baseInfo.intent
 
+import com.miltent.core.characterprogression.CharacterProgression
 import com.miltent.core.event.EventHandler
 import com.miltent.core.intent.IntentHandler
 import com.miltent.core.ui.ViewStateProvider
@@ -136,7 +137,8 @@ class BaseInfoIntentHandler @Inject constructor(
             eventHandler.emitEvent(
                 BaseInfoEvent.NextStep(
                     nextStepRoute = requireNotNull(
-                        characterCreationNavigationStateHolder.provideNextCharacterCreationStep()
+                        characterCreationNavigationStateHolder.provideNextCharacterCreationStep(
+                            currentStep = CharacterProgression.BaseInfo)
                     )
                 )
             )

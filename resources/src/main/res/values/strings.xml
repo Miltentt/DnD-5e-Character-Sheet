@@ -37,4 +37,5 @@
     <string name="fighting_style_title">Styl walki</string>
     <string name="fighting_style_subtitle">Wybierz styl walki</string>
     <string name="fighting_style_empty">Styl walki nie może być pusty</string>
+    <string name="skills_available_points">Pozostałe punkty umiejętnośći %s</string>
 </resources>

@@ -55,4 +55,6 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     debugImplementation(libs.ui.tooling)
     implementation(libs.serialization.json)
+    androidTestImplementation(libs.mockk.android)
+    testImplementation(libs.mockk.core)
 }

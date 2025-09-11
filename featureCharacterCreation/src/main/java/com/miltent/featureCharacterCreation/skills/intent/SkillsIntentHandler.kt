@@ -18,7 +18,7 @@ internal class SkillsIntentHandler @Inject internal constructor(
     private val insertCharacterUseCase: InsertCharacterUseCase,
 ) : IntentHandler<SkillsIntent> {
     override suspend fun handle(intent: SkillsIntent) = when (intent) {
-        is SkillsIntent.OnSkillClicked -> Unit
+        is SkillsIntent.OnSkillClicked -> onSkillClicked(intent.id)
         is SkillsIntent.OnNextClicked -> onNextClicked()
     }
 
@@ -33,15 +33,24 @@ internal class SkillsIntentHandler @Inject internal constructor(
         }
     }
 
-    private fun onSkillClicked(id: String) {
-        /*
+    private fun onSkillClicked(id: Int) {
+        val selectedSkills =
+            viewStateProvider.viewState.value.uiState.selectedSkills.toMutableList()
+        when {
+            selectedSkills.contains(id) -> selectedSkills.remove(id)
+            selectedSkills.size >= viewStateProvider.viewState.value.uiState.skillPoints -> {
+                selectedSkills.removeAt(0)
+                selectedSkills.add(id)
+            }
+            selectedSkills.size < viewStateProvider.viewState.value.uiState.skillPoints -> selectedSkills.add(id)
+        }
         viewStateProvider.updateState(
             viewStateProvider.viewState.value.copy(
                 uiState = viewStateProvider.viewState.value.uiState.copy(
-                    selectedQueue = viewStateProvider.viewState.value.uiState.selectedQueue.enqueue(id))
+                    selectedSkills = selectedSkills,
+                    skillpointsLeft = viewStateProvider.viewState.value.uiState.skillPoints - selectedSkills.size
+                )
             )
         )
-
-         */
     }
 }

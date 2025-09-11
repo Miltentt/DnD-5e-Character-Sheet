@@ -7,5 +7,5 @@ interface CharacterCreationNavigationStateHolder {
 
     fun initialize(steps: List<CharacterProgression>)
 
-    fun provideNextCharacterCreationStep(): CharacterCreationRoute?
+    fun provideNextCharacterCreationStep(currentStep: CharacterProgression): CharacterCreationRoute?
 }
