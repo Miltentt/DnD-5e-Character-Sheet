@@ -9,6 +9,7 @@ import javax.inject.Inject
 import com.miltent.domain.model.Character
 import com.miltent.domain.model.MovementSpeed
 import com.miltent.domain.model.Race
+import com.miltent.domain.model.Skill
 
 class CharacterDbToDomainMapper @Inject constructor(
     private val raceDbToDomainMapper: Mapper<RaceEntity, Race>,
@@ -34,6 +35,7 @@ class CharacterDbToDomainMapper @Inject constructor(
             temporaryWisModifier = Attribute(value.temporaryWisModifier),
             temporaryChaModifier = Attribute(value.temporaryChaModifier),
             movementSpeed = MovementSpeed(value.movementSpeed),
+            skills = Skill.defaultSkillList.filter { it.id in value.skillIds }
         )
     }
 }

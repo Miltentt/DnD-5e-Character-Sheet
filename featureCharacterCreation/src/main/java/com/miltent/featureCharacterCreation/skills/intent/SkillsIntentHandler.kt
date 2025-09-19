@@ -33,7 +33,7 @@ internal class SkillsIntentHandler @Inject internal constructor(
         }
     }
 
-    private fun onSkillClicked(id: Int) {
+    private fun onSkillClicked(id: String) {
         val selectedSkills =
             viewStateProvider.viewState.value.uiState.selectedSkills.toMutableList()
         when {

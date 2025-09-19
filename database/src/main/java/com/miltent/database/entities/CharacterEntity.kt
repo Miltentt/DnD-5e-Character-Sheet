@@ -5,6 +5,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverter
 
 @Entity(
     tableName = CharacterEntity.TABLE_NAME
@@ -15,7 +16,7 @@ class CharacterEntity(
     val id: Int = 0,
     @ColumnInfo(name = "name")
     val name: String,
-    @Embedded
+    @Embedded()
     val race: RaceEntity,
     @Embedded()
     val characterClass: CharacterClassEntity,
@@ -45,6 +46,8 @@ class CharacterEntity(
     val temporaryChaModifier: Int,
     @ColumnInfo(name = "movementSpeed")
     val movementSpeed: Double,
+    @ColumnInfo(name = "skills")
+    val skillIds: List<String>,
 ) {
     companion object {
         const val TABLE_NAME = "Characters"

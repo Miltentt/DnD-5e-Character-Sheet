@@ -30,7 +30,8 @@ class Character1stLevelBuilderImpl @Inject constructor() : Character.Builder1stL
         private set
     override var baseCharisma: Attribute = Attribute(0)
         private set
-    private var skills: List<Skill> = emptyList()
+
+    var skills: List<Skill> = emptyList()
     private var specialAbility: List<SpecialAbility> = emptyList()
 
     override fun baseInfo(
@@ -84,7 +85,9 @@ class Character1stLevelBuilderImpl @Inject constructor() : Character.Builder1stL
             movementSpeed = MovementSpeed(
                 race.movementSpeed.value
                         + characterClass.movementSpeedModifier.value
-                        + specialAbility.sumOf { it.movementSpeedModifier.value })
+                        + specialAbility.sumOf { it.movementSpeedModifier.value }
+            ),
+            skills = skills
         )
     }
 }
