@@ -1,6 +1,6 @@
 package com.miltent.domain.model
 
-sealed class Race(
+enum class Race(
     val identifier: String,
     val extraModifierStrength: Attribute,
     val extraModifierDex: Attribute,
@@ -13,7 +13,7 @@ sealed class Race(
     val movementSpeed: MovementSpeed
 ) {
 
-    data object Dwarf : Race(
+    Dwarf(
         identifier = "Dwarf",
         extraModifierStrength = Attribute(2),
         extraModifierDex = Attribute(0),
@@ -24,5 +24,19 @@ sealed class Race(
         specialAbility = null,
         skillPoints= 2,
         movementSpeed = MovementSpeed(7.5)
+    ),
+
+    Drow(
+        identifier = "Drow",
+        extraModifierStrength = Attribute(0),
+        extraModifierDex = Attribute(2),
+        extraModifierCon = Attribute(0),
+        extraModifierInt = Attribute(0),
+        extraModifierWis = Attribute(0),
+        extraModifierCha = Attribute(1),
+        specialAbility = null,
+        skillPoints= 2,
+        movementSpeed = MovementSpeed(9.0)
     )
+
 }

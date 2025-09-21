@@ -16,6 +16,7 @@ class CharacterProgressionFactoryImpl @Inject constructor() : CharacterProgressi
 
     private fun getRaceSteps(race: Race): List<CharacterProgression> = when (race) {
         Race.Dwarf -> listOf()
+        Race.Drow -> listOf()
     }
 
     private fun getCharacterClassSteps(characterClass: CharacterClass): List<CharacterProgression> =
