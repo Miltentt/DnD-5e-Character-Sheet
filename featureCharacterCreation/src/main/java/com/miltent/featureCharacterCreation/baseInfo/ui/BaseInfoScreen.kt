@@ -185,7 +185,7 @@ private fun BaseInfoScreen(onIntent: (BaseInfoIntent) -> Unit, viewState: BaseIn
                         supportingText = stringResource(ResR.string.base_info_choose_race_subtitle),
                         isError = viewState.uiState.error == ValidationError.EmptyRace,
                         fillContentWidth = true,
-                        onClick = { onIntent.invoke(BaseInfoIntent.OnRaceChosen(Race.Dwarf)) },
+                        onClick = { raceIdentifier -> onIntent.invoke(BaseInfoIntent.OnRaceChosen(raceIdentifier)) },
                         groupRadioButtons = Race.entries.map { race ->
                             RadioButtonGroup(
                                 id = race.identifier,
