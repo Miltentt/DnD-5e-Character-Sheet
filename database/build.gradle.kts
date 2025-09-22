@@ -28,9 +28,8 @@ android {
 }
 
 dependencies {
-
-    val moshi =  "1.13.0"
-    val retrofit = "2.9.0"
+    implementation(libs.moshi)
+    ksp(libs.moshi.kotlin.codegen)
     implementation(project(":domain"))
     implementation(project(":core"))
     implementation(libs.androidx.core.ktx)
@@ -42,9 +41,4 @@ dependencies {
     ksp(libs.room.compiler)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation(libs.moshi)
-    ksp(libs.moshi.kotlin.codegen)
-    implementation(libs.converter.moshi)
-
-
 }

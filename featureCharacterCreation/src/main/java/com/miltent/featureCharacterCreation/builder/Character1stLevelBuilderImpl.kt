@@ -30,8 +30,7 @@ class Character1stLevelBuilderImpl @Inject constructor() : Character.Builder1stL
         private set
     override var baseCharisma: Attribute = Attribute(0)
         private set
-
-    var skills: List<Skill> = emptyList()
+    private var skills: List<Skill> = emptyList()
     private var specialAbility: List<SpecialAbility> = emptyList()
 
     override fun baseInfo(

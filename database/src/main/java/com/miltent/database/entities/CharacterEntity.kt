@@ -1,11 +1,9 @@
 package com.miltent.database.entities
 
-import androidx.annotation.Keep
 import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import androidx.room.TypeConverter
 
 @Entity(
     tableName = CharacterEntity.TABLE_NAME
@@ -16,9 +14,9 @@ class CharacterEntity(
     val id: Int = 0,
     @ColumnInfo(name = "name")
     val name: String,
-    @Embedded()
+    @Embedded
     val race: RaceEntity,
-    @Embedded()
+    @Embedded
     val characterClass: CharacterClassEntity,
     @ColumnInfo(name = "baseStrength")
     val baseStrength: Int,
