@@ -7,6 +7,7 @@ import com.miltent.domain.model.CharacterClass
 import com.miltent.domain.model.DashboardCharacter
 import com.miltent.domain.model.MovementSpeed
 import com.miltent.domain.model.Race
+import com.miltent.domain.model.Skill
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import javax.inject.Inject
@@ -35,5 +36,6 @@ val mockCharacter = Character(
     temporaryStrModifier = Attribute(0),
     temporaryWisModifier = Attribute(0),
     movementSpeed = MovementSpeed(0.0),
-    characterClass = CharacterClass.Fighter(8)
+    characterClass = CharacterClass.Fighter(8),
+    skills = Skill.defaultSkillList
 )

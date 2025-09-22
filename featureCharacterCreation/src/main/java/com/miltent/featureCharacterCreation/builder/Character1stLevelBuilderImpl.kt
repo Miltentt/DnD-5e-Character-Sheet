@@ -84,7 +84,9 @@ class Character1stLevelBuilderImpl @Inject constructor() : Character.Builder1stL
             movementSpeed = MovementSpeed(
                 race.movementSpeed.value
                         + characterClass.movementSpeedModifier.value
-                        + specialAbility.sumOf { it.movementSpeedModifier.value })
+                        + specialAbility.sumOf { it.movementSpeedModifier.value }
+            ),
+            skills = skills
         )
     }
 }

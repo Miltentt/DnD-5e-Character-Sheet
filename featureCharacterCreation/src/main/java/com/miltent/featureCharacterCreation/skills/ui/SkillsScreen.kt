@@ -100,14 +100,14 @@ fun SkillsScreenPreview() {
         SkillsScreen(
             viewState = SkillsViewState(
                 SkillsUiState(
-                    selectedSkills = listOf(4),
+                    selectedSkills = listOf("4"),
                     skillpointsLeft = 3,
                     skillPoints = 3
                 ), mapOf(
-                    Skill(1, "Acrobatics", StatisticType.DEX) to 4,
-                    Skill(2, "Animal Handling", StatisticType.WIS) to 4,
-                    Skill(3, "Arcana", StatisticType.INT) to 4,
-                    Skill(4, "Athletics", StatisticType.STR) to 4,
+                    Skill("1", "Acrobatics", StatisticType.DEX) to 4,
+                    Skill("2", "Animal Handling", StatisticType.WIS) to 4,
+                    Skill("3", "Arcana", StatisticType.INT) to 4,
+                    Skill("4", "Athletics", StatisticType.STR) to 4,
                 )
             ), onIntent = {}
         )

@@ -1,6 +1,5 @@
 package com.miltent.database.entities
 
-import androidx.annotation.Keep
 import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
@@ -17,7 +16,7 @@ class CharacterEntity(
     val name: String,
     @Embedded
     val race: RaceEntity,
-    @Embedded()
+    @Embedded
     val characterClass: CharacterClassEntity,
     @ColumnInfo(name = "baseStrength")
     val baseStrength: Int,
@@ -45,6 +44,8 @@ class CharacterEntity(
     val temporaryChaModifier: Int,
     @ColumnInfo(name = "movementSpeed")
     val movementSpeed: Double,
+    @ColumnInfo(name = "skills")
+    val skillIds: List<String>,
 ) {
     companion object {
         const val TABLE_NAME = "Characters"
