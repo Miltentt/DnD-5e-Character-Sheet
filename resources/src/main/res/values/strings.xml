@@ -23,6 +23,7 @@
     <!-- Dashboard -->
     <string name="button_create_character">Stwórz postać</string>
     <string name="character_tile_level">Level: %s</string>
+    <string name="no_characters">Brak stworzonych postaci</string>
 
     <!-- Character creation -->
     <string name="character_creation_name">Imię</string>

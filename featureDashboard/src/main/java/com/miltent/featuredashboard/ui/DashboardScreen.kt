@@ -1,5 +1,6 @@
 package com.miltent.featuredashboard.ui
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
@@ -10,10 +11,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.miltent.core.compose.ObserveEvents
@@ -37,14 +41,12 @@ internal fun DashboardScreen(onEvent: (DashboardEvent) -> Unit) {
     ObserveEvents(
         events = viewModel.event,
         onEvent = { onEvent(it) })
-    if (viewState is DashboardViewState.Loaded) {
         DashboardScreen(viewState = viewState, onIntent = viewModel::setIntent)
-    }
 }
 
 @Composable
 private fun DashboardScreen(
-    viewState: DashboardViewState.Loaded,
+    viewState: DashboardViewState,
     onIntent: (DashboardIntent) -> Unit
 ) {
     DNDSheetTheme {
@@ -64,24 +66,30 @@ private fun DashboardScreen(
                 )
             },
             content = { paddingValues: PaddingValues ->
-                LazyColumn(
-                    modifier = Modifier
-                        .padding(Spacing.spacing16)
-                        .padding(paddingValues)
-                ) {
-                    items(viewState.characterList, itemContent = { character: DashboardCharacter ->
-                        CharacterTile(
-                            name = character.name,
-                            race = stringResource(RaceFormatter.formatRace(character.race)),
-                            level = character.level,
-                            characterClass = stringResource(
-                                CharacterClassFormatter.formatCharacterClass(
-                                    character.characterClass::class
+                when (viewState) {
+                    is DashboardViewState.Loaded -> {
+                        LazyColumn(
+                            modifier = Modifier
+                                .padding(Spacing.spacing16)
+                                .padding(paddingValues)
+                        ) {
+                            items(viewState.characterList, itemContent = { character: DashboardCharacter ->
+                                CharacterTile(
+                                    name = character.name,
+                                    race = stringResource(RaceFormatter.formatRace(character.race)),
+                                    level = character.level,
+                                    characterClass = stringResource(
+                                        CharacterClassFormatter.formatCharacterClass(
+                                            character.characterClass::class
+                                        )
+                                    )
                                 )
-                            )
-                        )
-                    })
+                            })
+                        }
+                    }
+                    is DashboardViewState.Empty -> NoCharactersText()
                 }
+
             }
         )
     }
@@ -91,4 +99,17 @@ private fun DashboardScreen(
 @Preview
 fun DashboardScreen_Preview() {
     DashboardScreen(onEvent = {})
+}
+
+@Composable
+@Preview
+fun NoCharactersText() {
+    Text(
+        stringResource(ResR.string.no_characters),
+        color = Colors.primary,
+        fontSize = 22.sp,
+        modifier = Modifier
+            .background(Colors.onPrimary)
+            .padding(16.dp)
+    )
 }

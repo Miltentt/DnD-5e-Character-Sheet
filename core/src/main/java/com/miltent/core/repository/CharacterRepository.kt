@@ -6,9 +6,9 @@ import kotlinx.coroutines.flow.Flow
 
 interface CharacterRepository {
 
-    suspend fun getCharacters(): Flow<List<DashboardCharacter>>
+    fun getCharacters(): Flow<List<DashboardCharacter>>
 
-    suspend fun getCharacterById(id: Int): Flow<Character>
+    fun getCharacterById(id: Int): Flow<Character>
 
     suspend fun upsertCharacter(character: Character)
 }
