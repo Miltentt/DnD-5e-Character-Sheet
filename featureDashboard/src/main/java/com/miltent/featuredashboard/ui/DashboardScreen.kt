@@ -27,11 +27,15 @@ import com.miltent.designsystem.formatter.RaceFormatter
 import com.miltent.designsystem.theme.Colors
 import com.miltent.designsystem.theme.DNDSheetTheme
 import com.miltent.designsystem.theme.Spacing
+import com.miltent.domain.model.Character
+import com.miltent.domain.model.CharacterClass
 import com.miltent.domain.model.DashboardCharacter
+import com.miltent.domain.model.Race
 import com.miltent.featuredashboard.event.DashboardEvent
 import com.miltent.featuredashboard.intent.DashboardIntent
 import com.miltent.featuredashboard.state.DashboardViewState
 import com.miltent.featuredashboard.ui.composables.CharacterTile
+import com.miltent.featuredashboard.ui.composables.NoCharactersText
 import com.miltent.resources.R as ResR
 
 @Composable
@@ -98,18 +102,16 @@ private fun DashboardScreen(
 @Composable
 @Preview
 fun DashboardScreen_Preview() {
-    DashboardScreen(onEvent = {})
+    val state = DashboardViewState.Loaded(
+        listOf(
+                object : DashboardCharacter {
+                    override val name = "Nandor"
+                    override val level = 5
+                    override val race = Race.Drow
+                    override val characterClass = CharacterClass.Fighter(5)
+                },
+        )
+    )
+    DashboardScreen(viewState = state, onIntent = {})
 }
 
-@Composable
-@Preview
-fun NoCharactersText() {
-    Text(
-        stringResource(ResR.string.no_characters),
-        color = Colors.primary,
-        fontSize = 22.sp,
-        modifier = Modifier
-            .background(Colors.onPrimary)
-            .padding(16.dp)
-    )
-}
