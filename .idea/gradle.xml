@@ -16,6 +16,7 @@
             <option value="$PROJECT_DIR$/database" />
             <option value="$PROJECT_DIR$/designSystem" />
             <option value="$PROJECT_DIR$/domain" />
+            <option value="$PROJECT_DIR$/featureCharacterCreation" />
             <option value="$PROJECT_DIR$/featureDashboard" />
             <option value="$PROJECT_DIR$/resources" />
           </set>

@@ -15,7 +15,6 @@ import com.miltent.featureCharacterCreation.baseInfo.validator.BaseInfoValidator
 import com.miltent.featureCharacterCreation.creationNavigator.CharacterCreationNavigationStateHolder
 import com.miltent.featureCharacterCreation.factory.CharacterProgressionFactory
 import dagger.hilt.android.scopes.ViewModelScoped
-import org.intellij.lang.annotations.Identifier
 import javax.inject.Inject
 @ViewModelScoped
 class BaseInfoIntentHandler @Inject constructor(

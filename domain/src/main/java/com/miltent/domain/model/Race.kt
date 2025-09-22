@@ -12,7 +12,6 @@ enum class Race(
     val skillPoints: Int,
     val movementSpeed: MovementSpeed
 ) {
-
     Dwarf(
         identifier = "Dwarf",
         extraModifierStrength = Attribute(2),
@@ -25,7 +24,6 @@ enum class Race(
         skillPoints= 2,
         movementSpeed = MovementSpeed(7.5)
     ),
-
     Drow(
         identifier = "Drow",
         extraModifierStrength = Attribute(0),
@@ -38,5 +36,4 @@ enum class Race(
         skillPoints= 2,
         movementSpeed = MovementSpeed(9.0)
     )
-
 }

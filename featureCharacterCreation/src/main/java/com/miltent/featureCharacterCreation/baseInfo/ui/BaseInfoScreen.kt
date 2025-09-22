@@ -81,8 +81,8 @@ private fun BaseInfoScreen(onIntent: (BaseInfoIntent) -> Unit, viewState: BaseIn
                 ) {
                     PrimaryTextField(
                         value = viewState.uiState.name,
-                        onValueChange = { string ->
-                            onIntent.invoke(BaseInfoIntent.OnNameChanged(string))
+                        onValueChange = { newName ->
+                            onIntent.invoke(BaseInfoIntent.OnNameChanged(newName))
                         },
                         readOnly = false,
                         labelText = stringResource(ResR.string.character_creation_name),
