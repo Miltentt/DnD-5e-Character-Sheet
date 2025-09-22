@@ -26,7 +26,7 @@ class BaseInfoIntentHandler @Inject constructor(
     private val validator: BaseInfoValidator,
 ) : IntentHandler<BaseInfoIntent> {
     override suspend fun handle(intent: BaseInfoIntent) = when (intent) {
-        is BaseInfoIntent.OnRaceChosen -> updateRace(intent.race)
+        is BaseInfoIntent.OnRaceChosen -> updateRace(intent.raceIdentifier)
         is BaseInfoIntent.OnNameChanged -> updateName(intent.name)
         is BaseInfoIntent.OnStatisticChanged -> updateStatistic(
             intent.statisticValue,
@@ -37,10 +37,10 @@ class BaseInfoIntentHandler @Inject constructor(
         is BaseInfoIntent.OnNextClicked -> onNextClicked()
     }
 
-    private fun updateRace(race: Race) {
+    private fun updateRace(raceIdentifier: String) {
         viewStateProvider.updateState(
             viewStateProvider.viewState.value.copy(
-                uiState = viewStateProvider.viewState.value.uiState.copy(race = race)
+                uiState = viewStateProvider.viewState.value.uiState.copy(race = Race.entries.find { it.identifier == raceIdentifier })
             )
         )
     }

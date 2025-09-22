@@ -10,6 +10,7 @@
 
     <!-- Races -->
     <string name="race_dwarf">Krasnolud</string>
+    <string name="race_drow">Ciemny Elf</string>
 
     <!-- Stats -->
     <string name="statistic_short_strength">STR</string>

@@ -6,6 +6,7 @@ import com.miltent.resources.R as ResR
 object RaceFormatter {
 
     fun formatRace(race: Race): Int = when(race) {
-        is Race.Dwarf -> ResR.string.race_dwarf
+        Race.Dwarf -> ResR.string.race_dwarf
+        Race.Drow -> ResR.string.race_drow
     }
 }

@@ -49,7 +49,6 @@ fun BaseInfoScreen(onEvent: (BaseInfoEvent) -> Unit) {
     BaseInfoScreen(viewModel::setIntent, viewState)
 }
 
-
 @Composable
 private fun BaseInfoScreen(onIntent: (BaseInfoIntent) -> Unit, viewState: BaseInfoViewState) {
     DNDSheetTheme {
@@ -81,8 +80,9 @@ private fun BaseInfoScreen(onIntent: (BaseInfoIntent) -> Unit, viewState: BaseIn
                     )
                 ) {
                     PrimaryTextField(
-                        value = viewState.uiState.name, onValueChange = {
-                            onIntent.invoke(BaseInfoIntent.OnNameChanged(it))
+                        value = viewState.uiState.name,
+                        onValueChange = { newName ->
+                            onIntent.invoke(BaseInfoIntent.OnNameChanged(newName))
                         },
                         readOnly = false,
                         labelText = stringResource(ResR.string.character_creation_name),
@@ -185,14 +185,14 @@ private fun BaseInfoScreen(onIntent: (BaseInfoIntent) -> Unit, viewState: BaseIn
                         supportingText = stringResource(ResR.string.base_info_choose_race_subtitle),
                         isError = viewState.uiState.error == ValidationError.EmptyRace,
                         fillContentWidth = true,
-                        onClick = { onIntent.invoke(BaseInfoIntent.OnRaceChosen(Race.Dwarf)) },
-                        groupRadioButtons = listOf(
+                        onClick = { raceIdentifier -> onIntent.invoke(BaseInfoIntent.OnRaceChosen(raceIdentifier)) },
+                        groupRadioButtons = Race.entries.map { race ->
                             RadioButtonGroup(
-                                id = Race.Dwarf.identifier,
-                                selected = viewState.uiState.race == Race.Dwarf,
-                                content = { Text(text = stringResource(RaceFormatter.formatRace(Race.Dwarf))) }
-                            ),
-                        )
+                                id = race.identifier,
+                                selected = viewState.uiState.race == race,
+                                content = { Text(text = stringResource(RaceFormatter.formatRace(race))) }
+                            )
+                        }
                     )
 
                     RadioButtonGroup(
