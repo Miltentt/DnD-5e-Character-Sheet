@@ -24,13 +24,10 @@ fun NoCharactersText() {
     Text(
         stringResource(ResR.string.no_characters),
         color = Colors.primary,
-        fontSize = 28.sp,
+        fontSize = 22.sp,
         modifier = Modifier
             .fillMaxWidth()
-            .padding( top = Spacing.spacing32,
-                bottom = Spacing.spacing16,
-                start = Spacing.spacing16,
-                end = Spacing.spacing16)
+            .padding(Spacing.spacing16)
             .background(Colors.onPrimary)
             .padding(8.dp)
     )
