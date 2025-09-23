@@ -1,6 +1,5 @@
 package com.miltent.featuredashboard.ui
 
-import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
@@ -11,13 +10,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.miltent.core.compose.ObserveEvents
@@ -27,7 +23,6 @@ import com.miltent.designsystem.formatter.RaceFormatter
 import com.miltent.designsystem.theme.Colors
 import com.miltent.designsystem.theme.DNDSheetTheme
 import com.miltent.designsystem.theme.Spacing
-import com.miltent.domain.model.Character
 import com.miltent.domain.model.CharacterClass
 import com.miltent.domain.model.DashboardCharacter
 import com.miltent.domain.model.Race
@@ -102,7 +97,7 @@ private fun DashboardScreen(
 @Composable
 @Preview
 fun DashboardScreen_Preview() {
-    val state = DashboardViewState.Loaded(
+    val stateLoaded = DashboardViewState.Loaded(
         listOf(
                 object : DashboardCharacter {
                     override val name = "Nandor"
@@ -112,6 +107,7 @@ fun DashboardScreen_Preview() {
                 },
         )
     )
-    DashboardScreen(viewState = state, onIntent = {})
+    val stateEmpty = DashboardViewState.Empty
+    DashboardScreen(viewState = stateEmpty, onIntent = {})
 }
 

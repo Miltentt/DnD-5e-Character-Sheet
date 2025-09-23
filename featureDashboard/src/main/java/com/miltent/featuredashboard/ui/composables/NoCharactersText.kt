@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -23,9 +24,14 @@ fun NoCharactersText() {
     Text(
         stringResource(ResR.string.no_characters),
         color = Colors.primary,
-        fontSize = 22.sp,
+        fontSize = 28.sp,
         modifier = Modifier
             .fillMaxWidth()
-            .padding( 16.dp)
+            .padding( top = Spacing.spacing32,
+                bottom = Spacing.spacing16,
+                start = Spacing.spacing16,
+                end = Spacing.spacing16)
+            .background(Colors.onPrimary)
+            .padding(8.dp)
     )
 }
