@@ -7,13 +7,17 @@ import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.miltent.core.compose.ObserveEvents
@@ -23,7 +27,9 @@ import com.miltent.designsystem.formatter.RaceFormatter
 import com.miltent.designsystem.theme.Colors
 import com.miltent.designsystem.theme.DNDSheetTheme
 import com.miltent.designsystem.theme.Spacing
+import com.miltent.domain.model.CharacterClass
 import com.miltent.domain.model.DashboardCharacter
+import com.miltent.domain.model.Race
 import com.miltent.featuredashboard.event.DashboardEvent
 import com.miltent.featuredashboard.intent.DashboardIntent
 import com.miltent.featuredashboard.state.DashboardViewState
@@ -37,19 +43,19 @@ internal fun DashboardScreen(onEvent: (DashboardEvent) -> Unit) {
     ObserveEvents(
         events = viewModel.event,
         onEvent = { onEvent(it) })
-    if (viewState is DashboardViewState.Loaded) {
         DashboardScreen(viewState = viewState, onIntent = viewModel::setIntent)
-    }
 }
 
 @Composable
 private fun DashboardScreen(
-    viewState: DashboardViewState.Loaded,
+    viewState: DashboardViewState,
     onIntent: (DashboardIntent) -> Unit
 ) {
     DNDSheetTheme {
         Scaffold(
-            modifier = Modifier.background(Colors.primary),
+            modifier = Modifier
+                .background(Colors.primary)
+                .statusBarsPadding(),
             bottomBar = {
                 ProgressButton(
                     modifier = Modifier
@@ -64,24 +70,40 @@ private fun DashboardScreen(
                 )
             },
             content = { paddingValues: PaddingValues ->
-                LazyColumn(
-                    modifier = Modifier
-                        .padding(Spacing.spacing16)
-                        .padding(paddingValues)
-                ) {
-                    items(viewState.characterList, itemContent = { character: DashboardCharacter ->
-                        CharacterTile(
-                            name = character.name,
-                            race = stringResource(RaceFormatter.formatRace(character.race)),
-                            level = character.level,
-                            characterClass = stringResource(
-                                CharacterClassFormatter.formatCharacterClass(
-                                    character.characterClass::class
+                when (viewState) {
+                    is DashboardViewState.Loaded -> {
+                        LazyColumn(
+                            modifier = Modifier
+                                .padding(Spacing.spacing16)
+                                .padding(paddingValues)
+                        ) {
+                            items(viewState.characterList, itemContent = { character: DashboardCharacter ->
+                                CharacterTile(
+                                    name = character.name,
+                                    race = stringResource(RaceFormatter.formatRace(character.race)),
+                                    level = character.level,
+                                    characterClass = stringResource(
+                                        CharacterClassFormatter.formatCharacterClass(
+                                            character.characterClass::class
+                                        )
+                                    )
                                 )
-                            )
+                            })
+                        }
+                    }
+                    is DashboardViewState.Empty ->
+                        Text(
+                            stringResource(ResR.string.no_characters),
+                            color = Colors.primary,
+                            fontSize = 22.sp,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(Spacing.spacing16)
+                                .background(Colors.onPrimary)
+                                .padding(Spacing.spacing8)
                         )
-                    })
                 }
+
             }
         )
     }
@@ -89,6 +111,24 @@ private fun DashboardScreen(
 
 @Composable
 @Preview
-fun DashboardScreen_Preview() {
-    DashboardScreen(onEvent = {})
+fun DashboardScreenEmpty_Preview() {
+    val state = DashboardViewState.Empty
+    DashboardScreen(viewState = state, onIntent = {})
 }
+
+@Composable
+@Preview
+fun DashboardScreenLoaded_Preview() {
+    val state = DashboardViewState.Loaded(
+        listOf(
+            object : DashboardCharacter {
+                override val name = "Nandor"
+                override val level = 5
+                override val race = Race.Drow
+                override val characterClass = CharacterClass.Fighter(5)
+            },
+        )
+    )
+    DashboardScreen(viewState = state, onIntent = {})
+}
+

@@ -17,7 +17,7 @@ class CharacterRepositoryImpl @Inject constructor(
     private val characterEntityToDomainMapper: Mapper<CharacterEntity, Character>,
     private val characterDomainToEntityMapper: Mapper<Character, CharacterEntity>
 ) : CharacterRepository {
-    override suspend fun getCharacters(): Flow<List<DashboardCharacter>> =
+    override fun getCharacters(): Flow<List<DashboardCharacter>> =
         characterDao.getAllCharacters().map { characterEntities ->
             characterEntities.map { characterEntity ->
                 characterEntityToDomainMapper.map(characterEntity)
@@ -25,7 +25,7 @@ class CharacterRepositoryImpl @Inject constructor(
             }
         }
 
-    override suspend fun getCharacterById(id: Int): Flow<Character> =
+    override fun getCharacterById(id: Int): Flow<Character> =
         characterDao.getCharacterById(id).map { characterEntity ->
             characterEntityToDomainMapper.map(characterEntity)
         }
