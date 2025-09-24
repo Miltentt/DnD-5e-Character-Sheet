@@ -36,7 +36,8 @@ class SkillsStateProvider @Inject constructor(
                     StatisticType.STR -> it to character1stLevelBuilder.baseStrength.calculateModifier()
                     StatisticType.WIS -> it to character1stLevelBuilder.baseWisdom.calculateModifier()
                 }
-            })
+            }
+        )
     }
 
 }

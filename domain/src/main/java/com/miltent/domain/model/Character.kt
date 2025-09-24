@@ -44,7 +44,7 @@ data class Character(
             baseCharisma: Attribute,
         )
 
-        fun skills(skills: List<Skill>)
+        fun skills(skillsIds: List<String>)
 
         fun specialAbility(vararg specialAbility: SpecialAbility)
 

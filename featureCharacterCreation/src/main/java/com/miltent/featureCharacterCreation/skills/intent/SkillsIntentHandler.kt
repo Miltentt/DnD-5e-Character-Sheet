@@ -23,7 +23,7 @@ internal class SkillsIntentHandler @Inject internal constructor(
     }
 
     private suspend fun onNextClicked() {
-        characterBuilder1stLevel.skills(viewStateProvider.viewState.value.skillList.keys.toList())
+        characterBuilder1stLevel.skills(viewStateProvider.viewState.value.uiState.selectedSkills)
         runCatching {
             insertCharacterUseCase.invoke(characterBuilder1stLevel.build())
         }.onFailure {
