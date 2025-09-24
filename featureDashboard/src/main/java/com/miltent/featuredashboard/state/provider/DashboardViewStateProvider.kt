@@ -24,8 +24,7 @@ internal class DashboardViewStateProvider @Inject constructor(
         viewModelScope.launch {
             getDashBoardCharactersUseCase.invoke().collect { dashboardCharacters: List<DashboardCharacter> ->
                 _viewState.update {
-                    if( dashboardCharacters.isEmpty() ) DashboardViewState.Empty
-                    else DashboardViewState.Loaded(dashboardCharacters)
+                    DashboardViewState.Loaded(dashboardCharacters)
                 }
             }
         }

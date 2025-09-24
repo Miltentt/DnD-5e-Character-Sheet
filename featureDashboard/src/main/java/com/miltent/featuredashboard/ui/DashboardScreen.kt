@@ -11,10 +11,13 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.miltent.core.compose.ObserveEvents
@@ -31,7 +34,6 @@ import com.miltent.featuredashboard.event.DashboardEvent
 import com.miltent.featuredashboard.intent.DashboardIntent
 import com.miltent.featuredashboard.state.DashboardViewState
 import com.miltent.featuredashboard.ui.composables.CharacterTile
-import com.miltent.featuredashboard.ui.composables.NoCharactersText
 import com.miltent.resources.R as ResR
 
 @Composable
@@ -89,7 +91,17 @@ private fun DashboardScreen(
                             })
                         }
                     }
-                    is DashboardViewState.Empty -> NoCharactersText()
+                    is DashboardViewState.Empty ->
+                        Text(
+                            stringResource(ResR.string.no_characters),
+                            color = Colors.primary,
+                            fontSize = 22.sp,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(Spacing.spacing16)
+                                .background(Colors.onPrimary)
+                                .padding(Spacing.spacing8)
+                        )
                 }
 
             }
@@ -99,18 +111,24 @@ private fun DashboardScreen(
 
 @Composable
 @Preview
-fun DashboardScreen_Preview() {
-    val stateLoaded = DashboardViewState.Loaded(
+fun DashboardScreenEmpty_Preview() {
+    val state = DashboardViewState.Empty
+    DashboardScreen(viewState = state, onIntent = {})
+}
+
+@Composable
+@Preview
+fun DashboardScreenLoaded_Preview() {
+    val state = DashboardViewState.Loaded(
         listOf(
-                object : DashboardCharacter {
-                    override val name = "Nandor"
-                    override val level = 5
-                    override val race = Race.Drow
-                    override val characterClass = CharacterClass.Fighter(5)
-                },
+            object : DashboardCharacter {
+                override val name = "Nandor"
+                override val level = 5
+                override val race = Race.Drow
+                override val characterClass = CharacterClass.Fighter(5)
+            },
         )
     )
-    val stateEmpty = DashboardViewState.Empty
-    DashboardScreen(viewState = stateEmpty, onIntent = {})
+    DashboardScreen(viewState = state, onIntent = {})
 }
 
