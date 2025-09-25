@@ -1,5 +1,7 @@
 package com.miltent.domain.model
 
+import java.awt.Point
+
 data class Character(
     override val name: String,
     override val level: Int,
@@ -19,6 +21,7 @@ data class Character(
     val temporaryChaModifier: Attribute,
     val movementSpeed: MovementSpeed,
     val skills: List<Skill>,
+    val healthPoints: HealthPoints
 ): DashboardCharacter {
 
     interface Builder1stLevel {
