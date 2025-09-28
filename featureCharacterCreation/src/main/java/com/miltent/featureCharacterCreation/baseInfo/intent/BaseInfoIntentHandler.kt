@@ -93,7 +93,7 @@ class BaseInfoIntentHandler @Inject constructor(
         viewStateProvider.updateState(
             viewStateProvider.viewState.value.copy(
                 uiState = viewStateProvider.viewState.value.uiState.copy(
-                    error = validator.areFieldsValid(
+                    errors = validator.areFieldsValid(
                         name = viewStateProvider.viewState.value.uiState.name,
                         race = viewStateProvider.viewState.value.uiState.race,
                         characterClass = viewStateProvider.viewState.value.uiState.characterClass,
@@ -108,7 +108,7 @@ class BaseInfoIntentHandler @Inject constructor(
             )
         )
 
-        if (viewStateProvider.viewState.value.uiState.error != null) return
+        if (viewStateProvider.viewState.value.uiState.errors.isNotEmpty()) return
         runCatching {
             val race = requireNotNull(viewStateProvider.viewState.value.uiState.race)
             val characterClass =

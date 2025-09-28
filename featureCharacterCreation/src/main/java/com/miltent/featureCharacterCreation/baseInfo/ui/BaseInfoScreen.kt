@@ -87,7 +87,7 @@ private fun BaseInfoScreen(onIntent: (BaseInfoIntent) -> Unit, viewState: BaseIn
                         readOnly = false,
                         labelText = stringResource(ResR.string.character_creation_name),
                         placeholderText = stringResource(ResR.string.character_creation_name_placeholder),
-                        isError = viewState.uiState.error == ValidationError.EmptyName
+                        isError = ValidationError.EmptyName in viewState.uiState.errors
                     )
                     StatisticsWithModifierTextField(
                         statisticValue = viewState.uiState.strength.value.toString(),
@@ -102,7 +102,7 @@ private fun BaseInfoScreen(onIntent: (BaseInfoIntent) -> Unit, viewState: BaseIn
                                 )
                             )
                         },
-                        isError = viewState.uiState.error == ValidationError.StrengthTooHigh
+                        isError = ValidationError.StrengthTooHigh in viewState.uiState.errors
                     )
                     StatisticsWithModifierTextField(
                         statisticValue = viewState.uiState.intelligence.value.toString(),
@@ -117,7 +117,7 @@ private fun BaseInfoScreen(onIntent: (BaseInfoIntent) -> Unit, viewState: BaseIn
                                 )
                             )
                         },
-                        isError = viewState.uiState.error == ValidationError.IntelligenceTooHigh
+                        isError = ValidationError.IntelligenceTooHigh in viewState.uiState.errors
                     )
                     StatisticsWithModifierTextField(
                         statisticValue = viewState.uiState.dexterity.value.toString(),
@@ -132,7 +132,7 @@ private fun BaseInfoScreen(onIntent: (BaseInfoIntent) -> Unit, viewState: BaseIn
                                 )
                             )
                         },
-                        isError = viewState.uiState.error == ValidationError.DexterityTooHigh
+                        isError = ValidationError.DexterityTooHigh in viewState.uiState.errors
                     )
                     StatisticsWithModifierTextField(
                         statisticValue = viewState.uiState.charisma.value.toString(),
@@ -147,7 +147,7 @@ private fun BaseInfoScreen(onIntent: (BaseInfoIntent) -> Unit, viewState: BaseIn
                                 )
                             )
                         },
-                        isError = viewState.uiState.error == ValidationError.CharismaTooHigh
+                        isError = ValidationError.CharismaTooHigh in viewState.uiState.errors
                     )
                     StatisticsWithModifierTextField(
                         statisticValue = viewState.uiState.constitution.value.toString(),
@@ -162,7 +162,7 @@ private fun BaseInfoScreen(onIntent: (BaseInfoIntent) -> Unit, viewState: BaseIn
                                 )
                             )
                         },
-                        isError = viewState.uiState.error == ValidationError.ConstitutionTooHigh
+                        isError = ValidationError.ConstitutionTooHigh in viewState.uiState.errors
                     )
                     StatisticsWithModifierTextField(
                         statisticValue = viewState.uiState.wisdom.value.toString(),
@@ -177,13 +177,13 @@ private fun BaseInfoScreen(onIntent: (BaseInfoIntent) -> Unit, viewState: BaseIn
                                 )
                             )
                         },
-                        isError = viewState.uiState.error == ValidationError.WisdomTooHigh
+                        isError = ValidationError.WisdomTooHigh in viewState.uiState.errors
                     )
                     RadioButtonGroup(
                         modifier = Modifier.fillMaxWidth(),
                         title = stringResource(ResR.string.base_info_choose_race_title),
                         supportingText = stringResource(ResR.string.base_info_choose_race_subtitle),
-                        isError = viewState.uiState.error == ValidationError.EmptyRace,
+                        isError = ValidationError.EmptyRace in viewState.uiState.errors,
                         fillContentWidth = true,
                         onClick = { raceIdentifier -> onIntent.invoke(BaseInfoIntent.OnRaceChosen(raceIdentifier)) },
                         groupRadioButtons = Race.entries.map { race ->
@@ -200,7 +200,7 @@ private fun BaseInfoScreen(onIntent: (BaseInfoIntent) -> Unit, viewState: BaseIn
                         title = stringResource(ResR.string.base_info_choose_class_title),
                         supportingText = stringResource(ResR.string.base_info_choose_class_subtitle),
                         fillContentWidth = true,
-                        isError = viewState.uiState.error == ValidationError.EmptyClass,
+                        isError = ValidationError.EmptyClass in viewState.uiState.errors,
                         onClick = {
                             onIntent.invoke(
                                 BaseInfoIntent.OnCharacterClassChosen(
@@ -238,7 +238,7 @@ fun BaseInfoScreenPreview() {
                 intelligence = Attribute(10),
                 wisdom = Attribute(10),
                 charisma = Attribute(10),
-                error = null
+                errors = emptyList()
             )
         )
     )

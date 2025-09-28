@@ -15,5 +15,5 @@ interface BaseInfoValidator {
         intelligence: Attribute,
         wisdom: Attribute,
         charisma: Attribute
-    ): ValidationError?
+    ): List<ValidationError>
 }

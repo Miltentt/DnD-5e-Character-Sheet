@@ -20,7 +20,7 @@ class BaseInfoViewStateFactoryImpl @Inject constructor(): BaseInfoViewState.Fact
             charisma = Attribute(0),
             race = null,
             characterClass = null,
-            error = null,
+            errors = emptyList()
         )
     )
 }
