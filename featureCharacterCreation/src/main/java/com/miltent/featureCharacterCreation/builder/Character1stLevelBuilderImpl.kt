@@ -88,7 +88,7 @@ class Character1stLevelBuilderImpl @Inject constructor() : Character.Builder1stL
                         + specialAbility.sumOf { it.movementSpeedModifier.value }
             ),
             skills = skills,
-            healthPoints = HealthPoints(baseConstitution.value + characterClass.hitDie)
+            healthPoints = HealthPoints(baseConstitution.calculateModifier() + characterClass.hitDie)
         )
     }
 }

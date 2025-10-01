@@ -1,7 +1,5 @@
 package com.miltent.domain.model
 
-import java.awt.Point
-
 data class Character(
     override val name: String,
     override val level: Int,
