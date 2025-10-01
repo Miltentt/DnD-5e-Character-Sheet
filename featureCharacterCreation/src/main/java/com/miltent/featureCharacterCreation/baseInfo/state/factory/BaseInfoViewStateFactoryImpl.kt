@@ -1,8 +1,6 @@
 package com.miltent.featureCharacterCreation.baseInfo.state.factory
 
 import com.miltent.domain.model.Attribute
-import com.miltent.domain.model.CharacterClass
-import com.miltent.domain.model.Race
 import com.miltent.featureCharacterCreation.baseInfo.state.BaseInfoUiState
 import com.miltent.featureCharacterCreation.baseInfo.state.BaseInfoViewState
 import javax.inject.Inject

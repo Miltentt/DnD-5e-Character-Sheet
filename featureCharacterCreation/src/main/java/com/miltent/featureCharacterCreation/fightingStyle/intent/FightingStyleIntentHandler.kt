@@ -1,12 +1,9 @@
 package com.miltent.featureCharacterCreation.fightingStyle.intent
 
-import android.util.Log
-import androidx.compose.ui.res.stringResource
 import com.miltent.core.characterprogression.CharacterProgression
 import com.miltent.core.event.EventHandler
 import com.miltent.core.intent.IntentHandler
 import com.miltent.core.ui.ViewStateProvider
-import com.miltent.core.useCase.GetFighterStylesUseCase
 import com.miltent.domain.model.Character
 import com.miltent.featureCharacterCreation.creationNavigator.CharacterCreationNavigationStateHolder
 import com.miltent.featureCharacterCreation.fightingStyle.event.FightingStyleEvent
