@@ -16,17 +16,16 @@ class BaseInfoValidatorImpl @Inject constructor() : BaseInfoValidator {
         intelligence: Attribute,
         wisdom: Attribute,
         charisma: Attribute
-    ): List<ValidationError> {
-        val errors = emptyList<ValidationError>().toMutableList()
-        if (name.isBlank()) errors += ValidationError.EmptyName
-        if (strength.value > 18) errors += ValidationError.StrengthTooHigh
-        if (dexterity.value > 18) errors += ValidationError.DexterityTooHigh
-        if (constitution.value > 18) errors += ValidationError.ConstitutionTooHigh
-        if (intelligence.value > 18) errors += ValidationError.IntelligenceTooHigh
-        if (wisdom.value > 18) errors += ValidationError.WisdomTooHigh
-        if (charisma.value > 18) errors += ValidationError.CharismaTooHigh
-        if (race == null) errors += ValidationError.EmptyRace
-        if (characterClass == null) errors += ValidationError.EmptyClass
-        return errors
+    ): ValidationError? {
+        if (name.isBlank()) return ValidationError.EmptyName
+        if (strength.value > 18) return ValidationError.StrengthTooHigh
+        if (dexterity.value > 18) return ValidationError.DexterityTooHigh
+        if (constitution.value > 18) return ValidationError.ConstitutionTooHigh
+        if (intelligence.value > 18) return ValidationError.IntelligenceTooHigh
+        if (wisdom.value > 18) return ValidationError.WisdomTooHigh
+        if (charisma.value > 18) return ValidationError.CharismaTooHigh
+        if (race == null) return ValidationError.EmptyRace
+        if (characterClass == null) return ValidationError.EmptyClass
+        return null
     }
 }
