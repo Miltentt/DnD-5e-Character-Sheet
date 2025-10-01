@@ -5,6 +5,7 @@ sealed class CharacterClass(
     val identifier: String,
     val movementSpeedModifier: MovementSpeed,
     val skillPoints: Int,
+    val hitDie: Int
 ) {
 
     data class Fighter(override val level: Int) :
@@ -13,6 +14,7 @@ sealed class CharacterClass(
             identifier,
             MovementSpeed(0.0),
             skillPoints = 2,
+            hitDie = 10
         ) {
             companion object {
                 const val identifier = "Fighter"

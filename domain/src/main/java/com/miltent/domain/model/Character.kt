@@ -19,6 +19,7 @@ data class Character(
     val temporaryChaModifier: Attribute,
     val movementSpeed: MovementSpeed,
     val skills: List<Skill>,
+    val healthPoints: HealthPoints
 ): DashboardCharacter {
 
     interface Builder1stLevel {
