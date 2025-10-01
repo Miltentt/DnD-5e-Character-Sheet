@@ -55,8 +55,8 @@ class Character1stLevelBuilderImpl @Inject constructor() : Character.Builder1stL
         this.baseCharisma = baseCharisma
     }
 
-    override fun skills(skills: List<Skill>) {
-        this.skills = skills
+    override fun skills(skillsIds: List<String>) {
+        this.skills = Skill.defaultSkillList.filter { it.id in skillsIds }
     }
 
     override fun specialAbility(vararg specialAbility: SpecialAbility) {
