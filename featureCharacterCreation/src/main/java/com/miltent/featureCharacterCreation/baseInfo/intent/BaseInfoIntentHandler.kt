@@ -33,7 +33,7 @@ class BaseInfoIntentHandler @Inject constructor(
             intent.statisticType
         )
 
-        is BaseInfoIntent.OnCharacterClassChosen -> updateCharacterClass(intent.characterClass)
+        is BaseInfoIntent.OnCharacterClassChosen -> initiateCharacterClass(intent.characterClassIdentifier)
         is BaseInfoIntent.OnNextClicked -> onNextClicked()
     }
 
@@ -81,10 +81,10 @@ class BaseInfoIntentHandler @Inject constructor(
         }
     }
 
-    private fun updateCharacterClass(characterClass: CharacterClass) {
+    private fun initiateCharacterClass(characterClassIdentifier: String) {
         viewStateProvider.updateState(
             viewStateProvider.viewState.value.copy(
-                uiState = viewStateProvider.viewState.value.uiState.copy(characterClass = characterClass)
+                uiState = viewStateProvider.viewState.value.uiState.copy(characterClass = CharacterClass.createCharacterClass(1,characterClassIdentifier))
             )
         )
     }

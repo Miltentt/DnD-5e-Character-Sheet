@@ -9,6 +9,7 @@ object CharacterClassFormatter {
     fun formatCharacterClass(characterClass: KClass<out CharacterClass>): Int =
         when (characterClass) {
             CharacterClass.Fighter::class -> ResR.string.class_fighter
+            CharacterClass.Ranger::class -> ResR.string.class_ranger
             else -> ResR.string.unknown_error
         }
 }
