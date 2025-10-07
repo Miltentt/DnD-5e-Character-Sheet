@@ -1,15 +1,14 @@
-package com.miltent.database.entities
+package com.miltent.database.entities.character
 
 import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.miltent.database.entities.character.CharacterEntity.Companion.TABLE_NAME
 
-@Entity(
-    tableName = CharacterEntity.TABLE_NAME
-)
-class CharacterEntity(
-    @ColumnInfo(name = "id")
+@Entity(tableName = TABLE_NAME)
+data class CharacterEntity(
+    @ColumnInfo(name = "characterId")
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
     @ColumnInfo(name = "name")
@@ -44,8 +43,10 @@ class CharacterEntity(
     val temporaryChaModifier: Int,
     @ColumnInfo(name = "movementSpeed")
     val movementSpeed: Double,
-    @ColumnInfo(name = "skills")
-    val skillIds: List<String>,
+    @ColumnInfo(name = "maxHealthPoints")
+    val maxHealthPoints: Int,
+    @ColumnInfo(name = "currentHealthPoints")
+    val currentHealthPoints: Int
 ) {
     companion object {
         const val TABLE_NAME = "Characters"

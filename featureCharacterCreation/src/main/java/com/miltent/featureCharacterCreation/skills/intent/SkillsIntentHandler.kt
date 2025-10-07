@@ -25,7 +25,10 @@ internal class SkillsIntentHandler @Inject internal constructor(
     private suspend fun onNextClicked() {
         characterBuilder1stLevel.skills(viewStateProvider.viewState.value.uiState.selectedSkills)
         runCatching {
-            insertCharacterUseCase.invoke(characterBuilder1stLevel.build())
+            insertCharacterUseCase.invoke(
+                characterBuilder1stLevel.build(),
+                characterBuilder1stLevel.skillsIds,
+                characterBuilder1stLevel.specialAbility.map { it.id })
         }.onFailure {
             eventHandler.emitEvent(SkillsEvent.NavigateToError)
         }.onSuccess {
@@ -42,7 +45,10 @@ internal class SkillsIntentHandler @Inject internal constructor(
                 selectedSkills.removeAt(0)
                 selectedSkills.add(id)
             }
-            selectedSkills.size < viewStateProvider.viewState.value.uiState.skillPoints -> selectedSkills.add(id)
+
+            selectedSkills.size < viewStateProvider.viewState.value.uiState.skillPoints -> selectedSkills.add(
+                id
+            )
         }
         viewStateProvider.updateState(
             viewStateProvider.viewState.value.copy(
