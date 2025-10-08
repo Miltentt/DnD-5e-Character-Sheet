@@ -28,6 +28,7 @@ jetbrainsKotlinJvm = "2.2.10"
 uiTooling = "1.8.3"
 runtimeKtx = "2.10.2"
 serialization-json = "1.9.0"
+runtime = "1.9.2"
 
 
 [libraries]
@@ -66,6 +67,7 @@ ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref =
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room-version" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room-version" }
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room-version" }
+androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "runtime" }
 
 [plugins]
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp-version" }
