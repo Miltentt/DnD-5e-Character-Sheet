@@ -3,6 +3,7 @@ package com.miltent.featureCharacterCreation.builder
 import com.miltent.domain.model.Attribute
 import com.miltent.domain.model.Character
 import com.miltent.domain.model.CharacterClass
+import com.miltent.domain.model.HealthPoints
 import com.miltent.domain.model.MovementSpeed
 import com.miltent.domain.model.Race
 import com.miltent.domain.model.Skill
@@ -55,8 +56,8 @@ class Character1stLevelBuilderImpl @Inject constructor() : Character.Builder1stL
         this.baseCharisma = baseCharisma
     }
 
-    override fun skills(skills: List<Skill>) {
-        this.skills = skills
+    override fun skills(skillsIds: List<String>) {
+        this.skills = Skill.defaultSkillList.filter { it.id in skillsIds }
     }
 
     override fun specialAbility(vararg specialAbility: SpecialAbility) {
@@ -86,7 +87,8 @@ class Character1stLevelBuilderImpl @Inject constructor() : Character.Builder1stL
                         + characterClass.movementSpeedModifier.value
                         + specialAbility.sumOf { it.movementSpeedModifier.value }
             ),
-            skills = skills
+            skills = skills,
+            healthPoints = HealthPoints(baseConstitution.calculateModifier() + characterClass.hitDie)
         )
     }
 }

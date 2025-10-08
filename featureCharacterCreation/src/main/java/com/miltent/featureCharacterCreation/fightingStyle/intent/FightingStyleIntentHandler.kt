@@ -4,7 +4,6 @@ import com.miltent.core.characterprogression.CharacterProgression
 import com.miltent.core.event.EventHandler
 import com.miltent.core.intent.IntentHandler
 import com.miltent.core.ui.ViewStateProvider
-import com.miltent.core.useCase.GetFighterStylesUseCase
 import com.miltent.domain.model.Character
 import com.miltent.featureCharacterCreation.creationNavigator.CharacterCreationNavigationStateHolder
 import com.miltent.featureCharacterCreation.fightingStyle.event.FightingStyleEvent
@@ -29,8 +28,11 @@ internal class FightingStyleIntentHandler @Inject constructor(
     }
 
     private suspend fun onNextClicked() {
-        runCatching {
-            fightingStyleValidator.isValid(viewStateProvider.viewState.value.uiState.currentFightingStyle)
+        runCatching{
+            viewStateProvider.updateState(viewStateProvider.viewState.value
+                .copy(uiState = viewStateProvider.viewState.value.uiState
+                    .copy(error = fightingStyleValidator.isValid(viewStateProvider.viewState.value.uiState.currentFightingStyle)))
+            )
             val currentFightingStyle =
                 requireNotNull(viewStateProvider.viewState.value.uiState.currentFightingStyle)
             characterCreationBuilder.specialAbility(currentFightingStyle)
@@ -52,7 +54,9 @@ internal class FightingStyleIntentHandler @Inject constructor(
                 uiState = viewStateProvider.viewState.value.uiState.copy(
                     currentFightingStyle = viewStateProvider.viewState.value.fightingStyles.find { fightingStyle ->
                         fightingStyle.id == specialAbilityId
-                    })
+                    },
+                    error = null
+                )
             )
         )
     }

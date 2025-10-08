@@ -1,7 +1,6 @@
 package com.miltent.featureCharacterCreation.fightingStyle.state.factory
 
 import com.miltent.core.useCase.GetFighterStylesUseCase
-import com.miltent.domain.model.SpecialAbility
 import com.miltent.featureCharacterCreation.fightingStyle.state.FightingStyleUiState
 import com.miltent.featureCharacterCreation.fightingStyle.state.FightingStyleViewState
 import javax.inject.Inject
