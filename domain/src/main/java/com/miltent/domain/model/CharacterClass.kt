@@ -40,7 +40,8 @@ sealed class CharacterClass(
             level = level,
             identifier,
             MovementSpeed(0.0),
-            skillPoints = 2
+            skillPoints = 2,
+            hitDie = 10
         ){
 
         companion object {
