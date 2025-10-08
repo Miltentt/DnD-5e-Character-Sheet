@@ -208,11 +208,12 @@ private fun BaseInfoScreen(onIntent: (BaseInfoIntent) -> Unit, viewState: BaseIn
                                 )
                             )
                         },
-                        groupRadioButtons = CharacterClass.subClasses.map { characterClass ->
+                        groupRadioButtons = CharacterClass::class.sealedSubclasses
+                            .map { characterClass ->
                             RadioButtonGroup(
-                                id = characterClass.identifier,
-                                selected = viewState.uiState.characterClass?.let { it::class == characterClass::class } == true,
-                                content = { Text(text = stringResource(CharacterClassFormatter.formatCharacterClass(characterClass::class))) }
+                                id = characterClass.constructors.first().call(0).identifier,
+                                selected = viewState.uiState.characterClass?.let { it::class == characterClass} == true,
+                                content = { Text(text = stringResource(CharacterClassFormatter.formatCharacterClass(characterClass))) }
                             )
 
                         },

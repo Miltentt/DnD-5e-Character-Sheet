@@ -7,12 +7,6 @@ sealed class CharacterClass(
     val skillPoints: Int,
 ) {
     companion object{
-        val subClasses = listOf(
-            Fighter(0),
-            Ranger(0),
-        )
-        // widziałem że da się przy użyciu reflection używać sealedSublasses ale
-        // podobno reflection jest jakieś wolniejsze i trudniejsze dla systemu
 
         fun createCharacterClass(
             level: Int,
