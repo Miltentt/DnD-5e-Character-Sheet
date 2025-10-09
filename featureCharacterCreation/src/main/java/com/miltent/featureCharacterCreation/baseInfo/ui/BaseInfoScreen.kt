@@ -201,20 +201,22 @@ private fun BaseInfoScreen(onIntent: (BaseInfoIntent) -> Unit, viewState: BaseIn
                         supportingText = stringResource(ResR.string.base_info_choose_class_subtitle),
                         fillContentWidth = true,
                         isError = viewState.uiState.error == ValidationError.EmptyClass,
-                        onClick = {
+                        onClick = { characterClassIdentifier ->
                             onIntent.invoke(
                                 BaseInfoIntent.OnCharacterClassChosen(
-                                    CharacterClass.Fighter(1)
+                                    characterClassIdentifier
                                 )
                             )
                         },
-                        groupRadioButtons = listOf(
+                        groupRadioButtons = CharacterClass::class.sealedSubclasses
+                            .map { characterClass ->
                             RadioButtonGroup(
-                                id = CharacterClass.Fighter.identifier,
-                                selected = viewState.uiState.characterClass?.let { it::class == CharacterClass.Fighter::class } == true,
-                                content = { Text(text = stringResource(CharacterClassFormatter.formatCharacterClass(CharacterClass.Fighter::class))) }
-                            ),
-                        )
+                                id = characterClass.constructors.first().call(0).identifier,
+                                selected = viewState.uiState.characterClass?.let { it::class == characterClass} == true,
+                                content = { Text(text = stringResource(CharacterClassFormatter.formatCharacterClass(characterClass))) }
+                            )
+
+                        },
                     )
                 }
             }

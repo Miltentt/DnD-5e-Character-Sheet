@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.miltent.domain.model.HealthPoints
 
 @Entity(
     tableName = CharacterEntity.TABLE_NAME
@@ -46,6 +47,13 @@ class CharacterEntity(
     val movementSpeed: Double,
     @ColumnInfo(name = "skills")
     val skillIds: List<String>,
+    @ColumnInfo(name = "maxHealthPoints")
+    val maxHealthPoints: Int,
+    @ColumnInfo(name = "currantHealthPoints")
+    val currantHealthPoints: Int,
+    @ColumnInfo(name = "temporaryHealthPoints")
+    val temporaryHealthPoints: Int
+
 ) {
     companion object {
         const val TABLE_NAME = "Characters"

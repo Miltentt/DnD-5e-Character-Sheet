@@ -22,5 +22,6 @@ class CharacterProgressionFactoryImpl @Inject constructor() : CharacterProgressi
     private fun getCharacterClassSteps(characterClass: CharacterClass): List<CharacterProgression> =
         when (characterClass) {
             is CharacterClass.Fighter -> listOf(CharacterProgression.FightingStyle)
+            is CharacterClass.Ranger -> listOf(CharacterProgression.FightingStyle)
         }
 }

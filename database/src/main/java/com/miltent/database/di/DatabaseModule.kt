@@ -29,7 +29,7 @@ interface DatabaseModule {
                 appContext,
                 Dnd5eDatabase::class.java,
                 "dnd5eDatabase",
-            ).build()
+            ).fallbackToDestructiveMigration().build()
         }
 
         @Provides

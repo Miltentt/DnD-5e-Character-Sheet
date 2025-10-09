@@ -7,6 +7,7 @@ import com.miltent.database.factory.CharacterClassDbToDomainFactory
 import com.miltent.domain.model.Attribute
 import javax.inject.Inject
 import com.miltent.domain.model.Character
+import com.miltent.domain.model.HealthPoints
 import com.miltent.domain.model.MovementSpeed
 import com.miltent.domain.model.Race
 import com.miltent.domain.model.Skill
@@ -35,7 +36,12 @@ class CharacterDbToDomainMapper @Inject constructor(
             temporaryWisModifier = Attribute(value.temporaryWisModifier),
             temporaryChaModifier = Attribute(value.temporaryChaModifier),
             movementSpeed = MovementSpeed(value.movementSpeed),
-            skills = Skill.defaultSkillList.filter { it.id in value.skillIds }
+            skills = Skill.defaultSkillList.filter { it.id in value.skillIds },
+            healthPoints = HealthPoints.makeFromData(
+                value.maxHealthPoints,
+                value.currantHealthPoints,
+                value.temporaryHealthPoints
+            )
         )
     }
 }
