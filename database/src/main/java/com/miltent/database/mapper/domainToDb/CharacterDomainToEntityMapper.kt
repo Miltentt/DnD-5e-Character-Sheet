@@ -32,7 +32,10 @@ class CharacterDomainToEntityMapper @Inject constructor(
         temporaryWisModifier = value.temporaryWisModifier.value,
         temporaryChaModifier = value.temporaryChaModifier.value,
         movementSpeed = value.movementSpeed.value,
-        skillIds = value.skills.map { it.id }
+        skillIds = value.skills.map { it.id },
+        maxHealthPoints = value.healthPoints.max,
+        currantHealthPoints = value.healthPoints.current,
+        temporaryHealthPoints = value.healthPoints.temporary
     )
 
 }
