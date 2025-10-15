@@ -7,7 +7,7 @@ sealed class CharacterClass(
     val skillPoints: Int,
     val hitDie: Int
 ) {
-    companion object{
+    companion object {
 
         fun createCharacterClass(
             level: Int,
@@ -30,10 +30,10 @@ sealed class CharacterClass(
             skillPoints = 2,
             hitDie = 10
         ) {
-            companion object {
-                const val identifier = "Fighter"
-            }
+        companion object {
+            const val identifier = "Fighter"
         }
+    }
 
     data class Ranger(override val level: Int) :
         CharacterClass(
@@ -42,10 +42,9 @@ sealed class CharacterClass(
             MovementSpeed(0.0),
             skillPoints = 2,
             hitDie = 10
-        ){
-
+        ) {
         companion object {
             const val identifier = "Ranger"
         }
-            }
+    }
 }

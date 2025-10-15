@@ -9,7 +9,7 @@ import com.miltent.database.entities.CharacterEntity
 
 @Database(
     entities = [CharacterEntity::class],
-    version = 2
+    version = 1
 )
 @TypeConverters(SkillTypeConverters::class)
 abstract class Dnd5eDatabase: RoomDatabase() {
