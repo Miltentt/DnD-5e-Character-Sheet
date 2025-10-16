@@ -45,8 +45,11 @@ data class CharacterEntity(
     val movementSpeed: Double,
     @ColumnInfo(name = "maxHealthPoints")
     val maxHealthPoints: Int,
-    @ColumnInfo(name = "currentHealthPoints")
-    val currentHealthPoints: Int
+    @ColumnInfo(name = "currantHealthPoints")
+    val currantHealthPoints: Int,
+    @ColumnInfo(name = "temporaryHealthPoints")
+    val temporaryHealthPoints: Int
+
 ) {
     companion object {
         const val TABLE_NAME = "Characters"

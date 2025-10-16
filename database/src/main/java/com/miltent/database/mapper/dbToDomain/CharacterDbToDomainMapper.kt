@@ -5,18 +5,21 @@ import com.miltent.database.entities.character.CharacterEntity
 import com.miltent.database.entities.character.RaceEntity
 import com.miltent.database.factory.dbToDomain.CharacterClassDbToDomainFactory
 import com.miltent.domain.model.Attribute
+import javax.inject.Inject
 import com.miltent.domain.model.Character
 import com.miltent.domain.model.HealthPoints
 import com.miltent.domain.model.MovementSpeed
 import com.miltent.domain.model.Race
-import javax.inject.Inject
 
 class CharacterDbToDomainMapper @Inject constructor(
     private val raceDbToDomainMapper: Mapper<RaceEntity, Race>,
     private val characterClassDbToDomainFactory: CharacterClassDbToDomainFactory,
-): Mapper<CharacterEntity, Character> {
-    override fun map(value: CharacterEntity): Character  {
-        val characterClass = characterClassDbToDomainFactory.createCharacterClass(value.characterClass.level, value.characterClass.characterClassIdentifier)
+) : Mapper<CharacterEntity, Character> {
+    override fun map(value: CharacterEntity): Character {
+        val characterClass = characterClassDbToDomainFactory.createCharacterClass(
+            value.characterClass.level,
+            value.characterClass.characterClassIdentifier
+        )
         return Character(
             name = value.name,
             characterClass = characterClass,
@@ -35,7 +38,11 @@ class CharacterDbToDomainMapper @Inject constructor(
             temporaryWisModifier = Attribute(value.temporaryWisModifier),
             temporaryChaModifier = Attribute(value.temporaryChaModifier),
             movementSpeed = MovementSpeed(value.movementSpeed),
-            healthPoints = HealthPoints(value.maxHealthPoints, value.currentHealthPoints)
+            healthPoints = HealthPoints.makeFromData(
+                value.maxHealthPoints,
+                value.currantHealthPoints,
+                value.temporaryHealthPoints
+            )
         )
     }
 }

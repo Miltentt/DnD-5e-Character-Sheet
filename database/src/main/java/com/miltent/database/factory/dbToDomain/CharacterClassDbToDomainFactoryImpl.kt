@@ -11,6 +11,7 @@ class CharacterClassDbToDomainFactoryImpl @Inject constructor(): CharacterClassD
     ): CharacterClass {
         return when (classIdentifier) {
             CharacterClass.Fighter.identifier -> CharacterClass.Fighter(level)
+            CharacterClass.Ranger.identifier -> CharacterClass.Ranger(level)
             else -> throw IllegalArgumentException("Unknown character class: $classIdentifier")
         }
     }

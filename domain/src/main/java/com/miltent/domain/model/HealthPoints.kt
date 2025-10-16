@@ -20,4 +20,14 @@ class HealthPoints (val max: Int, var current: Int){
     fun newTemporary(new: Int){
         if(new > temporary) temporary = new
     }
+
+    companion object{
+        fun makeFromData(max: Int, current: Int, temporary: Int): HealthPoints {
+            return HealthPoints(max)
+                    .apply {
+                        newTemporary(temporary)
+                        damage(max - current)
+                    }
+        }
+    }
 }

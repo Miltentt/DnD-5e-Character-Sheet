@@ -31,7 +31,7 @@ class CharacterDomainToEntityMapper @Inject constructor(
         temporaryChaModifier = value.temporaryChaModifier.value,
         movementSpeed = value.movementSpeed.value,
         maxHealthPoints = value.healthPoints.max,
-        currentHealthPoints = value.healthPoints.current
+        currantHealthPoints = value.healthPoints.current,
+        temporaryHealthPoints = value.healthPoints.temporary
     )
-
 }
