@@ -1,8 +1,11 @@
 package com.miltent.domain.model
 
 
-class HealthPoints (val max: Int, var current: Int){
+class HealthPoints (val max: Int, ){
     var temporary: Int = 0
+        private set
+
+    var current: Int = max
         private set
 
     fun damage(damage:Int) {

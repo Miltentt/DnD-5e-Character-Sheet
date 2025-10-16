@@ -6,7 +6,6 @@ import com.miltent.domain.model.CharacterClass
 import com.miltent.domain.model.HealthPoints
 import com.miltent.domain.model.MovementSpeed
 import com.miltent.domain.model.Race
-import com.miltent.domain.model.Skill
 import com.miltent.domain.model.SpecialAbility
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -90,7 +89,7 @@ class Character1stLevelBuilderImpl @Inject constructor() : Character.Builder1stL
                         + characterClass.movementSpeedModifier.value
                         + specialAbility.sumOf { it.movementSpeedModifier.value }
             ),
-            healthPoints = HealthPoints(hp, hp)
+            healthPoints = HealthPoints(hp)
         )
     }
 }
