@@ -4,12 +4,13 @@ plugins {
     alias(libs.plugins.compose.compiler)
 }
 
+
 apply {
     from("$rootDir/common-config.gradle")
 }
 
 android {
-    namespace = "com.example.featurecardbase"
+    namespace = "com.miltent.featurecardbase"
 
     buildFeatures {
         compose = true
