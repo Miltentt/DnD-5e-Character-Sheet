@@ -28,8 +28,8 @@ class HealthPoints (val max: Int, ){
         fun makeFromData(max: Int, current: Int, temporary: Int): HealthPoints {
             return HealthPoints(max)
                     .apply {
-                        newTemporary(temporary)
                         damage(max - current)
+                        newTemporary(temporary)
                     }
         }
     }
