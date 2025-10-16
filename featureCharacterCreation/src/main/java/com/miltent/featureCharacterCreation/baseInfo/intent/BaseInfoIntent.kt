@@ -8,7 +8,7 @@ import com.miltent.domain.model.StatisticType
 sealed interface BaseInfoIntent: Intent {
     data class OnNameChanged(val name: String) : BaseInfoIntent
     data class OnStatisticChanged(val statisticValue: String, val statisticType: StatisticType) : BaseInfoIntent
-    data class OnCharacterClassChosen(val characterClass: CharacterClass) : BaseInfoIntent
+    data class OnCharacterClassChosen(val characterClassIdentifier: String) : BaseInfoIntent
     data class OnRaceChosen(val raceIdentifier: String) : BaseInfoIntent
     object OnNextClicked : BaseInfoIntent
 }
