@@ -23,7 +23,7 @@ interface FactoryModule {
     ): CharacterClassDbToDomainFactory
 
     @Binds
-    fun bindCharacterDetailedFactory(factory: CharacterDetailedFactoryImpl): CharacterDetailedFactory
+    fun bindCharacterDetailedFactory(factoryImpl: CharacterDetailedFactoryImpl): CharacterDetailedFactory
 
     @Binds
     fun bindSkillsDbToDomainFactory(factoryImpl: SkillDbToDomainFactoryImpl): SkillDbToDomainFactory
