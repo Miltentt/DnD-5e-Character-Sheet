@@ -1,8 +1,10 @@
 package com.miltent.core.repository
 
 import com.miltent.domain.model.Character
+import com.miltent.domain.model.CharacterDetailed
 import com.miltent.domain.model.DashboardCharacter
 import kotlinx.coroutines.flow.Flow
+import java.util.Locale
 
 interface CharacterRepository {
 
@@ -10,5 +12,7 @@ interface CharacterRepository {
 
     fun getCharacterById(id: Int): Flow<Character>
 
-    suspend fun upsertCharacter(character: Character)
+    fun getCharacterDetailedById(id: Int, language: Locale): Flow<CharacterDetailed>
+
+    suspend fun upsertCharacter(character: Character, skillIds: List<String>, specialAbilityIds: List<String>)
 }

@@ -1,9 +1,10 @@
 package com.miltent.domain.model
 
 
-class HealthPoints (val max: Int){
+class HealthPoints (val max: Int, ){
     var temporary: Int = 0
         private set
+
     var current: Int = max
         private set
 
@@ -27,8 +28,8 @@ class HealthPoints (val max: Int){
         fun makeFromData(max: Int, current: Int, temporary: Int): HealthPoints {
             return HealthPoints(max)
                     .apply {
-                        newTemporary(temporary)
                         damage(max - current)
+                        newTemporary(temporary)
                     }
         }
     }

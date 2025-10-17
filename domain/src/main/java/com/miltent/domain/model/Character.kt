@@ -18,7 +18,6 @@ data class Character(
     val temporaryWisModifier: Attribute,
     val temporaryChaModifier: Attribute,
     val movementSpeed: MovementSpeed,
-    val skills: List<Skill>,
     val healthPoints: HealthPoints
 ): DashboardCharacter {
 
@@ -32,6 +31,8 @@ data class Character(
         val baseCharisma: Attribute
         val race: Race
         val characterClass: CharacterClass
+        val skillsIds: List<String>
+        val specialAbility: List<SpecialAbility>
 
         fun baseInfo(
             name: String,

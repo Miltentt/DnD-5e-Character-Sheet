@@ -28,7 +28,7 @@ internal class FightingStyleIntentHandler @Inject constructor(
     }
 
     private suspend fun onNextClicked() {
-        runCatching{
+        runCatching {
             viewStateProvider.updateState(viewStateProvider.viewState.value
                 .copy(uiState = viewStateProvider.viewState.value.uiState
                     .copy(error = fightingStyleValidator.isValid(viewStateProvider.viewState.value.uiState.currentFightingStyle)))

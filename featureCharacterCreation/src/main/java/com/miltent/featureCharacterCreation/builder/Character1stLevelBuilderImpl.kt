@@ -6,7 +6,6 @@ import com.miltent.domain.model.CharacterClass
 import com.miltent.domain.model.HealthPoints
 import com.miltent.domain.model.MovementSpeed
 import com.miltent.domain.model.Race
-import com.miltent.domain.model.Skill
 import com.miltent.domain.model.SpecialAbility
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -31,8 +30,10 @@ class Character1stLevelBuilderImpl @Inject constructor() : Character.Builder1stL
         private set
     override var baseCharisma: Attribute = Attribute(0)
         private set
-    private var skills: List<Skill> = emptyList()
-    private var specialAbility: List<SpecialAbility> = emptyList()
+     override var skillsIds: List<String> = emptyList()
+        private set
+     override var specialAbility: List<SpecialAbility> = emptyList()
+         private set
 
     override fun baseInfo(
         name: String,
@@ -57,7 +58,7 @@ class Character1stLevelBuilderImpl @Inject constructor() : Character.Builder1stL
     }
 
     override fun skills(skillsIds: List<String>) {
-        this.skills = Skill.defaultSkillList.filter { it.id in skillsIds }
+        this.skillsIds = skillsIds
     }
 
     override fun specialAbility(vararg specialAbility: SpecialAbility) {
@@ -65,6 +66,7 @@ class Character1stLevelBuilderImpl @Inject constructor() : Character.Builder1stL
     }
 
     override fun build(): Character {
+        val hp = baseConstitution.calculateModifier() + characterClass.hitDie
         return Character(
             name = name,
             level = 1,
@@ -87,8 +89,7 @@ class Character1stLevelBuilderImpl @Inject constructor() : Character.Builder1stL
                         + characterClass.movementSpeedModifier.value
                         + specialAbility.sumOf { it.movementSpeedModifier.value }
             ),
-            skills = skills,
-            healthPoints = HealthPoints(baseConstitution.calculateModifier() + characterClass.hitDie)
+            healthPoints = HealthPoints(hp)
         )
     }
 }
