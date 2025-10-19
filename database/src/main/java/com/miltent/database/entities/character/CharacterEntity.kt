@@ -45,7 +45,7 @@ data class CharacterEntity(
     val movementSpeed: Double,
     @ColumnInfo(name = "maxHealthPoints")
     val maxHealthPoints: Int,
-    @ColumnInfo(name = "currantHealthPoints")
+    @ColumnInfo(name = "currentHealthPoints")
     val currantHealthPoints: Int,
     @ColumnInfo(name = "temporaryHealthPoints")
     val temporaryHealthPoints: Int
