@@ -1,4 +1,4 @@
-package com.miltent.database.entities
+package com.miltent.database.entities.character
 
 import androidx.annotation.Keep
 

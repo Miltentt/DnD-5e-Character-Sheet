@@ -23,6 +23,7 @@ import com.miltent.designsystem.theme.Colors
 import com.miltent.designsystem.theme.DNDSheetTheme
 import com.miltent.designsystem.theme.Spacing
 import com.miltent.domain.model.SpecialAbility
+import com.miltent.domain.model.SpecialAbilityType
 import com.miltent.featureCharacterCreation.baseInfo.intent.BaseInfoIntent
 import com.miltent.featureCharacterCreation.fightingStyle.event.FightingStyleEvent
 import com.miltent.featureCharacterCreation.fightingStyle.intent.FightingStyleIntent
@@ -108,22 +109,26 @@ fun FightingStyleScreenPreview() {
                 SpecialAbility(
                     name = "test ability 1",
                     description = "test description 1",
+                    type = SpecialAbilityType.FightingStyle,
                     id = "1"
                 ),
                 SpecialAbility(
                     name = "test ability 2",
                     description = "test description 2",
-                    id = "2"
+                    id = "2",
+                    type = SpecialAbilityType.FightingStyle,
                 ),
                 SpecialAbility(
                     name = "test ability 3",
                     description = "test description 3",
-                    id = "3"
+                    id = "3",
+                    type = SpecialAbilityType.FightingStyle,
                 ),
                 SpecialAbility(
                     name = "test ability 4",
                     description = "test description 4",
-                    id = "4"
+                    id = "4",
+                    type = SpecialAbilityType.FightingStyle,
                 ),
             )
         ),

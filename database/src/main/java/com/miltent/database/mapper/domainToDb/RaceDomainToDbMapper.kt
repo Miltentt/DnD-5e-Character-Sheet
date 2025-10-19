@@ -1,7 +1,7 @@
 package com.miltent.database.mapper.domainToDb
 
 import com.miltent.core.utility.Mapper
-import com.miltent.database.entities.RaceEntity
+import com.miltent.database.entities.character.RaceEntity
 import com.miltent.domain.model.Race
 import javax.inject.Inject
 

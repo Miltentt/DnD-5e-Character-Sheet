@@ -1,4 +1,4 @@
-package com.miltent.database.factory
+package com.miltent.database.factory.dbToDomain
 
 import com.miltent.domain.model.CharacterClass
 import javax.inject.Inject
