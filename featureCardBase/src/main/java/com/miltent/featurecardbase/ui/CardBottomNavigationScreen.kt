@@ -23,6 +23,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.miltent.featurecardbase.characterCard.CharacterCardRoute
 import com.miltent.featurecardbase.characterCard.CharacterCardScreen
@@ -43,6 +44,8 @@ data class BottomNavigationItem(
 @Composable
 fun CardBottomNavigationScreen(navController: NavController, modifier: Modifier = Modifier) {
     val innerNavController = rememberNavController()
+    val navBackStackEntry = innerNavController.currentBackStackEntryAsState()
+    val currentDestinationRoute = navBackStackEntry.value?.destination?.route
 
     val items = listOf(
         BottomNavigationItem(
@@ -64,25 +67,24 @@ fun CardBottomNavigationScreen(navController: NavController, modifier: Modifier 
             unselectedIcon = Icons.Outlined.Build
         )
     )
-    var selectedItemIndex by remember {
-        mutableIntStateOf(0)
-    }
 
     Scaffold(
         bottomBar = {
             NavigationBar {
                 items.forEachIndexed { index, item ->
                     NavigationBarItem(
-                        selected = index == selectedItemIndex,
+                        selected = item.route::class.qualifiedName == currentDestinationRoute,
                         onClick = {
-                            selectedItemIndex = index
-                            innerNavController.navigate(item.route)
+                            innerNavController.navigate(item.route){
+                                popUpTo(innerNavController.graph.startDestinationId)
+                                launchSingleTop = true
+                            }
                         },
                         label = { Text(text = item.title) },
                         icon = {
                                 Icon(
                                     imageVector =
-                                        if (index == selectedItemIndex) item.selectedIcon
+                                        if (item.route.toString() == currentDestinationRoute) item.selectedIcon
                                         else item.unselectedIcon,
                                     contentDescription = item.title
                                 )
@@ -102,5 +104,4 @@ fun CardBottomNavigationScreen(navController: NavController, modifier: Modifier 
             composable<CharacterEquipmentRoute> { CharacterEquipmentScreen() }
         }
     }
-    
 }
