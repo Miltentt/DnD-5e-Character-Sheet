@@ -3,13 +3,10 @@ package com.miltent.featureCharacterCreation.navigation
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
-import com.miltent.domain.model.Skill
 import com.miltent.featureCharacterCreation.baseInfo.event.BaseInfoEvent
 import com.miltent.featureCharacterCreation.baseInfo.navigation.BaseInfoRoute
 import com.miltent.featureCharacterCreation.baseInfo.ui.BaseInfoScreen
-import com.miltent.featureCharacterCreation.fightingStyle.di.FightingStyle
 import com.miltent.featureCharacterCreation.fightingStyle.event.FightingStyleEvent
 import com.miltent.featureCharacterCreation.fightingStyle.navigation.FightingStyleRoute
 import com.miltent.featureCharacterCreation.fightingStyle.ui.FightingStyleScreen
@@ -26,7 +23,7 @@ interface CharacterCreationRoute
 fun NavGraphBuilder.characterCreation(navController: NavController) {
 
     navigation<CharacterCreationNavigation>(
-        startDestination = BaseInfoRoute
+        startDestination = BaseInfoRoute,
     ) {
 
         composable<BaseInfoRoute> {

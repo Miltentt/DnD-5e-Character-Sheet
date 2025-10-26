@@ -10,7 +10,10 @@ import kotlinx.serialization.Serializable
 @Serializable
 data object Dashboard
 
-fun NavGraphBuilder.dashboard(navigateToCharacterCreation: () -> Unit) {
+fun NavGraphBuilder.dashboard(
+    navigateToCharacterCreation: () -> Unit,
+    navigateToCharacterCard: () -> Unit
+) {
 
     navigation<Dashboard>(
         startDestination = DashboardRoute
@@ -19,6 +22,7 @@ fun NavGraphBuilder.dashboard(navigateToCharacterCreation: () -> Unit) {
             DashboardScreen(onEvent = { event ->
                 when (event) {
                     is DashboardEvent.NavigateToCharacterCreation -> navigateToCharacterCreation.invoke()
+                    is DashboardEvent.NavigateToBaseCard -> navigateToCharacterCard.invoke()
                 }
             })
         }

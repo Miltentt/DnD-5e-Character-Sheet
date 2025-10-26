@@ -4,4 +4,5 @@ import com.miltent.core.event.Event
 
 internal sealed interface DashboardEvent: Event {
     data object NavigateToCharacterCreation: DashboardEvent
+    data object NavigateToBaseCard: DashboardEvent
 }

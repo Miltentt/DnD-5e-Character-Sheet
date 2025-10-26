@@ -13,5 +13,6 @@ internal class DashboardIntentHandler @Inject internal constructor(
 ): IntentHandler<DashboardIntent> {
     override suspend fun handle(intent: DashboardIntent) = when(intent) {
         is DashboardIntent.OnCharacterCreateClicked -> eventHandler.emitEvent(DashboardEvent.NavigateToCharacterCreation)
+        is DashboardIntent.OnCharacterClicked -> eventHandler.emitEvent(DashboardEvent.NavigateToBaseCard)
     }
 }

@@ -86,7 +86,10 @@ private fun DashboardScreen(
                                         CharacterClassFormatter.formatCharacterClass(
                                             character.characterClass::class
                                         )
-                                    )
+                                    ),
+                                    onClick = {
+                                        onIntent.invoke(DashboardIntent.OnCharacterClicked)
+                                    }
                                 )
                             })
                         }
