@@ -25,11 +25,9 @@ navigation-compose-version = "2.9.2"
 hilt-plugin-version = "2.57"
 dagger-version = "2.57"
 jetbrainsKotlinJvm = "2.2.10"
-uiTooling = "1.8.3"
+uiTooling = "1.9.4"
 runtimeKtx = "2.10.2"
 serialization-json = "1.9.0"
-uiToolingPreview = "1.9.4"
-uiToolingVersion = "1.9.4"
 
 
 [libraries]
@@ -39,7 +37,6 @@ junit = { group = "junit", name = "junit", version.ref = "junit" }
 moshi = { module = "com.squareup.moshi:moshi", version.ref = "moshi" }
 moshi-kotlin-codegen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshi" }
 serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serialization-json" }
-kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
 runtime-ktx = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "runtimeKtx" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -62,7 +59,6 @@ androidx-material3 = { group = "androidx.compose.material3", name = "material3" 
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 hiltNavigation = { module = "androidx.hilt:hilt-navigation-fragment", version.ref = "hiltCompose-version" }
-hiltWork = { module = "androidx.hilt:hilt-work", version.ref = "hiltCompose-version" }
 hiltKsp = { module = "androidx.hilt:hilt-compiler", version.ref = "hiltCompose-version" }
 navigationCompose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation-compose-version" }
 hilt-compose-navigation = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hilt-compose-navigation-version" }
@@ -70,8 +66,6 @@ ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref =
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room-version" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room-version" }
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room-version" }
-androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview", version.ref = "uiToolingPreview" }
-androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "uiToolingVersion" }
 
 [plugins]
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp-version" }
