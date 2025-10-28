@@ -41,4 +41,9 @@
     <string name="fighting_style_subtitle">Wybierz styl walki</string>
     <string name="fighting_style_empty">Styl walki nie może być pusty</string>
     <string name="skills_available_points">Pozostałe punkty umiejętnośći %s</string>
+
+    <!-- Card Base -->
+    <string name="card">Card</string>
+    <string name="skills">Skills</string>
+    <string name="equipment">Equipment</string>
 </resources>

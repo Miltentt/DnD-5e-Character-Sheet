@@ -25,6 +25,6 @@ fun MainNavHost() {
             }
         )
         characterCreation(navController = navController)
-        cardBase(navController = navController)
+        cardBase()
     }
 }

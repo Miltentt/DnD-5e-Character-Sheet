@@ -14,13 +14,9 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.navigation.NavController
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -32,6 +28,7 @@ import com.miltent.featurecardbase.characterEquipment.CharacterEquipmentScreen
 import com.miltent.featurecardbase.characterSkills.CharacterSkillsRoute
 import com.miltent.featurecardbase.characterSkills.CharacterSkillsScreen
 import com.miltent.featurecardbase.navigation.CardBaseRoute
+import com.miltent.resources.R as ResR
 
 data class BottomNavigationItem(
     val title: String,
@@ -42,26 +39,26 @@ data class BottomNavigationItem(
 
 
 @Composable
-fun CardBottomNavigationScreen(navController: NavController, modifier: Modifier = Modifier) {
+fun CardBottomNavigationScreen() {
     val innerNavController = rememberNavController()
     val navBackStackEntry = innerNavController.currentBackStackEntryAsState()
     val currentDestinationRoute = navBackStackEntry.value?.destination?.route
 
     val items = listOf(
         BottomNavigationItem(
-            title = "Skills",
+            title = stringResource(ResR.string.skills),
             route = CharacterSkillsRoute,
             selectedIcon = Icons.Filled.Star,
             unselectedIcon = Icons.Outlined.Star
         ),
         BottomNavigationItem(
-            title = "Card",
+            title = stringResource(ResR.string.card),
             route = CharacterCardRoute,
             selectedIcon = Icons.Filled.Person,
             unselectedIcon = Icons.Outlined.Person
         ),
         BottomNavigationItem(
-            title = "Equipment",
+            title = stringResource(ResR.string.equipment),
             route = CharacterEquipmentRoute,
             selectedIcon = Icons.Filled.Build,
             unselectedIcon = Icons.Outlined.Build
@@ -71,7 +68,7 @@ fun CardBottomNavigationScreen(navController: NavController, modifier: Modifier 
     Scaffold(
         bottomBar = {
             NavigationBar {
-                items.forEachIndexed { index, item ->
+                items.forEach { item ->
                     NavigationBarItem(
                         selected = item.route::class.qualifiedName == currentDestinationRoute,
                         onClick = {
@@ -84,7 +81,7 @@ fun CardBottomNavigationScreen(navController: NavController, modifier: Modifier 
                         icon = {
                                 Icon(
                                     imageVector =
-                                        if (item.route.toString() == currentDestinationRoute) item.selectedIcon
+                                        if (item.route::class.qualifiedName == currentDestinationRoute) item.selectedIcon
                                         else item.unselectedIcon,
                                     contentDescription = item.title
                                 )
