@@ -10,18 +10,18 @@ import androidx.compose.ui.tooling.preview.Preview
 
 
 @Composable
-internal fun CharacterCardScreen(){
+internal fun CharacterCardScreen(name: String){
     Box(modifier = Modifier.
     fillMaxSize(),
         contentAlignment = Alignment.Center
     ){
         Text(
-            text ="Card"
+            text = name
         )
     }
 }
 @Preview(showBackground = true)
 @Composable
 fun CharacterCardScreenPreview(){
-    CharacterCardScreen()
+    CharacterCardScreen("Tul")
 }
