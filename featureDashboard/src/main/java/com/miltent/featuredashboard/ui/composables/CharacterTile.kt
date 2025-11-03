@@ -2,6 +2,7 @@ package com.miltent.featuredashboard.ui.composables
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -26,9 +27,10 @@ import com.miltent.designsystem.theme.Spacing
 import com.miltent.resources.R as ResR
 
 @Composable
-fun CharacterTile(name: String, level: Int, race: String, characterClass: String) {
+fun CharacterTile(name: String, level: Int, race: String, characterClass: String, onClick: () -> Unit) {
     Row(
         modifier = Modifier
+            .clickable { onClick() }
             .fillMaxWidth()
             .height(200.dp)
             .background(Colors.onPrimary),
@@ -81,6 +83,7 @@ fun CharacterTile_PREVIEW() {
         name = "Tul duru",
         level = 7,
         race = "Dwarf",
-        characterClass = "Fighter"
+        characterClass = "Fighter",
+        {}
     )
 }
