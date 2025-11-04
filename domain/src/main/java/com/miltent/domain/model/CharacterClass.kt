@@ -5,7 +5,8 @@ sealed class CharacterClass(
     val identifier: String,
     val movementSpeedModifier: MovementSpeed,
     val skillPoints: Int,
-    val hitDie: Int
+    val hitDie: Int,
+    val savingThrows: Pair<StatisticType, StatisticType>
 ) {
     companion object {
 
@@ -28,7 +29,8 @@ sealed class CharacterClass(
             identifier,
             MovementSpeed(0.0),
             skillPoints = 2,
-            hitDie = 10
+            hitDie = 10,
+            savingThrows = Pair(StatisticType.STR, StatisticType.CON)
         ) {
         companion object {
             const val identifier = "Fighter"
@@ -41,7 +43,8 @@ sealed class CharacterClass(
             identifier,
             MovementSpeed(0.0),
             skillPoints = 2,
-            hitDie = 10
+            hitDie = 10,
+            savingThrows = Pair(StatisticType.STR, StatisticType.DEX)
         ) {
         companion object {
             const val identifier = "Ranger"

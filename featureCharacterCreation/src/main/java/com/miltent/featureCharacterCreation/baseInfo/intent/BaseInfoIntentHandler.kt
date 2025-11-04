@@ -5,6 +5,7 @@ import com.miltent.core.event.EventHandler
 import com.miltent.core.intent.IntentHandler
 import com.miltent.core.ui.ViewStateProvider
 import com.miltent.domain.model.Attribute
+import com.miltent.domain.model.Attributes
 import com.miltent.domain.model.Character
 import com.miltent.domain.model.CharacterClass
 import com.miltent.domain.model.Race
@@ -32,6 +33,10 @@ class BaseInfoIntentHandler @Inject constructor(
             intent.statisticValue,
             intent.statisticType
         )
+        is BaseInfoIntent.OnStatisticsChanged -> updateStatistic(
+            intent.statisticType,
+            intent.attribute
+        )
 
         is BaseInfoIntent.OnCharacterClassChosen -> initiateCharacterClass(intent.characterClassIdentifier)
         is BaseInfoIntent.OnNextClicked -> onNextClicked()
@@ -53,6 +58,18 @@ class BaseInfoIntentHandler @Inject constructor(
         )
     }
 
+    private fun updateStatistic(statisticType: StatisticType, attribute: Attribute){
+        with(viewStateProvider.viewState.value) {
+            viewStateProvider.updateState(
+                copy(
+                    uiState = uiState.copy(
+                        attributes =
+                            uiState.attributes.addAttribute(statisticType,attribute))
+                )
+
+            )
+        }
+    }
     private fun updateStatistic(statisticValue: String, statisticType: StatisticType) {
         with(viewStateProvider.viewState.value) {
             viewStateProvider.updateState(
@@ -118,6 +135,7 @@ class BaseInfoIntentHandler @Inject constructor(
                 name = viewStateProvider.viewState.value.uiState.name,
                 race = race,
                 characterClass = characterClass,
+                baseAttributes = viewStateProvider.viewState.value.uiState.attributes,
                 baseCharisma = viewStateProvider.viewState.value.uiState.charisma,
                 baseConstitution = viewStateProvider.viewState.value.uiState.constitution,
                 baseDexterity = viewStateProvider.viewState.value.uiState.dexterity,

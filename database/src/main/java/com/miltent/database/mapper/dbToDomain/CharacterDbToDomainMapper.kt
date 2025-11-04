@@ -5,6 +5,7 @@ import com.miltent.database.entities.character.CharacterEntity
 import com.miltent.database.entities.character.RaceEntity
 import com.miltent.database.factory.dbToDomain.CharacterClassDbToDomainFactory
 import com.miltent.domain.model.Attribute
+import com.miltent.domain.model.Attributes
 import javax.inject.Inject
 import com.miltent.domain.model.Character
 import com.miltent.domain.model.HealthPoints
@@ -25,6 +26,8 @@ class CharacterDbToDomainMapper @Inject constructor(
             characterClass = characterClass,
             race = raceDbToDomainMapper.map(value.race),
             level = characterClass.level,
+            baseAttributes = Attributes(),
+            temporaryAttributes = Attributes(0),
             baseStrength = Attribute(value.baseStrength),
             baseDexterity = Attribute(value.baseDexterity),
             baseConstitution = Attribute(value.baseConstitution),
