@@ -1,7 +1,5 @@
 package com.miltent.domain.model
 
-import kotlin.collections.forEach
-
 class Attributes(
     val values: MutableMap<StatisticType, Attribute> =
                      StatisticType.entries.associateWith { Attribute(10) }.toMutableMap()

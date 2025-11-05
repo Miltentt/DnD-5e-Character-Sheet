@@ -80,7 +80,7 @@ private fun BaseInfoScreen(onIntent: (BaseInfoIntent) -> Unit, viewState: BaseIn
                         Spacing.spacing16
                     )
                 ) {
-                    /*PrimaryTextField(
+                    PrimaryTextField(
                         value = viewState.uiState.name,
                         onValueChange = { newName ->
                             onIntent.invoke(BaseInfoIntent.OnNameChanged(newName))
@@ -90,7 +90,7 @@ private fun BaseInfoScreen(onIntent: (BaseInfoIntent) -> Unit, viewState: BaseIn
                         placeholderText = stringResource(ResR.string.character_creation_name_placeholder),
                         isError = viewState.uiState.error == ValidationError.EmptyName,
                         modifier = Modifier
-                    )*/
+                    )
                     StatisticType.entries.toSet().forEach { statisticType ->
                         StatisticsWithModifierTextField(
                             statisticValue = viewState.uiState.attributes.values[statisticType]!!.value.toString(),
