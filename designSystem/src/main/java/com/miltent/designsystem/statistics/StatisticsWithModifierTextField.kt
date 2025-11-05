@@ -30,7 +30,7 @@ fun StatisticsWithModifierTextField(
             value = statisticValue, onValueChange = onTextChange,
             labelText = statisticName,
             placeholderText = placeholderText ,
-            modifier = Modifier,
+            modifier = Modifier.weight(1f),
             isError = isError,
             isDigitsOnly = true
         )
@@ -38,7 +38,7 @@ fun StatisticsWithModifierTextField(
             value = statisticModifierValue, onValueChange = {},
             labelText = "Modifier",
             readOnly = true,
-            modifier = Modifier.defaultMinSize(minWidth = ATTRIBUTE_MODIFIER_TEXTFIELD_WIDTH)
+            modifier = Modifier.width(ATTRIBUTE_MODIFIER_TEXTFIELD_WIDTH)
         )
     }
 }

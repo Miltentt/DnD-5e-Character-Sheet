@@ -37,7 +37,6 @@ class BaseInfoIntentHandler @Inject constructor(
             intent.statisticType,
             intent.attribute
         )
-
         is BaseInfoIntent.OnCharacterClassChosen -> initiateCharacterClass(intent.characterClassIdentifier)
         is BaseInfoIntent.OnNextClicked -> onNextClicked()
     }
@@ -64,9 +63,8 @@ class BaseInfoIntentHandler @Inject constructor(
                 copy(
                     uiState = uiState.copy(
                         attributes =
-                            uiState.attributes.addAttribute(statisticType,attribute))
+                            uiState.attributes.addToAttribute(statisticType,attribute))
                 )
-
             )
         }
     }

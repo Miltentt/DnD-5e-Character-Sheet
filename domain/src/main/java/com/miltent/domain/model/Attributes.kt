@@ -10,7 +10,7 @@ class Attributes(
         StatisticType.entries.associateWith { Attribute(0) }.toMutableMap()
     )
 
-    fun addAttributes(other: Attributes): Attributes {
+    fun addToAttributes(other: Attributes): Attributes {
         val newValues = this.values
         val otherValues = other.values
         StatisticType.entries.forEach {
@@ -19,7 +19,7 @@ class Attributes(
         return Attributes(newValues)
     }
 
-    fun addAttribute(type: StatisticType ,attribute: Attribute): Attributes {
+    fun addToAttribute(type: StatisticType ,attribute: Attribute): Attributes {
         val newValues = this.values
         newValues[type] = newValues[type] as Attribute + attribute
         return Attributes(newValues)

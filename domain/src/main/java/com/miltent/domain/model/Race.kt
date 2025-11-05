@@ -16,8 +16,8 @@ enum class Race(
     Dwarf(
         identifier = "Dwarf",
         extraModifiers = Attributes(0)
-            .addAttribute(StatisticType.STR, Attribute(2))
-            .addAttribute(StatisticType.CON, Attribute(2)),
+            .addToAttribute(StatisticType.STR, Attribute(2))
+            .addToAttribute(StatisticType.CON, Attribute(2)),
         extraModifierStrength = Attribute(2),
         extraModifierDex = Attribute(0),
         extraModifierCon = Attribute(2),
@@ -31,8 +31,8 @@ enum class Race(
     Drow(
         identifier = "Drow",
         extraModifiers = Attributes(0)
-            .addAttribute(StatisticType.DEX, Attribute(2))
-            .addAttribute(StatisticType.CHA, Attribute(1)),
+            .addToAttribute(StatisticType.DEX, Attribute(2))
+            .addToAttribute(StatisticType.CHA, Attribute(1)),
         extraModifierStrength = Attribute(0),
         extraModifierDex = Attribute(2),
         extraModifierCon = Attribute(0),

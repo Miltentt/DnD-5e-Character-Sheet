@@ -19,7 +19,6 @@ class Character1stLevelBuilderImpl @Inject constructor() : Character.Builder1stL
     private set
     override var characterClass: CharacterClass = CharacterClass.Fighter(1)
     private set
-
     override var baseAttributes: Attributes = Attributes()
         private set
     override var baseStrength: Attribute = Attribute(0)
@@ -78,7 +77,7 @@ class Character1stLevelBuilderImpl @Inject constructor() : Character.Builder1stL
             level = 1,
             race = race,
             characterClass = characterClass,
-            baseAttributes = baseAttributes.addAttributes(race.extraModifiers),
+            baseAttributes = baseAttributes.addToAttributes(race.extraModifiers),
             temporaryAttributes = Attributes(0),
             baseStrength = baseStrength + race.extraModifierStrength,
             baseDexterity = baseDexterity + race.extraModifierDex,
