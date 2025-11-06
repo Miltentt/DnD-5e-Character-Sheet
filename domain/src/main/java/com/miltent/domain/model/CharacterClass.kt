@@ -8,7 +8,6 @@ sealed class CharacterClass(
     val hitDie: Int
 ) {
     companion object {
-
         fun createCharacterClass(
             level: Int,
             classIdentifier: String
@@ -19,7 +18,10 @@ sealed class CharacterClass(
                 else -> throw IllegalArgumentException("Unknown character class: $classIdentifier")
             }
         }
-
+        val subClasses = listOf<CharacterClass>(
+            Fighter(0),
+            Ranger(0)
+        )
     }
 
     data class Fighter(override val level: Int) :
