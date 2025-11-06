@@ -63,7 +63,7 @@ class BaseInfoIntentHandler @Inject constructor(
                 copy(
                     uiState = uiState.copy(
                         attributes =
-                            uiState.attributes.addToAttribute(statisticType,attribute))
+                            uiState.attributes.updateAttribute(statisticType,attribute))
                 )
             )
         }

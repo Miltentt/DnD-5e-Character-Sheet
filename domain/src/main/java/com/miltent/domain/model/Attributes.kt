@@ -20,5 +20,10 @@ data class Attributes(
         newValues[type] = newValues[type] as Attribute + attribute
         return Attributes(newValues.toMap())
     }
+
+    fun updateAttribute(type: StatisticType ,attribute: Attribute): Attributes {
+        val newValues = this.values.toMutableMap().also { it[type] = attribute }
+        return Attributes(newValues.toMap())
+    }
 }
 
