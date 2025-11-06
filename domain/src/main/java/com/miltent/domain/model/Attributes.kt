@@ -1,26 +1,24 @@
 package com.miltent.domain.model
 
-class Attributes(
-    val values: MutableMap<StatisticType, Attribute> =
-                     StatisticType.entries.associateWith { Attribute(10) }.toMutableMap()
+data class Attributes(
+    val values: Map<StatisticType, Attribute> =
+                     StatisticType.entries.associateWith { Attribute(10) }
 ) {
     constructor(base:Int):this(
-        StatisticType.entries.associateWith { Attribute(0) }.toMutableMap()
+        StatisticType.entries.associateWith { Attribute(base) }
     )
 
     fun addToAttributes(other: Attributes): Attributes {
-        val newValues = this.values
-        val otherValues = other.values
-        StatisticType.entries.forEach {
-            newValues[it] = newValues[it] as Attribute + otherValues[it] as Attribute
+        val newValues = StatisticType.entries.associateWith {
+            this.values[it] as Attribute + other.values[it] as Attribute 
         }
         return Attributes(newValues)
     }
 
     fun addToAttribute(type: StatisticType ,attribute: Attribute): Attributes {
-        val newValues = this.values
+        val newValues = this.values.toMutableMap()
         newValues[type] = newValues[type] as Attribute + attribute
-        return Attributes(newValues)
+        return Attributes(newValues.toMap())
     }
 }
 
