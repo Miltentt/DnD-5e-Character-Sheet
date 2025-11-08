@@ -1,6 +1,7 @@
 package com.miltent.featureCharacterCreation.baseInfo.state.factory
 
 import com.miltent.domain.model.Attribute
+import com.miltent.domain.model.Attributes
 import com.miltent.featureCharacterCreation.baseInfo.state.BaseInfoUiState
 import com.miltent.featureCharacterCreation.baseInfo.state.BaseInfoViewState
 import javax.inject.Inject
@@ -10,6 +11,7 @@ class BaseInfoViewStateFactoryImpl @Inject constructor(): BaseInfoViewState.Fact
     override fun createEmpty(): BaseInfoViewState = BaseInfoViewState(
         uiState = BaseInfoUiState(
             name = "",
+            attributes = Attributes(),
             strength = Attribute(0),
             dexterity = Attribute(0),
             constitution =Attribute(0),

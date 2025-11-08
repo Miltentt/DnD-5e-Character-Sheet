@@ -31,6 +31,7 @@ import com.miltent.designsystem.theme.Colors
 import com.miltent.designsystem.theme.DNDSheetTheme
 import com.miltent.designsystem.theme.Spacing
 import com.miltent.domain.model.Attribute
+import com.miltent.domain.model.Attributes
 import com.miltent.domain.model.CharacterClass
 import com.miltent.domain.model.Race
 import com.miltent.domain.model.StatisticType
@@ -87,9 +88,28 @@ private fun BaseInfoScreen(onIntent: (BaseInfoIntent) -> Unit, viewState: BaseIn
                         readOnly = false,
                         labelText = stringResource(ResR.string.character_creation_name),
                         placeholderText = stringResource(ResR.string.character_creation_name_placeholder),
-                        isError = viewState.uiState.error == ValidationError.EmptyName
+                        isError = viewState.uiState.error == ValidationError.EmptyName,
+                        modifier = Modifier
                     )
-                    StatisticsWithModifierTextField(
+                    StatisticType.entries.toSet().forEach { statisticType ->
+                        StatisticsWithModifierTextField(
+                            statisticValue = viewState.uiState.attributes.values[statisticType]!!.value.toString(),
+                            statisticName = statisticType.name,
+                            statisticModifierValue =
+                                viewState.uiState.attributes
+                                    .values[statisticType]
+                                    ?.calculateModifier()
+                                    .toString(),
+                            onTextChange = {
+                                onIntent.invoke(
+                                    BaseInfoIntent.OnStatisticsChanged(
+                                        statisticType, Attribute(it.toInt() )
+                                    )
+                                )
+                            }
+                        )
+                    }
+                    /*StatisticsWithModifierTextField(
                         statisticValue = viewState.uiState.strength.value.toString(),
                         statisticName = stringResource(ResR.string.statistic_short_strength),
                         statisticModifierValue = viewState.uiState.strength.calculateModifier()
@@ -178,7 +198,7 @@ private fun BaseInfoScreen(onIntent: (BaseInfoIntent) -> Unit, viewState: BaseIn
                             )
                         },
                         isError = viewState.uiState.error == ValidationError.WisdomTooHigh
-                    )
+                    )*/
                     RadioButtonGroup(
                         modifier = Modifier.fillMaxWidth(),
                         title = stringResource(ResR.string.base_info_choose_race_title),
@@ -234,6 +254,7 @@ fun BaseInfoScreenPreview() {
                 name = "Tul duru",
                 race = Race.Dwarf,
                 characterClass = CharacterClass.Fighter(8),
+                attributes = Attributes(12),
                 strength = Attribute(10),
                 dexterity = Attribute(10),
                 constitution = Attribute(10),

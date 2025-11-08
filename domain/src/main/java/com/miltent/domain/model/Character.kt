@@ -5,6 +5,8 @@ data class Character(
     override val level: Int,
     override val race: Race,
     override val characterClass: CharacterClass,
+    val baseAttributes: Attributes,
+    val temporaryAttributes: Attributes,
     val baseStrength: Attribute,
     val baseDexterity: Attribute,
     val baseConstitution: Attribute,
@@ -23,6 +25,7 @@ data class Character(
 
     interface Builder1stLevel {
 
+        val baseAttributes: Attributes
         val baseStrength: Attribute
         val baseDexterity: Attribute
         val baseConstitution: Attribute
@@ -38,6 +41,7 @@ data class Character(
             name: String,
             race: Race,
             characterClass: CharacterClass,
+            baseAttributes: Attributes,
             baseStrength: Attribute,
             baseDexterity: Attribute,
             baseConstitution: Attribute,
