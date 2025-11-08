@@ -83,7 +83,7 @@ private fun DashboardScreen(
                                     level = character.level,
                                     characterClass = stringResource(
                                         CharacterClassFormatter.formatCharacterClass(
-                                            character.characterClass::class
+                                            character.characterClass
                                         )
                                     ),
                                     onClick = {
