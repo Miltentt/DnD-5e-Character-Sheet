@@ -41,16 +41,11 @@ class SkillsStateProvider @Inject constructor(
         viewModelScope.launch {
             val skills = getSkillsUseCase.invoke()
             _viewState.update {
-                viewState.value.copy(skillList = skills.associate {
-                    when (it.statisticType) {
-                        StatisticType.CHA -> it to character1stLevelBuilder.baseCharisma.calculateModifier()
-                        StatisticType.CON -> it to character1stLevelBuilder.baseConstitution.calculateModifier()
-                        StatisticType.DEX -> it to character1stLevelBuilder.baseDexterity.calculateModifier()
-                        StatisticType.INT -> it to character1stLevelBuilder.baseIntelligence.calculateModifier()
-                        StatisticType.STR -> it to character1stLevelBuilder.baseStrength.calculateModifier()
-                        StatisticType.WIS -> it to character1stLevelBuilder.baseWisdom.calculateModifier()
-                    }
-                })
+                viewState.value.copy(skillList = skills.associateWith { skill ->
+                    character1stLevelBuilder.baseAttributes.values[skill.statisticType]?.calculateModifier()
+                        ?: throw IllegalArgumentException("skill has to be associated with an attribute")
+                }
+                )
             }
         }
     }

@@ -47,18 +47,6 @@ class CharacterDbToDomainMapper @Inject constructor(
                     StatisticType.CHA to Attribute(value.temporaryChaModifier)
                 )
             ),
-            baseStrength = Attribute(value.baseStrength),
-            baseDexterity = Attribute(value.baseDexterity),
-            baseConstitution = Attribute(value.baseConstitution),
-            baseIntelligence = Attribute(value.baseIntelligence),
-            baseWisdom = Attribute(value.baseWisdom),
-            baseCharisma = Attribute(value.baseCharisma),
-            temporaryStrModifier = Attribute(value.temporaryStrModifier),
-            temporaryDexModifier = Attribute(value.temporaryDexModifier),
-            temporaryConModifier = Attribute(value.temporaryConModifier),
-            temporaryIntModifier = Attribute(value.temporaryIntModifier),
-            temporaryWisModifier = Attribute(value.temporaryWisModifier),
-            temporaryChaModifier = Attribute(value.temporaryChaModifier),
             movementSpeed = MovementSpeed(value.movementSpeed),
             healthPoints = HealthPoints.makeFromData(
                 value.maxHealthPoints,
