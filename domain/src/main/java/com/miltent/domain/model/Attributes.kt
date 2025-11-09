@@ -9,7 +9,7 @@ data class Attributes(
     )
     init {
         require(values.keys == StatisticType.entries.toSet())
-        {"Attributes object need's to use all StatisticType's"}
+        {"Attributes object need's to use all StatisticType objects"}
     }
 
 
