@@ -215,7 +215,7 @@ private fun BaseInfoScreen(onIntent: (BaseInfoIntent) -> Unit, viewState: BaseIn
                                 selected = viewState.uiState.characterClass?.let { it == characterClass} == true,
                                 content = {
                                     Text(text = stringResource(
-                                        CharacterClassFormatter.formatCharacterClass(characterClass)
+                                        CharacterClassFormatter.formatCharacterClass(characterClass::class)
                                         )
                                     )
                                 }
