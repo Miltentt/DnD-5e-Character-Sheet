@@ -7,6 +7,11 @@ data class Attributes(
     constructor(base:Int):this(
         StatisticType.entries.associateWith { Attribute(base) }
     )
+    init {
+        require(values.keys == StatisticType.entries.toSet())
+        {"Attributes object need's to use all StatisticType's"}
+    }
+
 
     fun addToAttributes(other: Attributes): Attributes {
         val newValues = StatisticType.entries.associateWith {
