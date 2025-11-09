@@ -3,7 +3,6 @@ package com.miltent.featureCharacterCreation.skills.state.provider
 import com.miltent.core.ui.ViewStateProvider
 import com.miltent.core.useCase.GetAllSkillsUseCase
 import com.miltent.domain.model.Character
-import com.miltent.domain.model.StatisticType
 import com.miltent.featureCharacterCreation.skills.di.Skills
 import com.miltent.featureCharacterCreation.skills.state.SkillsUiState
 import com.miltent.featureCharacterCreation.skills.state.SkillsViewState
@@ -42,8 +41,7 @@ class SkillsStateProvider @Inject constructor(
             val skills = getSkillsUseCase.invoke()
             _viewState.update {
                 viewState.value.copy(skillList = skills.associateWith { skill ->
-                    character1stLevelBuilder.baseAttributes.values[skill.statisticType]?.calculateModifier()
-                        ?: throw IllegalArgumentException("skill has to be associated with an attribute")
+                    character1stLevelBuilder.baseAttributes.values.getValue(skill.statisticType).calculateModifier()
                 }
                 )
             }

@@ -5,7 +5,6 @@ import com.miltent.core.event.EventHandler
 import com.miltent.core.intent.IntentHandler
 import com.miltent.core.ui.ViewStateProvider
 import com.miltent.domain.model.Attribute
-import com.miltent.domain.model.Attributes
 import com.miltent.domain.model.Character
 import com.miltent.domain.model.CharacterClass
 import com.miltent.domain.model.Race
@@ -69,7 +68,10 @@ class BaseInfoIntentHandler @Inject constructor(
     private fun initiateCharacterClass(characterClassIdentifier: String) {
         viewStateProvider.updateState(
             viewStateProvider.viewState.value.copy(
-                uiState = viewStateProvider.viewState.value.uiState.copy(characterClass = CharacterClass.createCharacterClass(1,characterClassIdentifier))
+                uiState = viewStateProvider.viewState.value.uiState
+                    .copy(characterClass =
+                        CharacterClass.createCharacterClass(1,characterClassIdentifier)
+                    )
             )
         )
     }
@@ -82,18 +84,18 @@ class BaseInfoIntentHandler @Inject constructor(
                         name = viewStateProvider.viewState.value.uiState.name,
                         race = viewStateProvider.viewState.value.uiState.race,
                         characterClass = viewStateProvider.viewState.value.uiState.characterClass,
-                        strength = viewStateProvider.viewState.value.uiState.attributes.values[StatisticType.STR]
-                            ?: throw IllegalArgumentException("strength cannot be null"),
-                        dexterity = viewStateProvider.viewState.value.uiState.attributes.values[StatisticType.DEX]
-                            ?: throw IllegalArgumentException("dexterity cannot be null"),
-                        constitution = viewStateProvider.viewState.value.uiState.attributes.values[StatisticType.CON]
-                            ?: throw IllegalArgumentException("constitution cannot be null"),
-                        intelligence = viewStateProvider.viewState.value.uiState.attributes.values[StatisticType.INT]
-                            ?: throw IllegalArgumentException("intelligence cannot be null"),
-                        wisdom = viewStateProvider.viewState.value.uiState.attributes.values[StatisticType.WIS]
-                            ?: throw IllegalArgumentException("wisdom cannot be null"),
-                        charisma = viewStateProvider.viewState.value.uiState.attributes.values[StatisticType.CHA]
-                            ?: throw IllegalArgumentException("charisma cannot be null"),
+                        strength = viewStateProvider.viewState.value.uiState.attributes.values
+                            .getValue(StatisticType.STR),
+                        dexterity = viewStateProvider.viewState.value.uiState.attributes.values
+                            .getValue(StatisticType.DEX),
+                        constitution = viewStateProvider.viewState.value.uiState.attributes.values
+                            .getValue(StatisticType.CON),
+                        intelligence = viewStateProvider.viewState.value.uiState.attributes.values
+                            .getValue(StatisticType.INT),
+                        wisdom = viewStateProvider.viewState.value.uiState.attributes.values
+                            .getValue(StatisticType.WIS),
+                        charisma = viewStateProvider.viewState.value.uiState.attributes.values
+                            .getValue(StatisticType.CHA)
                     )
                 )
             )
