@@ -28,7 +28,7 @@ class CharacterDbToDomainMapper @Inject constructor(
             race = raceDbToDomainMapper.map(value.race),
             level = characterClass.level,
             baseAttributes = Attributes(
-                mutableMapOf<StatisticType, Attribute>(
+                mapOf<StatisticType, Attribute>(
                     StatisticType.STR to Attribute(value.baseStrength),
                     StatisticType.DEX to Attribute(value.baseDexterity),
                     StatisticType.CON to Attribute(value.baseConstitution),
@@ -38,7 +38,7 @@ class CharacterDbToDomainMapper @Inject constructor(
                 )
             ),
             temporaryAttributes = Attributes(
-                mutableMapOf<StatisticType, Attribute>(
+                mapOf<StatisticType, Attribute>(
                     StatisticType.STR to Attribute(value.temporaryStrModifier),
                     StatisticType.DEX to Attribute(value.temporaryDexModifier),
                     StatisticType.CON to Attribute(value.temporaryConModifier),

@@ -35,7 +35,7 @@ class CharacterDetailedFactoryImpl @Inject constructor(
                 race = raceDbToDomainMapper.map(character.race),
                 level = characterClass.level,
                 baseAttributes = Attributes(
-                    mutableMapOf<StatisticType, Attribute>(
+                    mapOf<StatisticType, Attribute>(
                         StatisticType.STR to Attribute(character.baseStrength),
                         StatisticType.DEX to Attribute(character.baseDexterity),
                         StatisticType.CON to Attribute(character.baseConstitution),
@@ -45,7 +45,7 @@ class CharacterDetailedFactoryImpl @Inject constructor(
                     )
                 ),
                 temporaryModifiers = Attributes(
-                    mutableMapOf<StatisticType, Attribute>(
+                    mapOf<StatisticType, Attribute>(
                         StatisticType.STR to Attribute(character.temporaryStrModifier),
                         StatisticType.DEX to Attribute(character.temporaryDexModifier),
                         StatisticType.CON to Attribute(character.temporaryConModifier),
@@ -69,7 +69,7 @@ class CharacterDetailedFactoryImpl @Inject constructor(
                         type = SpecialAbilityType.getSpecialAbilityType(specialAbility.type),
                         description = specialAbilityTranslations.find { it.specialAbilityId == specialAbility.id }?.description.orEmpty(),
                         attributeModifiers = Attributes(
-                            mutableMapOf<StatisticType, Attribute>(
+                            mapOf<StatisticType, Attribute>(
                                 StatisticType.STR to Attribute(specialAbility.strengthModifier),
                                 StatisticType.DEX to Attribute(specialAbility.dexterityModifier),
                                 StatisticType.CON to Attribute(specialAbility.constitutionModifier),
