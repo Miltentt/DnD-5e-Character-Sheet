@@ -36,4 +36,3 @@ class CharacterDomainToEntityMapper @Inject constructor(
         temporaryHealthPoints = value.healthPoints.temporary
     )
 }
-//
