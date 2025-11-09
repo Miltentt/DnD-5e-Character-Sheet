@@ -48,8 +48,7 @@ class Character1stLevelBuilderImpl @Inject constructor() : Character.Builder1stL
     }
 
     override fun build(): Character {
-        val hp = baseAttributes.values[StatisticType.CON]?.calculateModifier()
-            ?.plus(characterClass.hitDie)
+        val hp = baseAttributes.values.getValue(StatisticType.CON).calculateModifier() + characterClass.hitDie
         return Character(
             name = name,
             level = 1,
@@ -62,7 +61,7 @@ class Character1stLevelBuilderImpl @Inject constructor() : Character.Builder1stL
                         + characterClass.movementSpeedModifier.value
                         + specialAbility.sumOf { it.movementSpeedModifier.value }
             ),
-            healthPoints = HealthPoints(hp ?: throw IllegalArgumentException("hp cannot be null"))
+            healthPoints = HealthPoints(hp)
         )
     }
 }
