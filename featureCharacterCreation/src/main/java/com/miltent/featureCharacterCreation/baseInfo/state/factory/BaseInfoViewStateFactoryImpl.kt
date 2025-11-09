@@ -12,12 +12,6 @@ class BaseInfoViewStateFactoryImpl @Inject constructor(): BaseInfoViewState.Fact
         uiState = BaseInfoUiState(
             name = "",
             attributes = Attributes(),
-            strength = Attribute(0),
-            dexterity = Attribute(0),
-            constitution =Attribute(0),
-            intelligence = Attribute(0),
-            wisdom = Attribute(0),
-            charisma = Attribute(0),
             race = null,
             characterClass = null,
             error = null,

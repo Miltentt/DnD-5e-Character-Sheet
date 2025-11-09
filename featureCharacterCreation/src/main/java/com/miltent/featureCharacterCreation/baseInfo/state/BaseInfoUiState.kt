@@ -9,12 +9,6 @@ import com.miltent.featureCharacterCreation.baseInfo.validator.ValidationError
 data class BaseInfoUiState(
     val name: String,
     val attributes: Attributes,
-    val strength: Attribute,
-    val dexterity: Attribute,
-    val constitution: Attribute,
-    val intelligence: Attribute,
-    val wisdom: Attribute,
-    val charisma: Attribute,
     val race: Race?,
     val characterClass: CharacterClass?,
     val error: ValidationError?,

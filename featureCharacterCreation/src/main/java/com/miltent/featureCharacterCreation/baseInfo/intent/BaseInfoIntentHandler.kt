@@ -5,7 +5,6 @@ import com.miltent.core.event.EventHandler
 import com.miltent.core.intent.IntentHandler
 import com.miltent.core.ui.ViewStateProvider
 import com.miltent.domain.model.Attribute
-import com.miltent.domain.model.Attributes
 import com.miltent.domain.model.Character
 import com.miltent.domain.model.CharacterClass
 import com.miltent.domain.model.Race
@@ -29,10 +28,6 @@ class BaseInfoIntentHandler @Inject constructor(
     override suspend fun handle(intent: BaseInfoIntent) = when (intent) {
         is BaseInfoIntent.OnRaceChosen -> updateRace(intent.raceIdentifier)
         is BaseInfoIntent.OnNameChanged -> updateName(intent.name)
-        is BaseInfoIntent.OnStatisticChanged -> updateStatistic(
-            intent.statisticValue,
-            intent.statisticType
-        )
         is BaseInfoIntent.OnStatisticsChanged -> updateStatistic(
             intent.statisticType,
             intent.attribute
@@ -68,38 +63,15 @@ class BaseInfoIntentHandler @Inject constructor(
             )
         }
     }
-    private fun updateStatistic(statisticValue: String, statisticType: StatisticType) {
-        with(viewStateProvider.viewState.value) {
-            viewStateProvider.updateState(
-                copy(
-                    uiState =
-                        when (statisticType) {
-                            StatisticType.STR -> uiState.copy(strength = Attribute.fromString(value = statisticValue))
-                            StatisticType.DEX -> uiState.copy(dexterity = Attribute.fromString(value = statisticValue))
-                            StatisticType.CON -> uiState.copy(
-                                constitution = Attribute.fromString(
-                                    value = statisticValue
-                                )
-                            )
 
-                            StatisticType.INT -> uiState.copy(
-                                intelligence = Attribute.fromString(
-                                    value = statisticValue
-                                )
-                            )
-
-                            StatisticType.WIS -> uiState.copy(wisdom = Attribute.fromString(value = statisticValue))
-                            StatisticType.CHA -> uiState.copy(charisma = Attribute.fromString(value = statisticValue))
-                        }
-                )
-            )
-        }
-    }
 
     private fun initiateCharacterClass(characterClassIdentifier: String) {
         viewStateProvider.updateState(
             viewStateProvider.viewState.value.copy(
-                uiState = viewStateProvider.viewState.value.uiState.copy(characterClass = CharacterClass.createCharacterClass(1,characterClassIdentifier))
+                uiState = viewStateProvider.viewState.value.uiState
+                    .copy(characterClass =
+                        CharacterClass.createCharacterClass(1,characterClassIdentifier)
+                    )
             )
         )
     }
@@ -112,12 +84,18 @@ class BaseInfoIntentHandler @Inject constructor(
                         name = viewStateProvider.viewState.value.uiState.name,
                         race = viewStateProvider.viewState.value.uiState.race,
                         characterClass = viewStateProvider.viewState.value.uiState.characterClass,
-                        strength = viewStateProvider.viewState.value.uiState.strength,
-                        dexterity = viewStateProvider.viewState.value.uiState.dexterity,
-                        constitution = viewStateProvider.viewState.value.uiState.constitution,
-                        intelligence = viewStateProvider.viewState.value.uiState.intelligence,
-                        wisdom = viewStateProvider.viewState.value.uiState.wisdom,
-                        charisma = viewStateProvider.viewState.value.uiState.charisma
+                        strength = viewStateProvider.viewState.value.uiState.attributes.values
+                            .getValue(StatisticType.STR),
+                        dexterity = viewStateProvider.viewState.value.uiState.attributes.values
+                            .getValue(StatisticType.DEX),
+                        constitution = viewStateProvider.viewState.value.uiState.attributes.values
+                            .getValue(StatisticType.CON),
+                        intelligence = viewStateProvider.viewState.value.uiState.attributes.values
+                            .getValue(StatisticType.INT),
+                        wisdom = viewStateProvider.viewState.value.uiState.attributes.values
+                            .getValue(StatisticType.WIS),
+                        charisma = viewStateProvider.viewState.value.uiState.attributes.values
+                            .getValue(StatisticType.CHA)
                     )
                 )
             )
@@ -133,13 +111,7 @@ class BaseInfoIntentHandler @Inject constructor(
                 name = viewStateProvider.viewState.value.uiState.name,
                 race = race,
                 characterClass = characterClass,
-                baseAttributes = viewStateProvider.viewState.value.uiState.attributes,
-                baseCharisma = viewStateProvider.viewState.value.uiState.charisma,
-                baseConstitution = viewStateProvider.viewState.value.uiState.constitution,
-                baseDexterity = viewStateProvider.viewState.value.uiState.dexterity,
-                baseIntelligence = viewStateProvider.viewState.value.uiState.intelligence,
-                baseStrength = viewStateProvider.viewState.value.uiState.strength,
-                baseWisdom = viewStateProvider.viewState.value.uiState.wisdom
+                baseAttributes = viewStateProvider.viewState.value.uiState.attributes
             )
 
             characterCreationNavigationStateHolder.initialize(

@@ -109,96 +109,6 @@ private fun BaseInfoScreen(onIntent: (BaseInfoIntent) -> Unit, viewState: BaseIn
                             }
                         )
                     }
-                    /*StatisticsWithModifierTextField(
-                        statisticValue = viewState.uiState.strength.value.toString(),
-                        statisticName = stringResource(ResR.string.statistic_short_strength),
-                        statisticModifierValue = viewState.uiState.strength.calculateModifier()
-                            .toString(),
-                        onTextChange = {
-                            onIntent.invoke(
-                                BaseInfoIntent.OnStatisticChanged(
-                                    statisticType = StatisticType.STR,
-                                    statisticValue = it
-                                )
-                            )
-                        },
-                        isError = viewState.uiState.error == ValidationError.StrengthTooHigh
-                    )
-                    StatisticsWithModifierTextField(
-                        statisticValue = viewState.uiState.intelligence.value.toString(),
-                        statisticName = stringResource(ResR.string.statistic_short_intelligence),
-                        statisticModifierValue = viewState.uiState.intelligence.calculateModifier()
-                            .toString(),
-                        onTextChange = {
-                            onIntent.invoke(
-                                BaseInfoIntent.OnStatisticChanged(
-                                    statisticType = StatisticType.INT,
-                                    statisticValue = it
-                                )
-                            )
-                        },
-                        isError = viewState.uiState.error == ValidationError.IntelligenceTooHigh
-                    )
-                    StatisticsWithModifierTextField(
-                        statisticValue = viewState.uiState.dexterity.value.toString(),
-                        statisticName = stringResource(ResR.string.statistic_short_dexterity),
-                        statisticModifierValue = viewState.uiState.dexterity.calculateModifier()
-                            .toString(),
-                        onTextChange = {
-                            onIntent.invoke(
-                                BaseInfoIntent.OnStatisticChanged(
-                                    statisticType = StatisticType.DEX,
-                                    statisticValue = it
-                                )
-                            )
-                        },
-                        isError = viewState.uiState.error == ValidationError.DexterityTooHigh
-                    )
-                    StatisticsWithModifierTextField(
-                        statisticValue = viewState.uiState.charisma.value.toString(),
-                        statisticName = "CHAR",
-                        statisticModifierValue = viewState.uiState.charisma.calculateModifier()
-                            .toString(),
-                        onTextChange = {
-                            onIntent.invoke(
-                                BaseInfoIntent.OnStatisticChanged(
-                                    statisticType = StatisticType.CHA,
-                                    statisticValue = it
-                                )
-                            )
-                        },
-                        isError = viewState.uiState.error == ValidationError.CharismaTooHigh
-                    )
-                    StatisticsWithModifierTextField(
-                        statisticValue = viewState.uiState.constitution.value.toString(),
-                        statisticName = stringResource(ResR.string.statistic_short_constitution),
-                        statisticModifierValue = viewState.uiState.constitution.calculateModifier()
-                            .toString(),
-                        onTextChange = {
-                            onIntent.invoke(
-                                BaseInfoIntent.OnStatisticChanged(
-                                    statisticType = StatisticType.CON,
-                                    statisticValue = it
-                                )
-                            )
-                        },
-                        isError = viewState.uiState.error == ValidationError.ConstitutionTooHigh
-                    )
-                    StatisticsWithModifierTextField(
-                        statisticValue = viewState.uiState.wisdom.value.toString(),
-                        statisticName = stringResource(ResR.string.statistic_short_wisdom),
-                        statisticModifierValue = viewState.uiState.wisdom.calculateModifier()
-                            .toString(),
-                        onTextChange = {
-                            onIntent.invoke(
-                                BaseInfoIntent.OnStatisticChanged(
-                                    statisticType = StatisticType.WIS,
-                                    statisticValue = it
-                                )
-                            )
-                        },
-                        isError = viewState.uiState.error == ValidationError.WisdomTooHigh
-                    )*/
                     RadioButtonGroup(
                         modifier = Modifier.fillMaxWidth(),
                         title = stringResource(ResR.string.base_info_choose_race_title),
@@ -255,12 +165,6 @@ fun BaseInfoScreenPreview() {
                 race = Race.Dwarf,
                 characterClass = CharacterClass.Fighter(8),
                 attributes = Attributes(12),
-                strength = Attribute(10),
-                dexterity = Attribute(10),
-                constitution = Attribute(10),
-                intelligence = Attribute(10),
-                wisdom = Attribute(10),
-                charisma = Attribute(10),
                 error = null
             )
         )

@@ -7,6 +7,7 @@ import com.miltent.database.entities.skills.SkillTranslationEntity
 import com.miltent.database.entities.specialAbility.SpecialAbilityTranslationEntity
 import com.miltent.domain.model.ArmorClass
 import com.miltent.domain.model.Attribute
+import com.miltent.domain.model.Attributes
 import com.miltent.domain.model.CharacterDetailed
 import com.miltent.domain.model.MovementSpeed
 import com.miltent.domain.model.Race
@@ -33,18 +34,26 @@ class CharacterDetailedFactoryImpl @Inject constructor(
                 characterClass = characterClass,
                 race = raceDbToDomainMapper.map(character.race),
                 level = characterClass.level,
-                baseStrength = Attribute(character.baseStrength),
-                baseDexterity = Attribute(character.baseDexterity),
-                baseConstitution = Attribute(character.baseConstitution),
-                baseIntelligence = Attribute(character.baseIntelligence),
-                baseWisdom = Attribute(character.baseWisdom),
-                baseCharisma = Attribute(character.baseCharisma),
-                temporaryStrModifier = Attribute(character.temporaryStrModifier),
-                temporaryDexModifier = Attribute(character.temporaryDexModifier),
-                temporaryConModifier = Attribute(character.temporaryConModifier),
-                temporaryIntModifier = Attribute(character.temporaryIntModifier),
-                temporaryWisModifier = Attribute(character.temporaryWisModifier),
-                temporaryChaModifier = Attribute(character.temporaryChaModifier),
+                baseAttributes = Attributes(
+                    mapOf<StatisticType, Attribute>(
+                        StatisticType.STR to Attribute(character.baseStrength),
+                        StatisticType.DEX to Attribute(character.baseDexterity),
+                        StatisticType.CON to Attribute(character.baseConstitution),
+                        StatisticType.INT to Attribute(character.baseIntelligence),
+                        StatisticType.WIS to Attribute(character.baseWisdom),
+                        StatisticType.CHA to Attribute(character.baseCharisma)
+                    )
+                ),
+                temporaryModifiers = Attributes(
+                    mapOf<StatisticType, Attribute>(
+                        StatisticType.STR to Attribute(character.temporaryStrModifier),
+                        StatisticType.DEX to Attribute(character.temporaryDexModifier),
+                        StatisticType.CON to Attribute(character.temporaryConModifier),
+                        StatisticType.INT to Attribute(character.temporaryIntModifier),
+                        StatisticType.WIS to Attribute(character.temporaryWisModifier),
+                        StatisticType.CHA to Attribute(character.temporaryChaModifier)
+                    )
+                ),
                 movementSpeed = MovementSpeed(character.movementSpeed),
                 skills = skills.map { skill ->
                     Skill(
@@ -59,12 +68,17 @@ class CharacterDetailedFactoryImpl @Inject constructor(
                         name = specialAbilityTranslations.find { it.specialAbilityId == specialAbility.id }?.name.orEmpty(),
                         type = SpecialAbilityType.getSpecialAbilityType(specialAbility.type),
                         description = specialAbilityTranslations.find { it.specialAbilityId == specialAbility.id }?.description.orEmpty(),
-                        strengthModifier = Attribute(specialAbility.strengthModifier),
-                        dexterityModifier = Attribute(specialAbility.dexterityModifier),
-                        charismaModifier = Attribute(specialAbility.charismaModifier),
-                        constitutionModifier = Attribute(specialAbility.constitutionModifier),
-                        intelligenceModifier = Attribute(specialAbility.intelligenceModifier),
-                        wisdomModifier = Attribute(specialAbility.wisdomModifier),
+                        attributeModifiers = Attributes(
+                            mapOf<StatisticType, Attribute>(
+                                StatisticType.STR to Attribute(specialAbility.strengthModifier),
+                                StatisticType.DEX to Attribute(specialAbility.dexterityModifier),
+                                StatisticType.CON to Attribute(specialAbility.constitutionModifier),
+                                StatisticType.INT to Attribute(specialAbility.intelligenceModifier),
+                                StatisticType.WIS to Attribute(specialAbility.wisdomModifier),
+                                StatisticType.CHA to Attribute(specialAbility.charismaModifier)
+                            )
+
+                        ),
                         movementSpeedModifier = MovementSpeed(specialAbility.movementSpeedModifier),
                         armorClassModifier = ArmorClass(specialAbility.armorClassModifier)
                     )

@@ -7,18 +7,6 @@ data class Character(
     override val characterClass: CharacterClass,
     val baseAttributes: Attributes,
     val temporaryAttributes: Attributes,
-    val baseStrength: Attribute,
-    val baseDexterity: Attribute,
-    val baseConstitution: Attribute,
-    val baseIntelligence: Attribute,
-    val baseWisdom: Attribute,
-    val baseCharisma: Attribute,
-    val temporaryStrModifier: Attribute,
-    val temporaryDexModifier: Attribute,
-    val temporaryConModifier: Attribute,
-    val temporaryIntModifier: Attribute,
-    val temporaryWisModifier: Attribute,
-    val temporaryChaModifier: Attribute,
     val movementSpeed: MovementSpeed,
     val healthPoints: HealthPoints
 ): DashboardCharacter {
@@ -26,12 +14,6 @@ data class Character(
     interface Builder1stLevel {
 
         val baseAttributes: Attributes
-        val baseStrength: Attribute
-        val baseDexterity: Attribute
-        val baseConstitution: Attribute
-        val baseIntelligence: Attribute
-        val baseWisdom: Attribute
-        val baseCharisma: Attribute
         val race: Race
         val characterClass: CharacterClass
         val skillsIds: List<String>
@@ -41,13 +23,7 @@ data class Character(
             name: String,
             race: Race,
             characterClass: CharacterClass,
-            baseAttributes: Attributes,
-            baseStrength: Attribute,
-            baseDexterity: Attribute,
-            baseConstitution: Attribute,
-            baseIntelligence: Attribute,
-            baseWisdom: Attribute,
-            baseCharisma: Attribute,
+            baseAttributes: Attributes
         )
 
         fun skills(skillsIds: List<String>)
