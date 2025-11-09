@@ -22,7 +22,7 @@ class SpecialAbilityDbToDomainFactoryImpl @Inject constructor(
         type = SpecialAbilityType.getSpecialAbilityType(value.type),
         description = specialAbilityTranslationEntity?.description.orEmpty(),
         attributeModifiers = Attributes(
-            mutableMapOf<StatisticType, Attribute>(
+            mapOf<StatisticType, Attribute>(
                 StatisticType.STR to Attribute(value.strengthModifier),
                 StatisticType.DEX to Attribute(value.dexterityModifier),
                 StatisticType.CON to Attribute(value.constitutionModifier),
