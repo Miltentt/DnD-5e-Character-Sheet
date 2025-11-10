@@ -15,6 +15,7 @@ class BaseInfoViewStateFactoryImpl @Inject constructor(): BaseInfoViewState.Fact
             race = null,
             characterClass = null,
             error = null,
+            errors = listOf()
         )
     )
 }

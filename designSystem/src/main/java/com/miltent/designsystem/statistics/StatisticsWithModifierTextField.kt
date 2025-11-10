@@ -2,7 +2,6 @@ package com.miltent.designsystem.statistics
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.runtime.Composable
@@ -27,7 +26,8 @@ fun StatisticsWithModifierTextField(
 ) {
     Row(horizontalArrangement = Arrangement.spacedBy(Spacing.spacing12), modifier = modifier.widthIn()) {
         PrimaryTextField(
-            value = statisticValue, onValueChange = onTextChange,
+            value = statisticValue,
+            onValueChange = onTextChange,
             labelText = statisticName,
             placeholderText = placeholderText ,
             modifier = Modifier.weight(1f),

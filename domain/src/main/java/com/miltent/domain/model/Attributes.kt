@@ -2,7 +2,7 @@ package com.miltent.domain.model
 
 data class Attributes(
     val values: Map<StatisticType, Attribute> =
-                     StatisticType.entries.associateWith { Attribute(10) }
+                     StatisticType.entries.associateWith { Attribute(Attribute.BASE_VALUE) }
 ) {
     constructor(base:Int):this(
         StatisticType.entries.associateWith { Attribute(base) }

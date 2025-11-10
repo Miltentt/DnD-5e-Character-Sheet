@@ -18,12 +18,12 @@ class BaseInfoValidatorImpl @Inject constructor() : BaseInfoValidator {
         charisma: Attribute
     ): ValidationError? {
         if (name.isBlank()) return ValidationError.EmptyName
-        if (strength.value > 18) return ValidationError.StrengthTooHigh
-        if (dexterity.value > 18) return ValidationError.DexterityTooHigh
-        if (constitution.value > 18) return ValidationError.ConstitutionTooHigh
-        if (intelligence.value > 18) return ValidationError.IntelligenceTooHigh
-        if (wisdom.value > 18) return ValidationError.WisdomTooHigh
-        if (charisma.value > 18) return ValidationError.CharismaTooHigh
+        if (strength.value !in Attribute.baseValueRange) return ValidationError.StrengthTooHigh
+        if (dexterity.value !in Attribute.baseValueRange) return ValidationError.DexterityTooHigh
+        if (constitution.value !in Attribute.baseValueRange) return ValidationError.ConstitutionTooHigh
+        if (intelligence.value !in Attribute.baseValueRange) return ValidationError.IntelligenceTooHigh
+        if (wisdom.value !in Attribute.baseValueRange) return ValidationError.WisdomTooHigh
+        if (charisma.value !in Attribute.baseValueRange) return ValidationError.CharismaTooHigh
         if (race == null) return ValidationError.EmptyRace
         if (characterClass == null) return ValidationError.EmptyClass
         return null

@@ -88,7 +88,7 @@ private fun BaseInfoScreen(onIntent: (BaseInfoIntent) -> Unit, viewState: BaseIn
                         readOnly = false,
                         labelText = stringResource(ResR.string.character_creation_name),
                         placeholderText = stringResource(ResR.string.character_creation_name_placeholder),
-                        isError = viewState.uiState.error == ValidationError.EmptyName,
+                        isError = ValidationError.EmptyName in viewState.uiState.errors,
                         modifier = Modifier
                     )
                     StatisticType.entries.toSet().forEach { statisticType ->
@@ -106,14 +106,15 @@ private fun BaseInfoScreen(onIntent: (BaseInfoIntent) -> Unit, viewState: BaseIn
                                         statisticType, Attribute(it.toInt() )
                                     )
                                 )
-                            }
+                            },
+                            isError = statisticType in viewState.uiState.errors.filterIsInstance<ValidationError.AttributeOutOfRange>().map { it.type }
                         )
                     }
                     RadioButtonGroup(
                         modifier = Modifier.fillMaxWidth(),
                         title = stringResource(ResR.string.base_info_choose_race_title),
                         supportingText = stringResource(ResR.string.base_info_choose_race_subtitle),
-                        isError = viewState.uiState.error == ValidationError.EmptyRace,
+                        isError = ValidationError.EmptyRace in viewState.uiState.errors,
                         fillContentWidth = true,
                         onClick = { raceIdentifier -> onIntent.invoke(BaseInfoIntent.OnRaceChosen(raceIdentifier)) },
                         groupRadioButtons = Race.entries.map { race ->
@@ -130,7 +131,7 @@ private fun BaseInfoScreen(onIntent: (BaseInfoIntent) -> Unit, viewState: BaseIn
                         title = stringResource(ResR.string.base_info_choose_class_title),
                         supportingText = stringResource(ResR.string.base_info_choose_class_subtitle),
                         fillContentWidth = true,
-                        isError = viewState.uiState.error == ValidationError.EmptyClass,
+                        isError = ValidationError.EmptyClass in viewState.uiState.errors,
                         onClick = { characterClassIdentifier ->
                             onIntent.invoke(
                                 BaseInfoIntent.OnCharacterClassChosen(
@@ -150,7 +151,6 @@ private fun BaseInfoScreen(onIntent: (BaseInfoIntent) -> Unit, viewState: BaseIn
                                     )
                                 }
                             )
-
                         },
                     )
                 }
@@ -170,7 +170,8 @@ fun BaseInfoScreenPreview() {
                 race = Race.Dwarf,
                 characterClass = CharacterClass.Fighter(8),
                 attributes = Attributes(12),
-                error = null
+                error = null,
+                errors = emptyList()
             )
         )
     )

@@ -1,6 +1,5 @@
 package com.miltent.featureCharacterCreation.baseInfo.state
 
-import com.miltent.domain.model.Attribute
 import com.miltent.domain.model.Attributes
 import com.miltent.domain.model.CharacterClass
 import com.miltent.domain.model.Race
@@ -12,4 +11,5 @@ data class BaseInfoUiState(
     val race: Race?,
     val characterClass: CharacterClass?,
     val error: ValidationError?,
+    val errors: List<ValidationError>
 )

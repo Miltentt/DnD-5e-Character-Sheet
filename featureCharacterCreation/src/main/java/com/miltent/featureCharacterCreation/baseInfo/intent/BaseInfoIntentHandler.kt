@@ -11,7 +11,7 @@ import com.miltent.domain.model.Race
 import com.miltent.domain.model.StatisticType
 import com.miltent.featureCharacterCreation.baseInfo.event.BaseInfoEvent
 import com.miltent.featureCharacterCreation.baseInfo.state.BaseInfoViewState
-import com.miltent.featureCharacterCreation.baseInfo.validator.BaseInfoValidator
+import com.miltent.featureCharacterCreation.baseInfo.validator.BaseInfoValidator2
 import com.miltent.featureCharacterCreation.creationNavigator.CharacterCreationNavigationStateHolder
 import com.miltent.featureCharacterCreation.factory.CharacterProgressionFactory
 import dagger.hilt.android.scopes.ViewModelScoped
@@ -23,7 +23,7 @@ class BaseInfoIntentHandler @Inject constructor(
     private val characterProgressionFactory: CharacterProgressionFactory,
     private val eventHandler: EventHandler<BaseInfoEvent>,
     private val character1stLevelBuilder: Character.Builder1stLevel,
-    private val validator: BaseInfoValidator,
+    private val validator: BaseInfoValidator2,
 ) : IntentHandler<BaseInfoIntent> {
     override suspend fun handle(intent: BaseInfoIntent) = when (intent) {
         is BaseInfoIntent.OnRaceChosen -> updateRace(intent.raceIdentifier)
@@ -80,7 +80,7 @@ class BaseInfoIntentHandler @Inject constructor(
         viewStateProvider.updateState(
             viewStateProvider.viewState.value.copy(
                 uiState = viewStateProvider.viewState.value.uiState.copy(
-                    error = validator.areFieldsValid(
+                    errors = validator.areFieldsValid(
                         name = viewStateProvider.viewState.value.uiState.name,
                         race = viewStateProvider.viewState.value.uiState.race,
                         characterClass = viewStateProvider.viewState.value.uiState.characterClass,
