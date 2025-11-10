@@ -170,7 +170,6 @@ fun BaseInfoScreenPreview() {
                 race = Race.Dwarf,
                 characterClass = CharacterClass.Fighter(8),
                 attributes = Attributes(12),
-                error = null,
                 errors = emptyList()
             )
         )

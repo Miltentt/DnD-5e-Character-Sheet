@@ -10,6 +10,5 @@ data class BaseInfoUiState(
     val attributes: Attributes,
     val race: Race?,
     val characterClass: CharacterClass?,
-    val error: ValidationError?,
     val errors: List<ValidationError>
 )

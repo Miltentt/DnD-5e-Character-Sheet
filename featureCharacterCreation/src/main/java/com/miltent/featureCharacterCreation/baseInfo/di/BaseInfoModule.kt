@@ -11,16 +11,13 @@ import com.miltent.featureCharacterCreation.baseInfo.state.BaseInfoViewState
 import com.miltent.featureCharacterCreation.baseInfo.state.factory.BaseInfoViewStateFactoryImpl
 import com.miltent.featureCharacterCreation.baseInfo.state.provider.BaseInfoViewStateProvider
 import com.miltent.featureCharacterCreation.baseInfo.validator.BaseInfoValidator
-import com.miltent.featureCharacterCreation.baseInfo.validator.BaseInfoValidator2
 import com.miltent.featureCharacterCreation.baseInfo.validator.BaseInfoValidatorImpl
-import com.miltent.featureCharacterCreation.baseInfo.validator.BaseInfoValidatorImpl2
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.scopes.ViewModelScoped
-import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -46,9 +43,6 @@ interface BaseInfoModule {
 
     @Binds
     fun bindBaseInfoValidator(validator: BaseInfoValidatorImpl): BaseInfoValidator
-
-    @Binds
-    fun bindBaseInfoValidator2(validator: BaseInfoValidatorImpl2): BaseInfoValidator2
 
     companion object {
         @Provides
