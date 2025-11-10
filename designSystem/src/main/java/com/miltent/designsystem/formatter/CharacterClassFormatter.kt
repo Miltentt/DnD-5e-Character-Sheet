@@ -6,7 +6,7 @@ import com.miltent.resources.R as ResR
 
 object CharacterClassFormatter {
 
-    fun formatCharacterClass(characterClass: KClass<out CharacterClass>): Int =
+    fun formatCharacterClass(characterClass: KClass<out  CharacterClass>): Int =
         when (characterClass) {
             CharacterClass.Fighter::class -> ResR.string.class_fighter
             CharacterClass.Ranger::class -> ResR.string.class_ranger
