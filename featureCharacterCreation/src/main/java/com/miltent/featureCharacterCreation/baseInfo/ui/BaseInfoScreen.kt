@@ -107,7 +107,7 @@ private fun BaseInfoScreen(onIntent: (BaseInfoIntent) -> Unit, viewState: BaseIn
                                     )
                                 )
                             },
-                            isError = statisticType in viewState.uiState.errors.filterIsInstance<ValidationError.AttributeOutOfRange>().map { it.type }
+                            isError = ValidationError.AttributeOutOfRange(statisticType) in viewState.uiState.errors
                         )
                     }
                     RadioButtonGroup(

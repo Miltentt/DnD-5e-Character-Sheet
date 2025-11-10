@@ -85,18 +85,7 @@ class BaseInfoIntentHandler @Inject constructor(
                         name = viewStateProvider.viewState.value.uiState.name,
                         race = viewStateProvider.viewState.value.uiState.race,
                         characterClass = viewStateProvider.viewState.value.uiState.characterClass,
-                        strength = viewStateProvider.viewState.value.uiState.attributes.values
-                            .getValue(StatisticType.STR),
-                        dexterity = viewStateProvider.viewState.value.uiState.attributes.values
-                            .getValue(StatisticType.DEX),
-                        constitution = viewStateProvider.viewState.value.uiState.attributes.values
-                            .getValue(StatisticType.CON),
-                        intelligence = viewStateProvider.viewState.value.uiState.attributes.values
-                            .getValue(StatisticType.INT),
-                        wisdom = viewStateProvider.viewState.value.uiState.attributes.values
-                            .getValue(StatisticType.WIS),
-                        charisma = viewStateProvider.viewState.value.uiState.attributes.values
-                            .getValue(StatisticType.CHA)
+                        attributes = viewStateProvider.viewState.value.uiState.attributes,
                     )
                 )
             )

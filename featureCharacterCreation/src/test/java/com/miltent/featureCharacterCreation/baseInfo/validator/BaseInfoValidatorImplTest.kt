@@ -1,8 +1,10 @@
 package com.miltent.featureCharacterCreation.baseInfo.validator
 
 import com.miltent.domain.model.Attribute
+import com.miltent.domain.model.Attributes
 import com.miltent.domain.model.CharacterClass
 import com.miltent.domain.model.Race
+import com.miltent.domain.model.StatisticType
 import org.junit.Test
 import org.junit.Assert.assertEquals
 
@@ -18,12 +20,7 @@ class BaseInfoValidatorImplTest {
             name = "name",
             race = Race.Dwarf,
             characterClass = CharacterClass.Fighter(8),
-            strength = Attribute(10),
-            dexterity = Attribute(10),
-            constitution = Attribute(10),
-            intelligence = Attribute(10),
-            wisdom = Attribute(10),
-            charisma = Attribute(10),
+            attributes = Attributes(),
         )
         // Assert
         assertEquals(null, result)
@@ -37,15 +34,10 @@ class BaseInfoValidatorImplTest {
             name = "",
             race = Race.Dwarf,
             characterClass = CharacterClass.Fighter(8),
-            strength = Attribute(10),
-            dexterity = Attribute(10),
-            constitution = Attribute(10),
-            intelligence = Attribute(10),
-            wisdom = Attribute(10),
-            charisma = Attribute(10),
+            attributes = Attributes(),
         )
         // Assert
-        assertEquals(ValidationError.EmptyName, result)
+        assertEquals(listOf(ValidationError.EmptyName), result)
     }
 
     @Test
@@ -56,15 +48,10 @@ class BaseInfoValidatorImplTest {
             name = "name",
             race = null,
             characterClass = CharacterClass.Fighter(8),
-            strength = Attribute(10),
-            dexterity = Attribute(10),
-            constitution = Attribute(10),
-            intelligence = Attribute(10),
-            wisdom = Attribute(10),
-            charisma = Attribute(10),
+            attributes = Attributes(),
         )
         // Assert
-        assertEquals(ValidationError.EmptyRace, result)
+        assertEquals(listOf(ValidationError.EmptyRace), result)
     }
 
     @Test
@@ -75,15 +62,10 @@ class BaseInfoValidatorImplTest {
             name = "name",
             race = Race.Dwarf,
             characterClass = null,
-            strength = Attribute(10),
-            dexterity = Attribute(10),
-            constitution = Attribute(10),
-            intelligence = Attribute(10),
-            wisdom = Attribute(10),
-            charisma = Attribute(10),
+            attributes = Attributes(),
         )
         // Assert
-        assertEquals(ValidationError.EmptyClass, result)
+        assertEquals(listOf(ValidationError.EmptyClass), result)
     }
 
     @Test
@@ -94,85 +76,55 @@ class BaseInfoValidatorImplTest {
             name = "name",
             race = Race.Dwarf,
             characterClass = CharacterClass.Fighter(8),
-            strength = Attribute(19),
-            dexterity = Attribute(10),
-            constitution = Attribute(10),
-            intelligence = Attribute(10),
-            wisdom = Attribute(10),
-            charisma = Attribute(10),
+            attributes = Attributes().updateAttribute(StatisticType.STR, Attribute(1)),
         )
         // Assert
-        assertEquals(ValidationError.StrengthTooHigh, resultStr)
+        assertEquals(listOf(ValidationError.AttributeOutOfRange(StatisticType.STR)), resultStr)
 
         // Act
         val resultDex = sut.areFieldsValid(
             name = "name",
             race = Race.Dwarf,
             characterClass = CharacterClass.Fighter(8),
-            strength = Attribute(10),
-            dexterity = Attribute(19),
-            constitution = Attribute(10),
-            intelligence = Attribute(10),
-            wisdom = Attribute(10),
-            charisma = Attribute(10),
+            attributes = Attributes().updateAttribute(StatisticType.DEX, Attribute(19)),
         )
         // Assert
-        assertEquals(ValidationError.DexterityTooHigh, resultDex)
+        assertEquals(listOf(ValidationError.AttributeOutOfRange(StatisticType.DEX)), resultDex)
         // Act
         val resultCon = sut.areFieldsValid(
             name = "name",
             race = Race.Dwarf,
             characterClass = CharacterClass.Fighter(8),
-            strength = Attribute(10),
-            dexterity = Attribute(10),
-            constitution = Attribute(19),
-            intelligence = Attribute(10),
-            wisdom = Attribute(10),
-            charisma = Attribute(10),
+            attributes = Attributes().updateAttribute(StatisticType.CON, Attribute(1)),
         )
         // Assert
-        assertEquals(ValidationError.ConstitutionTooHigh, resultCon)
+        assertEquals(listOf(ValidationError.AttributeOutOfRange(StatisticType.CON)), resultCon)
         // Act
         val resultInt = sut.areFieldsValid(
             name = "name",
             race = Race.Dwarf,
             characterClass = CharacterClass.Fighter(8),
-            strength = Attribute(10),
-            dexterity = Attribute(10),
-            constitution = Attribute(10),
-            intelligence = Attribute(19),
-            wisdom = Attribute(10),
-            charisma = Attribute(10),
+            attributes = Attributes().updateAttribute(StatisticType.INT, Attribute(19)),
         )
         // Assert
-        assertEquals(ValidationError.IntelligenceTooHigh, resultInt)
+        assertEquals(listOf(ValidationError.AttributeOutOfRange(StatisticType.INT)), resultInt)
         // Act
         val resultWis = sut.areFieldsValid(
             name = "name",
             race = Race.Dwarf,
             characterClass = CharacterClass.Fighter(8),
-            strength = Attribute(10),
-            dexterity = Attribute(10),
-            constitution = Attribute(10),
-            intelligence = Attribute(10),
-            wisdom = Attribute(19),
-            charisma = Attribute(10),
+            attributes = Attributes().updateAttribute(StatisticType.WIS, Attribute(1)),
         )
         // Assert
-        assertEquals(ValidationError.WisdomTooHigh, resultWis)
+        assertEquals(listOf(ValidationError.AttributeOutOfRange(StatisticType.WIS)), resultWis)
         // Act
         val resultCha = sut.areFieldsValid(
             name = "name",
             race = Race.Dwarf,
             characterClass = CharacterClass.Fighter(8),
-            strength = Attribute(10),
-            dexterity = Attribute(10),
-            constitution = Attribute(10),
-            intelligence = Attribute(10),
-            wisdom = Attribute(10),
-            charisma = Attribute(19),
+            attributes = Attributes().updateAttribute(StatisticType.CHA, Attribute(19)),
         )
         // Assert
-        assertEquals(ValidationError.CharismaTooHigh, resultCha)
+        assertEquals(listOf(ValidationError.AttributeOutOfRange(StatisticType.CHA)), resultCha)
     }
 }
