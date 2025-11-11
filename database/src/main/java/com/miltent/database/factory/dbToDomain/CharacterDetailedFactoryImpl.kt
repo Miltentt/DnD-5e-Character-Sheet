@@ -30,6 +30,7 @@ class CharacterDetailedFactoryImpl @Inject constructor(
         with(characterWithAdditionalInfo) {
             val characterClass = characterClassDbToDomainFactory.createCharacterClass(character.characterClass.level, character.characterClass.characterClassIdentifier)
             CharacterDetailed(
+                id = character.id,
                 name = character.name,
                 characterClass = characterClass,
                 race = raceDbToDomainMapper.map(character.race),

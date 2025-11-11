@@ -42,7 +42,7 @@ interface DatabaseModule {
                 Dnd5eDatabase::class.java,
                 "dnd5eDatabase",
             )
-                .createFromAsset("dnd5eCharacterDatabase.db")
+//                .createFromAsset("dnd5eCharacterDatabase.db")
                 .build()
         }
 

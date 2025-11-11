@@ -8,11 +8,13 @@ import java.util.Locale
 
 interface CharacterRepository {
 
+    suspend fun deleteCharacterWithJunctions(id: String)
+
     fun getCharacters(): Flow<List<DashboardCharacter>>
 
-    fun getCharacterById(id: Int): Flow<Character>
+    fun getCharacterById(id: String): Flow<Character>
 
-    fun getCharacterDetailedById(id: Int, language: Locale): Flow<CharacterDetailed>
+    fun getCharacterDetailedById(id: String, language: Locale): Flow<CharacterDetailed>
 
     suspend fun upsertCharacter(character: Character, skillIds: List<String>, specialAbilityIds: List<String>)
 }

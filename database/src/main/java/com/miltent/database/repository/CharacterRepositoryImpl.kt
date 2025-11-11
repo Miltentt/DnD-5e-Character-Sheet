@@ -24,23 +24,26 @@ class CharacterRepositoryImpl @Inject constructor(
     private val skillsDao: SkillsDao,
     private val specialAbilityDao: SpecialAbilityDao,
     private val characterEntityToDomainMapper: Mapper<CharacterEntity, Character>,
-    private val characterDomainToEntityMapper: Mapper<Character, CharacterEntity>,
     private val characterDetailedFactory: CharacterDetailedFactory,
 ) : CharacterRepository {
+
     override fun getCharacters(): Flow<List<DashboardCharacter>> =
         characterDao.getAllCharacters().map { characterEntities ->
             characterEntities.map { characterEntity ->
                 characterEntityToDomainMapper.map(characterEntity)
-
             }
         }
 
-    override fun getCharacterById(id: Int): Flow<Character> =
+    override suspend fun deleteCharacterWithJunctions(id: String) {
+        characterDao.deleteCharacterWithJunctions(id)
+    }
+
+    override fun getCharacterById(id: String): Flow<Character> =
         characterDao.getCharacterById(id).map { characterEntity ->
             characterEntityToDomainMapper.map(characterEntity)
         }
 
-    override fun getCharacterDetailedById(id: Int, language: Locale): Flow<CharacterDetailed> =
+    override fun getCharacterDetailedById(id: String, language: Locale): Flow<CharacterDetailed> =
         characterDao.getFullCharacterById(id).map { characterDetailed ->
             characterDetailedFactory.create(
                 characterDetailed,
@@ -54,13 +57,12 @@ class CharacterRepositoryImpl @Inject constructor(
         skillIds: List<String>,
         specialAbilityIds: List<String>
     ) {
-        val characterEntity = characterDomainToEntityMapper.map(character)
-        val characterId = characterDao.upsertCharacter(characterEntity)
+
         val skillJunctions = skillIds.map { skillId ->
-            CharacterSkillCrossJunction(characterId.toInt(), skillId)
+            CharacterSkillCrossJunction(character.id, skillId)
         }
         val specialAbilityJunctions = specialAbilityIds.map { specialAbilityId ->
-            CharacterSpecialAbilityJunction(characterId.toInt(), specialAbilityId)
+            CharacterSpecialAbilityJunction(character.id, specialAbilityId)
         }
         characterDao.upsertJunctions(skillJunctions, specialAbilityJunctions)
     }

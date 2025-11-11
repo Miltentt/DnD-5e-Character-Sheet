@@ -15,6 +15,7 @@ class CharacterDomainToEntityMapper @Inject constructor(
     private val raceDomainToEntityMapper: Mapper<Race, RaceEntity>,
 ) : Mapper<Character, CharacterEntity> {
     override fun map(value: Character): CharacterEntity = CharacterEntity(
+        id = value.id,
         name = value.name,
         characterClass = characterClassDomainToEntityMapper.map(value.characterClass),
         race = raceDomainToEntityMapper.map(value.race),
