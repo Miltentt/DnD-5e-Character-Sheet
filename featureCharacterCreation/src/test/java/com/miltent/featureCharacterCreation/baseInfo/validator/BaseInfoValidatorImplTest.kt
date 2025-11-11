@@ -13,7 +13,7 @@ class BaseInfoValidatorImplTest {
     val sut: BaseInfoValidatorImpl = BaseInfoValidatorImpl()
 
     @Test
-    fun `should return null when all fields are valid`() {
+    fun `should return emptyList of ValidationError when all fields are valid`() {
         // Arrange
         // Act
         val result = sut.areFieldsValid(
@@ -23,7 +23,7 @@ class BaseInfoValidatorImplTest {
             attributes = Attributes(),
         )
         // Assert
-        assertEquals(null, result)
+        assertEquals(emptyList<ValidationError>(), result)
     }
 
     @Test
