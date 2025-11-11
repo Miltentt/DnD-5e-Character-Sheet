@@ -97,9 +97,7 @@ private fun BaseInfoScreen(onIntent: (BaseInfoIntent) -> Unit, viewState: BaseIn
                             statisticName = statisticType.name,
                             statisticModifierValue =
                                 viewState.uiState.attributes
-                                    .values[statisticType]
-                                    ?.calculateModifier()
-                                    .toString(),
+                                    .values.getValue(statisticType).calculateModifier().toString(),
                             onTextChange = {
                                 onIntent.invoke(
                                     BaseInfoIntent.OnStatisticsChanged(
