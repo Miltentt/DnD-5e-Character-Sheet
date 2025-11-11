@@ -88,6 +88,9 @@ private fun DashboardScreen(
                                     ),
                                     onClick = {
                                         onIntent.invoke(DashboardIntent.OnCharacterClicked(name = character.name))
+                                    },
+                                    onLongClick = {
+                                        onIntent.invoke(DashboardIntent.OnCharacterClicked(name = character.name))
                                     }
                                 )
                             })
@@ -124,10 +127,11 @@ fun DashboardScreenLoaded_Preview() {
     val state = DashboardViewState.Loaded(
         listOf(
             object : DashboardCharacter {
+                override val id = "Nandor"
                 override val name = "Nandor"
                 override val level = 5
                 override val race = Race.Drow
-                override val characterClass = CharacterClass.Fighter(5)
+                override val characterClass = CharacterClass.Ranger(5)
             },
         )
     )
