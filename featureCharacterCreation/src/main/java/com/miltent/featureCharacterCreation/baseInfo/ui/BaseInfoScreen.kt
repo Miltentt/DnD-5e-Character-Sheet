@@ -93,7 +93,7 @@ private fun BaseInfoScreen(onIntent: (BaseInfoIntent) -> Unit, viewState: BaseIn
                     )
                     StatisticType.entries.toSet().forEach { statisticType ->
                         StatisticsWithModifierTextField(
-                            statisticValue = viewState.uiState.attributes.values[statisticType]!!.value.toString(),
+                            statisticValue = viewState.uiState.attributes.values.getValue(statisticType).value.toString(),
                             statisticName = statisticType.name,
                             statisticModifierValue =
                                 viewState.uiState.attributes
