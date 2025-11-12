@@ -10,6 +10,8 @@ value class Attribute(val value: Int) {
     fun calculateModifier(temporaryModifier: Attribute = Attribute(0)): Int = ((this + temporaryModifier).value - 10) / 2
 
     companion object {
+        const val BASE_VALUE = 10
+        val baseValueRange = 3..18
         fun fromString(value: String): Attribute = Attribute(value.toIntOrNull() ?: 0)
     }
 }

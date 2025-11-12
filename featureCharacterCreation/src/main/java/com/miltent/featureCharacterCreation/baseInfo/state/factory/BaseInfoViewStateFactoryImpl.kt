@@ -1,6 +1,5 @@
 package com.miltent.featureCharacterCreation.baseInfo.state.factory
 
-import com.miltent.domain.model.Attribute
 import com.miltent.domain.model.Attributes
 import com.miltent.featureCharacterCreation.baseInfo.state.BaseInfoUiState
 import com.miltent.featureCharacterCreation.baseInfo.state.BaseInfoViewState
@@ -14,7 +13,7 @@ class BaseInfoViewStateFactoryImpl @Inject constructor(): BaseInfoViewState.Fact
             attributes = Attributes(),
             race = null,
             characterClass = null,
-            error = null,
+            errors = listOf()
         )
     )
 }

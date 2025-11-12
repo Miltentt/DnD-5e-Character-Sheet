@@ -12,6 +12,7 @@ import com.miltent.domain.model.StatisticType
 import com.miltent.featureCharacterCreation.baseInfo.event.BaseInfoEvent
 import com.miltent.featureCharacterCreation.baseInfo.state.BaseInfoViewState
 import com.miltent.featureCharacterCreation.baseInfo.validator.BaseInfoValidator
+import com.miltent.featureCharacterCreation.baseInfo.validator.ValidationError
 import com.miltent.featureCharacterCreation.creationNavigator.CharacterCreationNavigationStateHolder
 import com.miltent.featureCharacterCreation.factory.CharacterProgressionFactory
 import dagger.hilt.android.scopes.ViewModelScoped
@@ -80,28 +81,17 @@ class BaseInfoIntentHandler @Inject constructor(
         viewStateProvider.updateState(
             viewStateProvider.viewState.value.copy(
                 uiState = viewStateProvider.viewState.value.uiState.copy(
-                    error = validator.areFieldsValid(
+                    errors = validator.areFieldsValid(
                         name = viewStateProvider.viewState.value.uiState.name,
                         race = viewStateProvider.viewState.value.uiState.race,
                         characterClass = viewStateProvider.viewState.value.uiState.characterClass,
-                        strength = viewStateProvider.viewState.value.uiState.attributes.values
-                            .getValue(StatisticType.STR),
-                        dexterity = viewStateProvider.viewState.value.uiState.attributes.values
-                            .getValue(StatisticType.DEX),
-                        constitution = viewStateProvider.viewState.value.uiState.attributes.values
-                            .getValue(StatisticType.CON),
-                        intelligence = viewStateProvider.viewState.value.uiState.attributes.values
-                            .getValue(StatisticType.INT),
-                        wisdom = viewStateProvider.viewState.value.uiState.attributes.values
-                            .getValue(StatisticType.WIS),
-                        charisma = viewStateProvider.viewState.value.uiState.attributes.values
-                            .getValue(StatisticType.CHA)
+                        attributes = viewStateProvider.viewState.value.uiState.attributes,
                     )
                 )
             )
         )
 
-        if (viewStateProvider.viewState.value.uiState.error != null) return
+        if (viewStateProvider.viewState.value.uiState.errors != emptyList<ValidationError>()) return
         runCatching {
             val race = requireNotNull(viewStateProvider.viewState.value.uiState.race)
             val characterClass =
