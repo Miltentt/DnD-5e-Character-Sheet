@@ -172,7 +172,7 @@ class BaseInfoValidatorImplTest {
             race = Race.Dwarf,
             characterClass = CharacterClass.Fighter(8),
             attributesIncomplete = Attributes.attributesIncomplete.toMutableMap()
-                .apply { this[StatisticType.INT] = Attribute(10) },
+                .apply { this[StatisticType.INT] = Attribute(20) },
         )
         // Assert
         assertEquals(listOf(ValidationError.AttributeOutOfRange(StatisticType.INT)), resultInt)
