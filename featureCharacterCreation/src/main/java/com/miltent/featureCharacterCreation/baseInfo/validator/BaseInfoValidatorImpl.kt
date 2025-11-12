@@ -16,13 +16,11 @@ class BaseInfoValidatorImpl @Inject constructor() : BaseInfoValidator {
         val validationErrorList = mutableListOf<ValidationError>()
 
         StatisticType.entries.forEach {
-            if(attributesIncomplete.getValue(it)?.value !in Attribute.baseValueRange){
-                validationErrorList += ValidationError.AttributeOutOfRange(it)
-            }
-        }
-        StatisticType.entries.forEach {
-            if(attributesIncomplete.getValue(it) == null){
-                validationErrorList += ValidationError.EmptyAttribute(it)
+            val attributeValue = attributesIncomplete.getValue(it)?.value
+            when(attributeValue) {
+                null -> validationErrorList += ValidationError.EmptyAttribute(it)
+                !in Attribute.baseValueRange ->
+                                validationErrorList += ValidationError.AttributeOutOfRange(it)
             }
         }
         if (name.isBlank())
