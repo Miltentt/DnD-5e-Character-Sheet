@@ -89,7 +89,7 @@ class BaseInfoValidatorImplTest {
                 .apply { this[StatisticType.DEX] = null },
         )
         // Assert
-        assertEquals(listOf(ValidationError.EmptyAttribute(StatisticType.DEX)), resultStr)
+        assertEquals(listOf(ValidationError.EmptyAttribute(StatisticType.DEX)), resultDex)
         // Act
         val resultCon = sut.areFieldsValid(
             name = "name",
@@ -99,7 +99,7 @@ class BaseInfoValidatorImplTest {
                 .apply { this[StatisticType.CON] = null },
         )
         // Assert
-        assertEquals(listOf(ValidationError.EmptyAttribute(StatisticType.CON)), resultStr)
+        assertEquals(listOf(ValidationError.EmptyAttribute(StatisticType.CON)), resultCon)
         // Act
         val resultInt = sut.areFieldsValid(
             name = "name",
@@ -109,7 +109,7 @@ class BaseInfoValidatorImplTest {
                 .apply { this[StatisticType.INT] = null },
         )
         // Assert
-        assertEquals(listOf(ValidationError.EmptyAttribute(StatisticType.INT)), resultStr)
+        assertEquals(listOf(ValidationError.EmptyAttribute(StatisticType.INT)), resultInt)
         // Act
         val resultWis = sut.areFieldsValid(
             name = "name",
@@ -119,7 +119,7 @@ class BaseInfoValidatorImplTest {
                 .apply { this[StatisticType.WIS] = null },
         )
         // Assert
-        assertEquals(listOf(ValidationError.EmptyAttribute(StatisticType.WIS)), resultStr)
+        assertEquals(listOf(ValidationError.EmptyAttribute(StatisticType.WIS)), resultWis)
         // Act
         val resultCha = sut.areFieldsValid(
             name = "name",
@@ -129,7 +129,7 @@ class BaseInfoValidatorImplTest {
                 .apply { this[StatisticType.CHA] = null },
         )
         // Assert
-        assertEquals(listOf(ValidationError.EmptyAttribute(StatisticType.CHA)), resultStr)
+        assertEquals(listOf(ValidationError.EmptyAttribute(StatisticType.CHA)), resultCha)
     }
 
     @Test
