@@ -14,7 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 private val MIN_HEIGHT = 56.dp
-private val DIGITS_REGEX = Regex("^\\d+\$")
+private val DIGITS_REGEX = Regex("^\\d*\$")
 
 @Composable
 fun PrimaryTextField(

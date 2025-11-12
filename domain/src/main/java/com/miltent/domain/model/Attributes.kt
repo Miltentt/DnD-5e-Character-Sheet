@@ -30,5 +30,17 @@ data class Attributes(
         val newValues = this.values.toMutableMap().also { it[type] = attribute }
         return Attributes(newValues.toMap())
     }
+
+    companion object {
+        val uiAttributes: Map<StatisticType, Attribute?>
+            get() = StatisticType.entries.associateWith { Attribute(Attribute.BASE_VALUE) }
+        fun uiAttributesToAttributes(
+            uiAttributes: Map<StatisticType, Attribute?>
+        ): Attributes{
+            val outputMap = Attributes().values.toMutableMap()
+            uiAttributes.forEach { outputMap[it.key] = checkNotNull(it.value) }
+            return Attributes(outputMap)
+        }
+    }
 }
 

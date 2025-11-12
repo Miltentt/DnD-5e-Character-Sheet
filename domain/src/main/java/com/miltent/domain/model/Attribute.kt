@@ -11,6 +11,7 @@ value class Attribute(val value: Int) {
 
     companion object {
         const val BASE_VALUE = 10
+        const val BASE_MODIFIER_VALUE = 0
         val baseValueRange = 3..18
         fun fromString(value: String): Attribute = Attribute(value.toIntOrNull() ?: 0)
     }
