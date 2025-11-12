@@ -93,19 +93,24 @@ private fun BaseInfoScreen(onIntent: (BaseInfoIntent) -> Unit, viewState: BaseIn
                     )
                     StatisticType.entries.toSet().forEach { statisticType ->
                         StatisticsWithModifierTextField(
-                            statisticValue = viewState.uiState.attributes.values.getValue(statisticType).value.toString(),
+                            statisticValue = viewState.uiState.attributesIncomplete
+                                .getValue(statisticType)?.value?.toString() ?: "",
                             statisticName = statisticType.name,
-                            statisticModifierValue =
-                                viewState.uiState.attributes
-                                    .values.getValue(statisticType).calculateModifier().toString(),
-                            onTextChange = {
+                            statisticModifierValue = viewState.uiState.attributesIncomplete
+                                .getValue(statisticType)?.calculateModifier()?.toString() ?: "",
+                            onTextChange = { text ->
+                                val attributeValue =
+                                    if(text.isEmpty()) null
+                                    else Attribute(text.toInt())
                                 onIntent.invoke(
                                     BaseInfoIntent.OnStatisticsChanged(
-                                        statisticType, Attribute(it.toInt() )
+                                        statisticType, attributeValue
                                     )
                                 )
                             },
                             isError = ValidationError.AttributeOutOfRange(statisticType) in viewState.uiState.errors
+                                    || ValidationError.EmptyAttribute(statisticType) in viewState.uiState.errors
+
                         )
                     }
                     RadioButtonGroup(
@@ -167,7 +172,7 @@ fun BaseInfoScreenPreview() {
                 name = "Tul duru",
                 race = Race.Dwarf,
                 characterClass = CharacterClass.Fighter(8),
-                attributes = Attributes(12),
+                attributesIncomplete = Attributes.attributesIncomplete,
                 errors = emptyList()
             )
         )

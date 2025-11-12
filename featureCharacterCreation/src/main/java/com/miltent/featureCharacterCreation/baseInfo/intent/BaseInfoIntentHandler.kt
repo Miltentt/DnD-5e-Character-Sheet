@@ -5,6 +5,7 @@ import com.miltent.core.event.EventHandler
 import com.miltent.core.intent.IntentHandler
 import com.miltent.core.ui.ViewStateProvider
 import com.miltent.domain.model.Attribute
+import com.miltent.domain.model.Attributes.Companion.attributesIncompleteToAttributes
 import com.miltent.domain.model.Character
 import com.miltent.domain.model.CharacterClass
 import com.miltent.domain.model.Race
@@ -53,13 +54,14 @@ class BaseInfoIntentHandler @Inject constructor(
         )
     }
 
-    private fun updateStatistic(statisticType: StatisticType, attribute: Attribute){
+    private fun updateStatistic(statisticType: StatisticType, attribute: Attribute?){
         with(viewStateProvider.viewState.value) {
             viewStateProvider.updateState(
                 copy(
                     uiState = uiState.copy(
-                        attributes =
-                            uiState.attributes.updateAttribute(statisticType,attribute))
+                        attributesIncomplete = uiState.attributesIncomplete.toMutableMap()
+                            .apply { this[statisticType] = attribute }
+                    )
                 )
             )
         }
@@ -85,7 +87,7 @@ class BaseInfoIntentHandler @Inject constructor(
                         name = viewStateProvider.viewState.value.uiState.name,
                         race = viewStateProvider.viewState.value.uiState.race,
                         characterClass = viewStateProvider.viewState.value.uiState.characterClass,
-                        attributes = viewStateProvider.viewState.value.uiState.attributes,
+                        attributesIncomplete = viewStateProvider.viewState.value.uiState.attributesIncomplete,
                     )
                 )
             )
@@ -101,7 +103,7 @@ class BaseInfoIntentHandler @Inject constructor(
                 name = viewStateProvider.viewState.value.uiState.name,
                 race = race,
                 characterClass = characterClass,
-                baseAttributes = viewStateProvider.viewState.value.uiState.attributes
+                baseAttributes = attributesIncompleteToAttributes(viewStateProvider.viewState.value.uiState.attributesIncomplete)
             )
 
             characterCreationNavigationStateHolder.initialize(

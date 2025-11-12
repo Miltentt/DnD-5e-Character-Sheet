@@ -1,7 +1,6 @@
 package com.miltent.featureCharacterCreation.baseInfo.validator
 
 import com.miltent.domain.model.Attribute
-import com.miltent.domain.model.Attributes
 import com.miltent.domain.model.CharacterClass
 import com.miltent.domain.model.Race
 import com.miltent.domain.model.StatisticType
@@ -12,13 +11,18 @@ class BaseInfoValidatorImpl @Inject constructor() : BaseInfoValidator {
         name: String,
         race: Race?,
         characterClass: CharacterClass?,
-        attributes: Attributes,
+        attributesIncomplete: Map<StatisticType, Attribute?>,
     ): List<ValidationError> {
         val validationErrorList = mutableListOf<ValidationError>()
 
         StatisticType.entries.forEach {
-            if(attributes.values.getValue(it).value !in Attribute.baseValueRange){
+            if(attributesIncomplete.getValue(it)?.value !in Attribute.baseValueRange){
                 validationErrorList += ValidationError.AttributeOutOfRange(it)
+            }
+        }
+        StatisticType.entries.forEach {
+            if(attributesIncomplete.getValue(it) == null){
+                validationErrorList += ValidationError.EmptyAttribute(it)
             }
         }
         if (name.isBlank())

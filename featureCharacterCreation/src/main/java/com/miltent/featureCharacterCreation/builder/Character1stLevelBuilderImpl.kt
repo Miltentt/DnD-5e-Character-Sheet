@@ -55,7 +55,7 @@ class Character1stLevelBuilderImpl @Inject constructor() : Character.Builder1stL
             race = race,
             characterClass = characterClass,
             baseAttributes = baseAttributes.addToAttributes(race.extraModifiers),
-            temporaryAttributes = Attributes(0),
+            temporaryAttributes = Attributes(Attribute.BASE_MODIFIER_VALUE),
             movementSpeed = MovementSpeed(
                 race.movementSpeed.value
                         + characterClass.movementSpeedModifier.value
