@@ -96,7 +96,7 @@ class BaseInfoValidatorImplTest {
             race = Race.Dwarf,
             characterClass = CharacterClass.Fighter(8),
             attributesIncomplete = Attributes.attributesIncomplete.toMutableMap()
-                .apply { this[StatisticType.DEX] = null },
+                .apply { this[StatisticType.CON] = null },
         )
         // Assert
         assertEquals(listOf(ValidationError.EmptyAttribute(StatisticType.CON)), resultStr)
@@ -106,7 +106,7 @@ class BaseInfoValidatorImplTest {
             race = Race.Dwarf,
             characterClass = CharacterClass.Fighter(8),
             attributesIncomplete = Attributes.attributesIncomplete.toMutableMap()
-                .apply { this[StatisticType.DEX] = null },
+                .apply { this[StatisticType.INT] = null },
         )
         // Assert
         assertEquals(listOf(ValidationError.EmptyAttribute(StatisticType.INT)), resultStr)
@@ -116,7 +116,7 @@ class BaseInfoValidatorImplTest {
             race = Race.Dwarf,
             characterClass = CharacterClass.Fighter(8),
             attributesIncomplete = Attributes.attributesIncomplete.toMutableMap()
-                .apply { this[StatisticType.DEX] = null },
+                .apply { this[StatisticType.WIS] = null },
         )
         // Assert
         assertEquals(listOf(ValidationError.EmptyAttribute(StatisticType.WIS)), resultStr)
@@ -126,7 +126,7 @@ class BaseInfoValidatorImplTest {
             race = Race.Dwarf,
             characterClass = CharacterClass.Fighter(8),
             attributesIncomplete = Attributes.attributesIncomplete.toMutableMap()
-                .apply { this[StatisticType.DEX] = null },
+                .apply { this[StatisticType.CHA] = null },
         )
         // Assert
         assertEquals(listOf(ValidationError.EmptyAttribute(StatisticType.CHA)), resultStr)
