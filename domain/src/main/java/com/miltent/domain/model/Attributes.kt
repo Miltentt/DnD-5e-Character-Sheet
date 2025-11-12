@@ -32,13 +32,13 @@ data class Attributes(
     }
 
     companion object {
-        val attributesIncomplete: Map<StatisticType, Attribute?>
+        val uiAttributes: Map<StatisticType, Attribute?>
             get() = StatisticType.entries.associateWith { Attribute(Attribute.BASE_VALUE) }
-        fun attributesIncompleteToAttributes(
-            attributesIncomplete: Map<StatisticType, Attribute?>
+        fun uiAttributesToAttributes(
+            uiAttributes: Map<StatisticType, Attribute?>
         ): Attributes{
             val outputMap = Attributes().values.toMutableMap()
-            attributesIncomplete.forEach { outputMap[it.key] = checkNotNull(it.value) }
+            uiAttributes.forEach { outputMap[it.key] = checkNotNull(it.value) }
             return Attributes(outputMap)
         }
     }

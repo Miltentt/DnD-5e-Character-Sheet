@@ -93,10 +93,10 @@ private fun BaseInfoScreen(onIntent: (BaseInfoIntent) -> Unit, viewState: BaseIn
                     )
                     StatisticType.entries.toSet().forEach { statisticType ->
                         StatisticsWithModifierTextField(
-                            statisticValue = viewState.uiState.attributesIncomplete
+                            statisticValue = viewState.uiState.uiAttributes
                                 .getValue(statisticType)?.value?.toString() ?: "",
                             statisticName = statisticType.name,
-                            statisticModifierValue = viewState.uiState.attributesIncomplete
+                            statisticModifierValue = viewState.uiState.uiAttributes
                                 .getValue(statisticType)?.calculateModifier()?.toString() ?: "",
                             onTextChange = { text ->
                                 val attributeValue =
@@ -172,7 +172,7 @@ fun BaseInfoScreenPreview() {
                 name = "Tul duru",
                 race = Race.Dwarf,
                 characterClass = CharacterClass.Fighter(8),
-                attributesIncomplete = Attributes.attributesIncomplete,
+                uiAttributes = Attributes.uiAttributes,
                 errors = emptyList()
             )
         )

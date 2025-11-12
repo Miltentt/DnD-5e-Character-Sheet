@@ -5,7 +5,7 @@ import com.miltent.core.event.EventHandler
 import com.miltent.core.intent.IntentHandler
 import com.miltent.core.ui.ViewStateProvider
 import com.miltent.domain.model.Attribute
-import com.miltent.domain.model.Attributes.Companion.attributesIncompleteToAttributes
+import com.miltent.domain.model.Attributes.Companion.uiAttributesToAttributes
 import com.miltent.domain.model.Character
 import com.miltent.domain.model.CharacterClass
 import com.miltent.domain.model.Race
@@ -59,7 +59,7 @@ class BaseInfoIntentHandler @Inject constructor(
             viewStateProvider.updateState(
                 copy(
                     uiState = uiState.copy(
-                        attributesIncomplete = uiState.attributesIncomplete.toMutableMap()
+                        uiAttributes = uiState.uiAttributes.toMutableMap()
                             .apply { this[statisticType] = attribute }
                     )
                 )
@@ -87,7 +87,7 @@ class BaseInfoIntentHandler @Inject constructor(
                         name = viewStateProvider.viewState.value.uiState.name,
                         race = viewStateProvider.viewState.value.uiState.race,
                         characterClass = viewStateProvider.viewState.value.uiState.characterClass,
-                        attributesIncomplete = viewStateProvider.viewState.value.uiState.attributesIncomplete,
+                        uiAttributes = viewStateProvider.viewState.value.uiState.uiAttributes,
                     )
                 )
             )
@@ -103,7 +103,7 @@ class BaseInfoIntentHandler @Inject constructor(
                 name = viewStateProvider.viewState.value.uiState.name,
                 race = race,
                 characterClass = characterClass,
-                baseAttributes = attributesIncompleteToAttributes(viewStateProvider.viewState.value.uiState.attributesIncomplete)
+                baseAttributes = uiAttributesToAttributes(viewStateProvider.viewState.value.uiState.uiAttributes)
             )
 
             characterCreationNavigationStateHolder.initialize(

@@ -11,16 +11,15 @@ class BaseInfoValidatorImpl @Inject constructor() : BaseInfoValidator {
         name: String,
         race: Race?,
         characterClass: CharacterClass?,
-        attributesIncomplete: Map<StatisticType, Attribute?>,
+        uiAttributes: Map<StatisticType, Attribute?>,
     ): List<ValidationError> {
         val validationErrorList = mutableListOf<ValidationError>()
 
         StatisticType.entries.forEach {
-            val attributeValue = attributesIncomplete.getValue(it)?.value
-            when(attributeValue) {
+            val attributeValue = uiAttributes.getValue(it)?.value
+            when (attributeValue) {
                 null -> validationErrorList += ValidationError.EmptyAttribute(it)
-                !in Attribute.baseValueRange ->
-                                validationErrorList += ValidationError.AttributeOutOfRange(it)
+                !in Attribute.baseValueRange -> validationErrorList += ValidationError.AttributeOutOfRange(it)
             }
         }
         if (name.isBlank())
