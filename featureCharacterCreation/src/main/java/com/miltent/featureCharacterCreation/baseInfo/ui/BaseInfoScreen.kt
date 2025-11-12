@@ -142,7 +142,7 @@ private fun BaseInfoScreen(onIntent: (BaseInfoIntent) -> Unit, viewState: BaseIn
                             .map { characterClass ->
                             RadioButtonGroup(
                                 id = characterClass.identifier,
-                                selected = viewState.uiState.characterClass?.let { it == characterClass} == true,
+                                selected = viewState.uiState.characterClass?.identifier == characterClass.identifier,
                                 content = {
                                     Text(text = stringResource(
                                         CharacterClassFormatter.formatCharacterClass(characterClass::class)
