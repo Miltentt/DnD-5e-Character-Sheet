@@ -3,7 +3,7 @@ package com.miltent.domain.model
 enum class SpecialAbilityType(val value: String) {
     Feat("Feat"),
     FightingStyle("FightingStyle"),
-    ClassSpecifc("ClassSpecific"),
+    ClassSpecific("ClassSpecific"),
     Racial("Racial");
 
     companion object {

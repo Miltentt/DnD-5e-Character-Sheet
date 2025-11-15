@@ -28,7 +28,7 @@ class SkillsStateProvider @Inject constructor(
 
         return SkillsViewState(
             SkillsUiState(
-                skillpointsLeft = skillPoints,
+                skillPointsLeft = skillPoints,
                 selectedSkills = listOf(),
                 skillPoints = skillPoints,
             ),

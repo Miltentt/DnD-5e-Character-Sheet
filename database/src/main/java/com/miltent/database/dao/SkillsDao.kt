@@ -1,13 +1,26 @@
 package com.miltent.database.dao
 
 import androidx.room.Dao
+import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
+import com.miltent.database.domainToDb.SkillTranslationEntitiesFactory
 import com.miltent.database.entities.skills.SkillEntity
 import com.miltent.database.entities.skills.SkillTranslationEntity
 
 @Dao
 interface SkillsDao {
+
+    @Insert
+    suspend fun insertAllSkills(skills: List<SkillEntity>)
+    @Insert
+    suspend fun insertSkillTranslations(skillTranslations: List<SkillTranslationEntity>)
+    @Transaction
+    suspend fun insertAllSkillsWithTranslations(){
+        insertAllSkills(SkillEntity.allSkillEntities)
+        insertSkillTranslations(SkillTranslationEntitiesFactory.getSkillTranslationEntities())
+    }
+
 
     @Query("SELECT * FROM ${SkillEntity.TABLE_NAME}")
     suspend fun getSkills(): List<SkillEntity>

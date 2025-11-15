@@ -22,7 +22,7 @@ class Character1stLevelBuilderImpl @Inject constructor() : Character.Builder1stL
     private set
     override var baseAttributes: Attributes = Attributes()
         private set
-     override var skillsIds: List<String> = emptyList()
+     override var skillsIds: List<Int> = emptyList()
         private set
      override var specialAbility: List<SpecialAbility> = emptyList()
          private set
@@ -39,7 +39,7 @@ class Character1stLevelBuilderImpl @Inject constructor() : Character.Builder1stL
         this.baseAttributes = baseAttributes
     }
 
-    override fun skills(skillsIds: List<String>) {
+    override fun skills(skillsIds: List<Int>) {
         this.skillsIds = skillsIds
     }
 

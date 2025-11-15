@@ -45,13 +45,13 @@ class CharacterRepositoryImpl @Inject constructor(
             characterDetailedFactory.create(
                 characterDetailed,
                 skillsDao.getSkillTranslations(language.displayLanguage),
-                specialAbilityDao.getSpecialAbilitiesTranslations(language.displayLanguage)
+                specialAbilityDao.getSpecialAbilityTranslations(language.displayLanguage)
             )
         }
 
     override suspend fun upsertCharacter(
         character: Character,
-        skillIds: List<String>,
+        skillIds: List<Int>,
         specialAbilityIds: List<String>
     ) {
         val characterEntity = characterDomainToEntityMapper.map(character)
