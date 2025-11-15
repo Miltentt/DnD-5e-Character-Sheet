@@ -6,14 +6,14 @@ import com.miltent.database.entities.specialAbility.SpecialAbilityTranslationEnt
 
 @Entity(tableName = TABLE_NAME)
 data class SpecialAbilityTranslationEntity(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    @PrimaryKey
+    val id: String,
     val specialAbilityId: String,
     val languageSuffix: String,
     val name: String,
     val description: String,
 ) {
     companion object {
-        const val TABLE_NAME = "SpecialAbilityTranslation"
+        const val TABLE_NAME = "SpecialAbilityTranslationEntity"
     }
 }

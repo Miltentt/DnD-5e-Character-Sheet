@@ -57,6 +57,7 @@ interface DatabaseModule {
                         val language = appContext.resources.configuration.locales[0].language.toString()
                         CoroutineScope(SupervisorJob() + Dispatchers.IO).launch {
                             appDatabase.skillsDao().insertAllSkillsWithTranslations(language)
+                            appDatabase.specialAbilityDao().insertSomeSpecialAbilitiesWithTranslations(language)
                         }
                     }
                 })

@@ -45,7 +45,7 @@ class CharacterRepositoryImpl @Inject constructor(
             characterDetailedFactory.create(
                 characterDetailed,
                 skillsDao.getSkillTranslations(language.displayLanguage),
-                specialAbilityDao.getSpecialAbilitiesTranslations(language.displayLanguage)
+                specialAbilityDao.getSpecialAbilityTranslations(language.displayLanguage)
             )
         }
 
