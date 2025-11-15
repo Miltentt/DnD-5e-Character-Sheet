@@ -16,6 +16,13 @@ class SpecialAbilityTranslationEntitiesFactory {
                 description = "description:$id"
             )
         }
+        fun createSpecialAbilityTranslationEntities(): List<SpecialAbilityTranslationEntity>{
+            return LanguageSuffix.entries.map{ languageSuffix ->
+                SpecialAbilityEntityFactory.someSpecialAbilities().map { someAbility ->
+                    createSpecialAbilityTranslationEntity(languageSuffix.value,someAbility.id)
+                }
+            }.flatten()
+        }
     }
 
 }

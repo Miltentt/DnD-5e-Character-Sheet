@@ -47,10 +47,9 @@ class SkillTranslationEntitiesFactory {
                 SkillTranslationEntity("18" + languageSuffix.value, 18, name = survival, languageSuffix = languageSuffix.value),
             )
         }
-        fun getSkillTranslationEntities(language: String): List<SkillTranslationEntity> {
-            require(language in LanguageSuffix.entries.map { it.value })
-            return when(language){
-                LanguageSuffix.PL.value -> createSkillTranslationEntities(
+        fun getSkillTranslationEntities(): List<SkillTranslationEntity> {
+            return listOf(
+            createSkillTranslationEntities(
                     languageSuffix = LanguageSuffix.PL,
                     "Akrobatyka",
                     "Wiedza o Zwierzętach",
@@ -70,8 +69,8 @@ class SkillTranslationEntitiesFactory {
                     "Zręczne Dłonie",
                     "Skradanie",
                     "Sztuka Przetrwania",
-                )
-                LanguageSuffix.EN.value -> createSkillTranslationEntities(
+                ),
+            createSkillTranslationEntities(
                     languageSuffix = LanguageSuffix.EN,
                     "Acrobatics",
                     "Animal Handling",
@@ -92,8 +91,7 @@ class SkillTranslationEntitiesFactory {
                     "Stealth",
                     "Survival"
                 )
-                else -> throw IllegalArgumentException("this language is not translated")
-            }
+            ).flatten()
         }
     }
 }

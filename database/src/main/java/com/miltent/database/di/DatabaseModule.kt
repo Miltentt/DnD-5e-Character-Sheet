@@ -54,10 +54,9 @@ interface DatabaseModule {
                 .addCallback(object : RoomDatabase.Callback(){
                     override fun onCreate(db: SupportSQLiteDatabase) {
                         super.onCreate(db)
-                        val language = appContext.resources.configuration.locales[0].language.toString()
-                        CoroutineScope(SupervisorJob() + Dispatchers.IO).launch {
-                            appDatabase.skillsDao().insertAllSkillsWithTranslations(language)
-                            appDatabase.specialAbilityDao().insertSomeSpecialAbilitiesWithTranslations(language)
+                        CoroutineScope(Dispatchers.IO).launch {
+                            appDatabase.skillsDao().insertAllSkillsWithTranslations()
+                            appDatabase.specialAbilityDao().insertSomeSpecialAbilitiesWithTranslations()
                         }
                     }
                 })

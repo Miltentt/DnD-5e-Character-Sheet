@@ -17,18 +17,12 @@ interface SpecialAbilityDao {
     @Insert
     suspend fun insertSomeSpecialAbilityTranslations(someTranslations: List<SpecialAbilityTranslationEntity>)
     @Transaction
-    suspend fun insertSomeSpecialAbilitiesWithTranslations(language: String){
+    suspend fun insertSomeSpecialAbilitiesWithTranslations(){
         insertSomeSpecialAbilities(
             someAbilities = SpecialAbilityEntityFactory.someSpecialAbilities(),
         )
         insertSomeSpecialAbilityTranslations(
-            someTranslations =
-                SpecialAbilityEntityFactory.someSpecialAbilities()
-                .map { SpecialAbilityTranslationEntitiesFactory.createSpecialAbilityTranslationEntity(
-                    language,
-                    specialAbilityId = it.id,
-                )
-                }
+            someTranslations = SpecialAbilityTranslationEntitiesFactory.createSpecialAbilityTranslationEntities()
         )
     }
 

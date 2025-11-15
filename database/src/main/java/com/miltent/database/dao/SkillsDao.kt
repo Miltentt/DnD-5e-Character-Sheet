@@ -16,11 +16,9 @@ interface SkillsDao {
     @Insert
     suspend fun insertSkillTranslations(skillTranslations: List<SkillTranslationEntity>)
     @Transaction
-    suspend fun insertAllSkillsWithTranslations(
-        language: String
-    ){
+    suspend fun insertAllSkillsWithTranslations(){
         insertAllSkills(SkillEntity.allSkillEntities)
-        insertSkillTranslations(SkillTranslationEntitiesFactory.getSkillTranslationEntities(language))
+        insertSkillTranslations(SkillTranslationEntitiesFactory.getSkillTranslationEntities())
     }
 
 
