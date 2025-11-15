@@ -50,7 +50,7 @@ private fun SkillsScreen(viewState: SkillsViewState, onIntent: (SkillsIntent) ->
             modifier = Modifier.background(Colors.primary),
             bottomBar = {
                 Column(verticalArrangement = Arrangement.spacedBy(Spacing.spacing8), horizontalAlignment = Alignment.CenterHorizontally) {
-                    Text(text = stringResource(ResR.string.skills_available_points, viewState.uiState.skillpointsLeft))
+                    Text(text = stringResource(ResR.string.skills_available_points, viewState.uiState.skillPointsLeft))
                     ProgressButton(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -100,14 +100,14 @@ fun SkillsScreenPreview() {
         SkillsScreen(
             viewState = SkillsViewState(
                 SkillsUiState(
-                    selectedSkills = listOf("4"),
-                    skillpointsLeft = 3,
+                    selectedSkills = listOf(4),
+                    skillPointsLeft = 3,
                     skillPoints = 3
                 ), mapOf(
-                    Skill("1", "Acrobatics", StatisticType.DEX) to 4,
-                    Skill("2", "Animal Handling", StatisticType.WIS) to 4,
-                    Skill("3", "Arcana", StatisticType.INT) to 4,
-                    Skill("4", "Athletics", StatisticType.STR) to 4,
+                    Skill(1, "Acrobatics", StatisticType.DEX) to 4,
+                    Skill(2, "Animal Handling", StatisticType.WIS) to 4,
+                    Skill(3, "Arcana", StatisticType.INT) to 4,
+                    Skill(4, "Athletics", StatisticType.STR) to 4,
                 )
             ), onIntent = {}
         )

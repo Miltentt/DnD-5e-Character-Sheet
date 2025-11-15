@@ -8,5 +8,5 @@ data class CharacterSkillCrossJunction(
     @ColumnInfo(name = "characterId")
     val characterId: Int,
     @ColumnInfo(name = "skillId")
-    val skillId: String,
+    val skillId: Int,
 )
