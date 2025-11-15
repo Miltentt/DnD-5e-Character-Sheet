@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
+import com.miltent.database.domainToDb.SkillTranslationEntitiesFactory
 import com.miltent.database.entities.skills.SkillEntity
 import com.miltent.database.entities.skills.SkillTranslationEntity
 
@@ -16,11 +17,10 @@ interface SkillsDao {
     suspend fun insertSkillTranslations(skillTranslations: List<SkillTranslationEntity>)
     @Transaction
     suspend fun insertAllSkillsWithTranslations(
-        skills: List<SkillEntity>,
-        skillTranslations: List<SkillTranslationEntity>
+        language: String
     ){
-        insertAllSkills(skills)
-        insertSkillTranslations(skillTranslations)
+        insertAllSkills(SkillEntity.allSkillEntities)
+        insertSkillTranslations(SkillTranslationEntitiesFactory.getSkillTranslationEntities(language))
     }
 
 

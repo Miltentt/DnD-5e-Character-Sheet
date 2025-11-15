@@ -11,8 +11,6 @@ import com.miltent.database.Dnd5eDatabase
 import com.miltent.database.dao.CharacterDao
 import com.miltent.database.dao.SkillsDao
 import com.miltent.database.dao.SpecialAbilityDao
-import com.miltent.database.domainToDb.SkillTranslationEntitiesFactory
-import com.miltent.database.entities.skills.SkillEntity
 import com.miltent.database.repository.CharacterRepositoryImpl
 import com.miltent.database.repository.SkillsRepositoryImpl
 import com.miltent.database.repository.SpecialAbilityRepositoryImpl
@@ -27,7 +25,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import javax.inject.Singleton
-import kotlin.coroutines.CoroutineContext
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -57,11 +54,9 @@ interface DatabaseModule {
                 .addCallback(object : RoomDatabase.Callback(){
                     override fun onCreate(db: SupportSQLiteDatabase) {
                         super.onCreate(db)
-                        CoroutineScope(SupervisorJob() + Dispatchers.IO)
-                            .launch{
-                            appDatabase.skillsDao().insertAllSkillsWithTranslations(
-                                SkillEntity.allSkillEntities,
-                                SkillTranslationEntitiesFactory.valuesPL)
+                        val language = appContext.resources.configuration.locales[0].language.toString()
+                        CoroutineScope(SupervisorJob() + Dispatchers.IO).launch {
+                            appDatabase.skillsDao().insertAllSkillsWithTranslations(language)
                         }
                     }
                 })

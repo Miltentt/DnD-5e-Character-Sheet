@@ -47,47 +47,53 @@ class SkillTranslationEntitiesFactory {
                 SkillTranslationEntity("18" + languageSuffix.value, 18, name = survival, languageSuffix = languageSuffix.value),
             )
         }
-        val valuesPL = createSkillTranslationEntities(
-            languageSuffix = LanguageSuffix.PL,
-            "Akrobatyka",
-            "Wiedza o Zwierzętach",
-            "Arkanizm",
-            "Atletyka",
-            "Blef",
-            "Historia",
-            "Intuicja",
-            "Zastraszanie",
-            "Śledztwo",
-            "Medycyna",
-            "Natura",
-            "Percepcja",
-            "Występy",
-            "Perswazja",
-            "Religia",
-            "Zręczne Dłonie",
-            "Skradanie",
-            "Sztuka Przetrwania",
-        )
-        val valuesEN = createSkillTranslationEntities(
-            languageSuffix = LanguageSuffix.EN,
-            "Acrobatics",
-            "Animal Handling",
-            "Arcana",
-            "Athletics",
-            "Deception",
-            "History",
-            "Insight",
-            "Intimidation",
-            "Investigation",
-            "Medicine",
-            "Nature",
-            "Perception",
-            "Performance",
-            "Persuasion",
-            "Religion",
-            "Sleight of Hand",
-            "Stealth",
-            "Survival"
-        )
+        fun getSkillTranslationEntities(language: String): List<SkillTranslationEntity> {
+            require(language in LanguageSuffix.entries.map { it.value })
+            return when(language){
+                LanguageSuffix.PL.value -> createSkillTranslationEntities(
+                    languageSuffix = LanguageSuffix.PL,
+                    "Akrobatyka",
+                    "Wiedza o Zwierzętach",
+                    "Arkanizm",
+                    "Atletyka",
+                    "Blef",
+                    "Historia",
+                    "Intuicja",
+                    "Zastraszanie",
+                    "Śledztwo",
+                    "Medycyna",
+                    "Natura",
+                    "Percepcja",
+                    "Występy",
+                    "Perswazja",
+                    "Religia",
+                    "Zręczne Dłonie",
+                    "Skradanie",
+                    "Sztuka Przetrwania",
+                )
+                LanguageSuffix.EN.value -> createSkillTranslationEntities(
+                    languageSuffix = LanguageSuffix.EN,
+                    "Acrobatics",
+                    "Animal Handling",
+                    "Arcana",
+                    "Athletics",
+                    "Deception",
+                    "History",
+                    "Insight",
+                    "Intimidation",
+                    "Investigation",
+                    "Medicine",
+                    "Nature",
+                    "Perception",
+                    "Performance",
+                    "Persuasion",
+                    "Religion",
+                    "Sleight of Hand",
+                    "Stealth",
+                    "Survival"
+                )
+                else -> throw IllegalArgumentException("this language is not translated")
+            }
+        }
     }
 }
