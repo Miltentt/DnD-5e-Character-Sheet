@@ -19,7 +19,7 @@ interface SpecialAbilityDao {
     @Transaction
     suspend fun insertSomeSpecialAbilitiesWithTranslations(){
         insertSomeSpecialAbilities(
-            someAbilities = SpecialAbilityEntityFactory.someSpecialAbilities(),
+            someAbilities = SpecialAbilityEntityFactory.someSpecialAbilities,
         )
         insertSomeSpecialAbilityTranslations(
             someTranslations = SpecialAbilityTranslationEntitiesFactory.createSpecialAbilityTranslationEntities()

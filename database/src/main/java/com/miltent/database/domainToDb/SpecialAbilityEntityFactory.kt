@@ -18,12 +18,13 @@ class SpecialAbilityEntityFactory {
             movementSpeedModifier = 0.0,
             armorClassModifier = 0
         )
-        fun someSpecialAbilities(): List<SpecialAbilityEntity>{
+        private fun someSpecialAbilities(): List<SpecialAbilityEntity>{
             val list = mutableListOf<SpecialAbilityEntity>()
             repeat(10){
                 list += createEmptyFightingStyleSpecialAbilityEntity()
             }
             return list
         }
+        val someSpecialAbilities = someSpecialAbilities()
     }
 }
