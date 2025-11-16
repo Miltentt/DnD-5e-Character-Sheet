@@ -20,7 +20,7 @@ class SpecialAbilityEntityFactory {
         )
         private fun someSpecialAbilities(): List<SpecialAbilityEntity>{
             val list = mutableListOf<SpecialAbilityEntity>()
-            repeat(10){
+            repeat(11){
                 list += createEmptyFightingStyleSpecialAbilityEntity()
             }
             return list
