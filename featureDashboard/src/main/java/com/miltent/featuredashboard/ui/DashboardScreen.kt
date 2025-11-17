@@ -90,7 +90,7 @@ private fun DashboardScreen(
                                         onIntent.invoke(DashboardIntent.OnCharacterClicked(name = character.name))
                                     },
                                     onLongClick = {
-                                        onIntent.invoke(DashboardIntent.OnCharacterClicked(name = character.name))
+                                        onIntent.invoke(DashboardIntent.OnCharacterLongClick(id = character.id))
                                     }
                                 )
                             })
