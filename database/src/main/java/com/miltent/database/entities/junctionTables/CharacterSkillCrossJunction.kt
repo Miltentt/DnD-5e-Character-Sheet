@@ -9,7 +9,7 @@ data class CharacterSkillCrossJunction(
     @ColumnInfo(name = "characterId")
     val characterId: String,
     @ColumnInfo(name = "skillId")
-    val skillId: String,
+    val skillId: Int,
 ){
     companion object {
         const val TABLE_NAME = "CharacterSkillCrossJunction"

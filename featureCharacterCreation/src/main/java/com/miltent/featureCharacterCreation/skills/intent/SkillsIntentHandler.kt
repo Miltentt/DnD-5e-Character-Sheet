@@ -36,7 +36,7 @@ internal class SkillsIntentHandler @Inject internal constructor(
         }
     }
 
-    private fun onSkillClicked(id: String) {
+    private fun onSkillClicked(id: Int) {
         val selectedSkills =
             viewStateProvider.viewState.value.uiState.selectedSkills.toMutableList()
         when {
@@ -54,7 +54,7 @@ internal class SkillsIntentHandler @Inject internal constructor(
             viewStateProvider.viewState.value.copy(
                 uiState = viewStateProvider.viewState.value.uiState.copy(
                     selectedSkills = selectedSkills,
-                    skillpointsLeft = viewStateProvider.viewState.value.uiState.skillPoints - selectedSkills.size
+                    skillPointsLeft = viewStateProvider.viewState.value.uiState.skillPoints - selectedSkills.size
                 )
             )
         )

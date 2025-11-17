@@ -6,13 +6,13 @@ import com.miltent.database.entities.skills.SkillTranslationEntity.Companion.TAB
 
 @Entity(tableName = TABLE_NAME)
 data class SkillTranslationEntity(
-   @PrimaryKey(autoGenerate = true)
-    val id: Int,
-    val skillId: String,
+   @PrimaryKey()
+    val id: String,
+    val skillId: Int,
     val languageSuffix: String,
     val name: String,
 ) {
     companion object {
-        const val TABLE_NAME = "SkillTranslation"
+        const val TABLE_NAME = "SkillTranslationEntity"
     }
 }

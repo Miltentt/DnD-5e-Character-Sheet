@@ -8,7 +8,7 @@ class InsertCharacterUseCase @Inject constructor(private val characterRepository
 
     suspend operator fun invoke(
         character: Character,
-        skillIds: List<String>,
+        skillIds: List<Int>,
         specialAbilityIds: List<String>
     ) = characterRepository.upsertCharacter(character, skillIds, specialAbilityIds)
 }

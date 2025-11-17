@@ -88,32 +88,31 @@ private fun BaseInfoScreen(onIntent: (BaseInfoIntent) -> Unit, viewState: BaseIn
                         readOnly = false,
                         labelText = stringResource(ResR.string.character_creation_name),
                         placeholderText = stringResource(ResR.string.character_creation_name_placeholder),
-                        isError = viewState.uiState.error == ValidationError.EmptyName,
+                        isError = ValidationError.EmptyName in viewState.uiState.errors,
                         modifier = Modifier
                     )
                     StatisticType.entries.toSet().forEach { statisticType ->
                         StatisticsWithModifierTextField(
-                            statisticValue = viewState.uiState.attributes.values[statisticType]!!.value.toString(),
+                            statisticValue = viewState.uiState.attributes.values.getValue(statisticType).value.toString(),
                             statisticName = statisticType.name,
                             statisticModifierValue =
                                 viewState.uiState.attributes
-                                    .values[statisticType]
-                                    ?.calculateModifier()
-                                    .toString(),
+                                    .values.getValue(statisticType).calculateModifier().toString(),
                             onTextChange = {
                                 onIntent.invoke(
                                     BaseInfoIntent.OnStatisticsChanged(
                                         statisticType, Attribute(it.toInt() )
                                     )
                                 )
-                            }
+                            },
+                            isError = ValidationError.AttributeOutOfRange(statisticType) in viewState.uiState.errors
                         )
                     }
                     RadioButtonGroup(
                         modifier = Modifier.fillMaxWidth(),
                         title = stringResource(ResR.string.base_info_choose_race_title),
                         supportingText = stringResource(ResR.string.base_info_choose_race_subtitle),
-                        isError = viewState.uiState.error == ValidationError.EmptyRace,
+                        isError = ValidationError.EmptyRace in viewState.uiState.errors,
                         fillContentWidth = true,
                         onClick = { raceIdentifier -> onIntent.invoke(BaseInfoIntent.OnRaceChosen(raceIdentifier)) },
                         groupRadioButtons = Race.entries.map { race ->
@@ -130,7 +129,7 @@ private fun BaseInfoScreen(onIntent: (BaseInfoIntent) -> Unit, viewState: BaseIn
                         title = stringResource(ResR.string.base_info_choose_class_title),
                         supportingText = stringResource(ResR.string.base_info_choose_class_subtitle),
                         fillContentWidth = true,
-                        isError = viewState.uiState.error == ValidationError.EmptyClass,
+                        isError = ValidationError.EmptyClass in viewState.uiState.errors,
                         onClick = { characterClassIdentifier ->
                             onIntent.invoke(
                                 BaseInfoIntent.OnCharacterClassChosen(
@@ -142,7 +141,7 @@ private fun BaseInfoScreen(onIntent: (BaseInfoIntent) -> Unit, viewState: BaseIn
                             .map { characterClass ->
                             RadioButtonGroup(
                                 id = characterClass.identifier,
-                                selected = viewState.uiState.characterClass?.let { it == characterClass} == true,
+                                selected = viewState.uiState.characterClass?.identifier == characterClass.identifier,
                                 content = {
                                     Text(text = stringResource(
                                         CharacterClassFormatter.formatCharacterClass(characterClass::class)
@@ -150,7 +149,6 @@ private fun BaseInfoScreen(onIntent: (BaseInfoIntent) -> Unit, viewState: BaseIn
                                     )
                                 }
                             )
-
                         },
                     )
                 }
@@ -170,7 +168,7 @@ fun BaseInfoScreenPreview() {
                 race = Race.Dwarf,
                 characterClass = CharacterClass.Fighter(8),
                 attributes = Attributes(12),
-                error = null
+                errors = emptyList()
             )
         )
     )

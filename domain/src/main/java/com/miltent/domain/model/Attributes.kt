@@ -2,7 +2,7 @@ package com.miltent.domain.model
 
 data class Attributes(
     val values: Map<StatisticType, Attribute> =
-                     StatisticType.entries.associateWith { Attribute(10) }
+                     StatisticType.entries.associateWith { Attribute(Attribute.BASE_VALUE) }
 ) {
     constructor(base:Int):this(
         StatisticType.entries.associateWith { Attribute(base) }
@@ -15,14 +15,14 @@ data class Attributes(
 
     fun addToAttributes(other: Attributes): Attributes {
         val newValues = StatisticType.entries.associateWith {
-            this.values[it] as Attribute + other.values[it] as Attribute 
+            this.values.getValue(it) + other.values.getValue(it)
         }
         return Attributes(newValues)
     }
 
     fun addToAttribute(type: StatisticType ,attribute: Attribute): Attributes {
         val newValues = this.values.toMutableMap()
-        newValues[type] = newValues[type] as Attribute + attribute
+        newValues[type] = newValues.getValue(type) + attribute
         return Attributes(newValues.toMap())
     }
 
