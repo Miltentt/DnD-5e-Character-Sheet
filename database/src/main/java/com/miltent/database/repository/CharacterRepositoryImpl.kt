@@ -9,6 +9,7 @@ import com.miltent.database.entities.character.CharacterEntity
 import com.miltent.database.entities.junctionTables.CharacterSkillCrossJunction
 import com.miltent.database.entities.junctionTables.CharacterSpecialAbilityJunction
 import com.miltent.database.factory.dbToDomain.CharacterDetailedFactory
+import com.miltent.database.mapper.domainToDb.CharacterDomainToEntityMapper
 import com.miltent.domain.model.Character
 import com.miltent.domain.model.CharacterDetailed
 import com.miltent.domain.model.DashboardCharacter
@@ -24,6 +25,7 @@ class CharacterRepositoryImpl @Inject constructor(
     private val skillsDao: SkillsDao,
     private val specialAbilityDao: SpecialAbilityDao,
     private val characterEntityToDomainMapper: Mapper<CharacterEntity, Character>,
+    private val characterDomainToEntityMapper: Mapper<Character, CharacterEntity>,
     private val characterDetailedFactory: CharacterDetailedFactory,
 ) : CharacterRepository {
 
@@ -64,6 +66,7 @@ class CharacterRepositoryImpl @Inject constructor(
         val specialAbilityJunctions = specialAbilityIds.map { specialAbilityId ->
             CharacterSpecialAbilityJunction(character.id, specialAbilityId)
         }
+        characterDao.upsertCharacter(characterDomainToEntityMapper.map(character))
         characterDao.upsertJunctions(skillJunctions, specialAbilityJunctions)
     }
 }

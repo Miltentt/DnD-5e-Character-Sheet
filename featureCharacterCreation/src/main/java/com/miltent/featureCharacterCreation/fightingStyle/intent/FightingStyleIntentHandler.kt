@@ -34,24 +34,6 @@ internal class FightingStyleIntentHandler @Inject constructor(
 
     private suspend fun onNextClicked() {
         runCatching {
-            val currentFightingStyle2 = SpecialAbility(
-                id = "xd",
-                type = SpecialAbilityType.FightingStyle,
-                name = "xd",
-                description = "xd",
-                attributeModifiers = Attributes(0),
-                movementSpeedModifier = MovementSpeed(0.0),
-                armorClassModifier = ArmorClass(0)
-            )
-            viewStateProvider.updateState(
-                viewStateProvider.viewState.value.copy(
-                    uiState = viewStateProvider.viewState.value.uiState.copy(
-                        currentFightingStyle = currentFightingStyle2,
-                        error = null
-                    )
-                )
-            )
-
             viewStateProvider.updateState(viewStateProvider.viewState.value
                 .copy(uiState = viewStateProvider.viewState.value.uiState
                     .copy(error = fightingStyleValidator.isValid(viewStateProvider.viewState.value.uiState.currentFightingStyle)))
