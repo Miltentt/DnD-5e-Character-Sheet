@@ -13,16 +13,16 @@ import com.miltent.database.entities.specialAbility.SpecialAbilityTranslationEnt
 interface SpecialAbilityDao {
 
     @Insert
-    suspend fun insertSomeSpecialAbilities(someAbilities: List<SpecialAbilityEntity>)
+    suspend fun insertFightingStyleSpecialAbilityEntities(abilities: List<SpecialAbilityEntity>)
     @Insert
-    suspend fun insertSomeSpecialAbilityTranslations(someTranslations: List<SpecialAbilityTranslationEntity>)
+    suspend fun insertSomeSpecialAbilityTranslations(translations: List<SpecialAbilityTranslationEntity>)
     @Transaction
-    suspend fun insertSomeSpecialAbilitiesWithTranslations(){
-        insertSomeSpecialAbilities(
-            someAbilities = SpecialAbilityEntityFactory.someSpecialAbilities,
+    suspend fun insertFightingStyleSpecialAbilityEntitiesWithTranslations(){
+        insertFightingStyleSpecialAbilityEntities(
+            abilities = SpecialAbilityEntityFactory.fightingStyleSpecialAbilityEntities,
         )
         insertSomeSpecialAbilityTranslations(
-            someTranslations = SpecialAbilityTranslationEntitiesFactory.createSpecialAbilityTranslationEntities()
+            translations = SpecialAbilityTranslationEntitiesFactory.createSpecialAbilityTranslationEntities()
         )
     }
 

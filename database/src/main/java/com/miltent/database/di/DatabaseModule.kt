@@ -55,7 +55,7 @@ interface DatabaseModule {
                         super.onCreate(db)
                         CoroutineScope(Dispatchers.IO).launch {
                             appDatabase.skillsDao().insertAllSkillsWithTranslations()
-                            appDatabase.specialAbilityDao().insertSomeSpecialAbilitiesWithTranslations()
+                            appDatabase.specialAbilityDao().insertFightingStyleSpecialAbilityEntitiesWithTranslations()
                         }
                     }
                 })

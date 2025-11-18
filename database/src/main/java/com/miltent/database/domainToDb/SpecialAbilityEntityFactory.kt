@@ -6,7 +6,7 @@ import java.util.UUID
 
 class SpecialAbilityEntityFactory {
     companion object{
-        fun createEmptyFightingStyleSpecialAbilityEntity() = SpecialAbilityEntity(
+        fun createFightingStyleSpecialAbilityEntity() = SpecialAbilityEntity(
             id = UUID.randomUUID().toString(),
             type = SpecialAbilityType.FightingStyle.value,
             strengthModifier = 0,
@@ -18,13 +18,13 @@ class SpecialAbilityEntityFactory {
             movementSpeedModifier = 0.0,
             armorClassModifier = 0
         )
-        private fun someSpecialAbilities(): List<SpecialAbilityEntity>{
+        private fun createFightingStyleSpecialAbilityEntities(): List<SpecialAbilityEntity>{
             val list = mutableListOf<SpecialAbilityEntity>()
             repeat(11){
-                list += createEmptyFightingStyleSpecialAbilityEntity()
+                list += createFightingStyleSpecialAbilityEntity()
             }
             return list
         }
-        val someSpecialAbilities = someSpecialAbilities()
+        val fightingStyleSpecialAbilityEntities = createFightingStyleSpecialAbilityEntities()
     }
 }
