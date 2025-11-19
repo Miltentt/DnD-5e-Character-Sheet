@@ -8,7 +8,7 @@ import com.miltent.featureCharacterCreation.baseInfo.validator.ValidationError
 
 data class BaseInfoUiState(
     val name: String,
-    val uiAttributes: Map<StatisticType, Attribute?>,
+    val startAttributes: Map<StatisticType, Attribute?>,
     val race: Race?,
     val characterClass: CharacterClass?,
     val errors: List<ValidationError>

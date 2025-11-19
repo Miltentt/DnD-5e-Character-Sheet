@@ -9,7 +9,7 @@ data class Attributes(
     )
     init {
         require(values.keys == StatisticType.entries.toSet())
-        {"Attributes object need's to use all StatisticType objects"}
+        {"Attributes object needs to use all StatisticType objects"}
     }
 
 
@@ -32,15 +32,15 @@ data class Attributes(
     }
 
     companion object {
-        val uiAttributes: Map<StatisticType, Attribute?>
+        val startAttributes: Map<StatisticType, Attribute?>
             get() = StatisticType.entries.associateWith { Attribute(Attribute.BASE_VALUE) }
-        fun uiAttributesToAttributes(
-            uiAttributes: Map<StatisticType, Attribute?>
+        /*fun startAttributesToAttributes(
+            startAttributes: Map<StatisticType, Attribute?>
         ): Attributes{
             val outputMap = Attributes().values.toMutableMap()
-            uiAttributes.forEach { outputMap[it.key] = checkNotNull(it.value) }
+            startAttributes.forEach { outputMap[it.key] = checkNotNull(it.value) }
             return Attributes(outputMap)
-        }
+        }*/
     }
 }
 

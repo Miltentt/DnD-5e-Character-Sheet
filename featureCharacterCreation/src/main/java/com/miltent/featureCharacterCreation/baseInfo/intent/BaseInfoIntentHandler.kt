@@ -5,7 +5,7 @@ import com.miltent.core.event.EventHandler
 import com.miltent.core.intent.IntentHandler
 import com.miltent.core.ui.ViewStateProvider
 import com.miltent.domain.model.Attribute
-import com.miltent.domain.model.Attributes.Companion.uiAttributesToAttributes
+import com.miltent.domain.model.Attributes
 import com.miltent.domain.model.Character
 import com.miltent.domain.model.CharacterClass
 import com.miltent.domain.model.Race
@@ -59,7 +59,7 @@ class BaseInfoIntentHandler @Inject constructor(
             viewStateProvider.updateState(
                 copy(
                     uiState = uiState.copy(
-                        uiAttributes = uiState.uiAttributes.toMutableMap()
+                        startAttributes = uiState.startAttributes.toMutableMap()
                             .apply { this[statisticType] = attribute }
                     )
                 )
@@ -87,7 +87,7 @@ class BaseInfoIntentHandler @Inject constructor(
                         name = viewStateProvider.viewState.value.uiState.name,
                         race = viewStateProvider.viewState.value.uiState.race,
                         characterClass = viewStateProvider.viewState.value.uiState.characterClass,
-                        uiAttributes = viewStateProvider.viewState.value.uiState.uiAttributes,
+                        startAttributes = viewStateProvider.viewState.value.uiState.startAttributes,
                     )
                 )
             )
@@ -103,7 +103,12 @@ class BaseInfoIntentHandler @Inject constructor(
                 name = viewStateProvider.viewState.value.uiState.name,
                 race = race,
                 characterClass = characterClass,
-                baseAttributes = uiAttributesToAttributes(viewStateProvider.viewState.value.uiState.uiAttributes)
+                baseAttributes = Attributes(
+                    viewStateProvider.viewState.value.uiState.startAttributes
+                        .mapValues { checkNotNull(it.value){"value for Attributes cannot be null"} }
+
+                )
+//                    startAttributesToAttributes(viewStateProvider.viewState.value.uiState.startAttributes)
             )
 
             characterCreationNavigationStateHolder.initialize(

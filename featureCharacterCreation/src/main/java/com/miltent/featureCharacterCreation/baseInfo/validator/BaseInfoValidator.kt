@@ -10,6 +10,6 @@ interface BaseInfoValidator {
         name: String,
         race: Race?,
         characterClass: CharacterClass?,
-        uiAttributes: Map<StatisticType, Attribute?>,
+        startAttributes: Map<StatisticType, Attribute?>,
     ): List<ValidationError>
 }

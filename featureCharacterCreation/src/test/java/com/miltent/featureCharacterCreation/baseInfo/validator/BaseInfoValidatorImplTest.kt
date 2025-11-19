@@ -20,7 +20,7 @@ class BaseInfoValidatorImplTest {
             name = "name",
             race = Race.Dwarf,
             characterClass = CharacterClass.Fighter(8),
-            uiAttributes = Attributes.uiAttributes,
+            startAttributes = Attributes.startAttributes,
         )
         // Assert
         assertEquals(emptyList<ValidationError>(), result)
@@ -34,7 +34,7 @@ class BaseInfoValidatorImplTest {
             name = "",
             race = Race.Dwarf,
             characterClass = CharacterClass.Fighter(8),
-            uiAttributes = Attributes.uiAttributes,
+            startAttributes = Attributes.startAttributes,
         )
         // Assert
         assertEquals(listOf(ValidationError.EmptyName), result)
@@ -48,7 +48,7 @@ class BaseInfoValidatorImplTest {
             name = "name",
             race = null,
             characterClass = CharacterClass.Fighter(8),
-            uiAttributes = Attributes.uiAttributes,
+            startAttributes = Attributes.startAttributes,
         )
         // Assert
         assertEquals(listOf(ValidationError.EmptyRace), result)
@@ -62,7 +62,7 @@ class BaseInfoValidatorImplTest {
             name = "name",
             race = Race.Dwarf,
             characterClass = null,
-            uiAttributes = Attributes.uiAttributes,
+            startAttributes = Attributes.startAttributes,
         )
         // Assert
         assertEquals(listOf(ValidationError.EmptyClass), result)
@@ -75,7 +75,7 @@ class BaseInfoValidatorImplTest {
             name = "name",
             race = Race.Dwarf,
             characterClass = CharacterClass.Fighter(8),
-            uiAttributes = Attributes.uiAttributes.toMutableMap()
+            startAttributes = Attributes.startAttributes.toMutableMap()
                 .apply { this[StatisticType.STR] = null },
         )
         // Assert
@@ -85,7 +85,7 @@ class BaseInfoValidatorImplTest {
             name = "name",
             race = Race.Dwarf,
             characterClass = CharacterClass.Fighter(8),
-            uiAttributes = Attributes.uiAttributes.toMutableMap()
+            startAttributes = Attributes.startAttributes.toMutableMap()
                 .apply { this[StatisticType.DEX] = null },
         )
         // Assert
@@ -95,7 +95,7 @@ class BaseInfoValidatorImplTest {
             name = "name",
             race = Race.Dwarf,
             characterClass = CharacterClass.Fighter(8),
-            uiAttributes = Attributes.uiAttributes.toMutableMap()
+            startAttributes = Attributes.startAttributes.toMutableMap()
                 .apply { this[StatisticType.CON] = null },
         )
         // Assert
@@ -105,7 +105,7 @@ class BaseInfoValidatorImplTest {
             name = "name",
             race = Race.Dwarf,
             characterClass = CharacterClass.Fighter(8),
-            uiAttributes = Attributes.uiAttributes.toMutableMap()
+            startAttributes = Attributes.startAttributes.toMutableMap()
                 .apply { this[StatisticType.INT] = null },
         )
         // Assert
@@ -115,7 +115,7 @@ class BaseInfoValidatorImplTest {
             name = "name",
             race = Race.Dwarf,
             characterClass = CharacterClass.Fighter(8),
-            uiAttributes = Attributes.uiAttributes.toMutableMap()
+            startAttributes = Attributes.startAttributes.toMutableMap()
                 .apply { this[StatisticType.WIS] = null },
         )
         // Assert
@@ -125,7 +125,7 @@ class BaseInfoValidatorImplTest {
             name = "name",
             race = Race.Dwarf,
             characterClass = CharacterClass.Fighter(8),
-            uiAttributes = Attributes.uiAttributes.toMutableMap()
+            startAttributes = Attributes.startAttributes.toMutableMap()
                 .apply { this[StatisticType.CHA] = null },
         )
         // Assert
@@ -140,7 +140,7 @@ class BaseInfoValidatorImplTest {
             name = "name",
             race = Race.Dwarf,
             characterClass = CharacterClass.Fighter(8),
-            uiAttributes = Attributes.uiAttributes.toMutableMap()
+            startAttributes = Attributes.startAttributes.toMutableMap()
                 .apply { this[StatisticType.STR] = Attribute(2) },
         )
         // Assert
@@ -151,7 +151,7 @@ class BaseInfoValidatorImplTest {
             name = "name",
             race = Race.Dwarf,
             characterClass = CharacterClass.Fighter(8),
-            uiAttributes = Attributes.uiAttributes.toMutableMap()
+            startAttributes = Attributes.startAttributes.toMutableMap()
                 .apply { this[StatisticType.DEX] = Attribute(20) },
         )
         // Assert
@@ -161,7 +161,7 @@ class BaseInfoValidatorImplTest {
             name = "name",
             race = Race.Dwarf,
             characterClass = CharacterClass.Fighter(8),
-            uiAttributes = Attributes.uiAttributes.toMutableMap()
+            startAttributes = Attributes.startAttributes.toMutableMap()
                 .apply { this[StatisticType.CON] = Attribute(2) },
         )
         // Assert
@@ -171,7 +171,7 @@ class BaseInfoValidatorImplTest {
             name = "name",
             race = Race.Dwarf,
             characterClass = CharacterClass.Fighter(8),
-            uiAttributes = Attributes.uiAttributes.toMutableMap()
+            startAttributes = Attributes.startAttributes.toMutableMap()
                 .apply { this[StatisticType.INT] = Attribute(20) },
         )
         // Assert
@@ -181,7 +181,7 @@ class BaseInfoValidatorImplTest {
             name = "name",
             race = Race.Dwarf,
             characterClass = CharacterClass.Fighter(8),
-            uiAttributes = Attributes.uiAttributes.toMutableMap()
+            startAttributes = Attributes.startAttributes.toMutableMap()
                 .apply { this[StatisticType.WIS] = Attribute(1) },
         )
         // Assert
@@ -191,7 +191,7 @@ class BaseInfoValidatorImplTest {
             name = "name",
             race = Race.Dwarf,
             characterClass = CharacterClass.Fighter(8),
-            uiAttributes = Attributes.uiAttributes.toMutableMap()
+            startAttributes = Attributes.startAttributes.toMutableMap()
                 .apply { this[StatisticType.CHA] = Attribute(20) },
         )
         // Assert
