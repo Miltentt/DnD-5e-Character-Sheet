@@ -40,9 +40,7 @@ fun RadioButtonGroup(
         Column(modifier = Modifier.run {
             if (isScrollable) verticalScroll(scrollState, enabled = true)
             else this
-        }
-
-        )
+        })
         {
             groupRadioButtons.forEach { radioButtonGroup ->
                 RadioButtonWithContent(

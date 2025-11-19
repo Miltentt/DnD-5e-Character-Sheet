@@ -20,8 +20,6 @@ interface SkillsDao {
         insertAllSkills(SkillEntity.allSkillEntities)
         insertSkillTranslations(SkillTranslationEntitiesFactory.getSkillTranslationEntities())
     }
-
-
     @Query("SELECT * FROM ${SkillEntity.TABLE_NAME}")
     suspend fun getSkills(): List<SkillEntity>
 

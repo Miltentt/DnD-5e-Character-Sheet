@@ -65,17 +65,27 @@ class SpecialAbilityTranslationEntitiesFactory {
                         " If you aren't wielding any weapons or a shield when you make the attack roll, the d6 becomes a d8.\n" +
                         "At the start of each of your turns, you can deal 1d4 bludgeoning damage to one creature grappled by you."),
             )
-            val plFightingStyleNamesWithDescriptions = listOf<Pair<String,String>>(Pair("Łucznictwo","+2 do rzutów ataku wykonywanych bronią dystansową."),
+            val plFightingStyleNamesWithDescriptions = listOf<Pair<String,String>>(
+                Pair("Łucznictwo","+2 do rzutów ataku wykonywanych bronią dystansową."),
                 Pair("Obrona","+1 do CA, gdy masz założony pancerz."),
-                Pair("Pojedynkowanie","+2 do obrażeń podczas walki jednoręczną bronią bez trzymania innej broni w drugiej ręce."),
-                Pair("Walka Wielką Bronią","Możesz przerzucać wyniki 1 i 2 na kościach obrażeń, używając broni dwuręcznej lub wymagającej dwóch rąk."),
-                Pair("Ochrona","Używając reakcji i mając tarczę, dajesz disadvantage na atak wymierzony w sojusznika w zasięgu 1,5 m."),
+                Pair("Pojedynkowanie",
+                    "+2 do obrażeń podczas walki jednoręczną bronią bez trzymania innej broni w drugiej ręce."),
+                Pair("Walka Wielką Bronią",
+                    "Możesz przerzucać wyniki 1 i 2 na kościach obrażeń, używając broni dwuręcznej lub wymagającej dwóch rąk."),
+                Pair("Ochrona",
+                    "Używając reakcji i mając tarczę, dajesz disadvantage na atak wymierzony w sojusznika w zasięgu 1,5 m."),
                 Pair("Walka Dwoma Broniami","Dodajesz modyfikator cechy do obrażeń z ataku dodatkowego drugą bronią."),
                 Pair("Walka na Oślep","Zyskujesz ślepowidzenie na 3 metry (10 ft)."),
-                Pair("Przechwycenie","Reakcją zmniejszasz obrażenia otrzymane przez sojusznika o 1k10 + twój modyfikator biegłości."),
-                Pair("Walka Bronią Miotaną","Możesz dobywać broń miotaną jako część ataku i zadajesz +2 obrażeń taką bronią."),
-                Pair("Technika Mistrzowska","Zyskujesz 1 manewr oraz 1 kość wyczynu (1k6) działającą jak u Mistrza Bitewnego."),
-                Pair("Walka Bez Broni","Twoje nieuzbrojone ataki zadają 1k6 lub 1k8 obrażeń, a trzymanemu przeciwnikowi zadasz 1k4 obrażeń na początku tury."),)
+                Pair("Przechwycenie",
+                    "Reakcją zmniejszasz obrażenia otrzymane przez sojusznika o 1k10 + twój modyfikator biegłości."),
+                Pair("Walka Bronią Miotaną",
+                    "Możesz dobywać broń miotaną jako część ataku i zadajesz +2 obrażeń taką bronią."),
+                Pair("Technika Mistrzowska",
+                    "Zyskujesz 1 manewr oraz 1 kość wyczynu (1k6) działającą jak u Mistrza Bitewnego."),
+                Pair("Walka Bez Broni",
+                    "Twoje nieuzbrojone ataki zadają 1k6 lub 1k8 obrażeń," +
+                            " a trzymanemu przeciwnikowi zadasz 1k4 obrażeń na początku tury."),
+                )
             val enFightingStylesIdToNameToDescription: List<Triple<String, String, String>> =
                 SpecialAbilityEntityFactory
                     .fightingStyleSpecialAbilityEntities

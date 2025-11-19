@@ -5,7 +5,8 @@ import com.miltent.domain.model.SpecialAbilityType
 import java.util.UUID
 
 class SpecialAbilityEntityFactory {
-    companion object{
+    companion object {
+        private const val NUMBER_OF_FIGHTING_STYLES = 11
         fun createFightingStyleSpecialAbilityEntity() = SpecialAbilityEntity(
             id = UUID.randomUUID().toString(),
             type = SpecialAbilityType.FightingStyle.value,
@@ -20,7 +21,7 @@ class SpecialAbilityEntityFactory {
         )
         private fun createFightingStyleSpecialAbilityEntities(): List<SpecialAbilityEntity>{
             val list = mutableListOf<SpecialAbilityEntity>()
-            repeat(11){
+            repeat(NUMBER_OF_FIGHTING_STYLES){
                 list += createFightingStyleSpecialAbilityEntity()
             }
             return list

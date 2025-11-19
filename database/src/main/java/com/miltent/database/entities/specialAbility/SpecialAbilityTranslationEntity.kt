@@ -14,6 +14,6 @@ data class SpecialAbilityTranslationEntity(
     val description: String,
 ) {
     companion object {
-        const val TABLE_NAME = "SpecialAbilityTranslationEntity"
+        const val TABLE_NAME = "SpecialAbilityTranslation"
     }
 }

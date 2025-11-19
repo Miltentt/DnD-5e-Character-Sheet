@@ -15,13 +15,13 @@ interface SpecialAbilityDao {
     @Insert
     suspend fun insertFightingStyleSpecialAbilityEntities(abilities: List<SpecialAbilityEntity>)
     @Insert
-    suspend fun insertSomeSpecialAbilityTranslations(translations: List<SpecialAbilityTranslationEntity>)
+    suspend fun insertSpecialAbilitiesTranslations(translations: List<SpecialAbilityTranslationEntity>)
     @Transaction
     suspend fun insertFightingStyleSpecialAbilityEntitiesWithTranslations(){
         insertFightingStyleSpecialAbilityEntities(
             abilities = SpecialAbilityEntityFactory.fightingStyleSpecialAbilityEntities,
         )
-        insertSomeSpecialAbilityTranslations(
+        insertSpecialAbilitiesTranslations(
             translations = SpecialAbilityTranslationEntitiesFactory.createSpecialAbilityTranslationEntities()
         )
     }
@@ -30,7 +30,7 @@ interface SpecialAbilityDao {
     suspend fun getSpecialAbilities(): List<SpecialAbilityEntity>
 
     @Query("SELECT * FROM ${SpecialAbilityTranslationEntity.TABLE_NAME} WHERE languageSuffix = :language")
-    suspend fun getSpecialAbilityTranslations(language: String): List<SpecialAbilityTranslationEntity>
+    suspend fun getSpecialAbilitiesTranslations(language: String): List<SpecialAbilityTranslationEntity>
 
     @Query("SELECT * FROM ${SpecialAbilityEntity.TABLE_NAME} WHERE type = :type")
     suspend fun getSpecialByTypeAbilities(type: String): List<SpecialAbilityEntity>
@@ -38,9 +38,8 @@ interface SpecialAbilityDao {
     @Transaction
     suspend fun getAllSpecialAbilities(language: String): Map<SpecialAbilityEntity, SpecialAbilityTranslationEntity?> =
         getSpecialAbilities().associateWith { specialAbility ->
-            getSpecialAbilityTranslations(
-                language
-            ).find { it.specialAbilityId == specialAbility.id }
+            getSpecialAbilitiesTranslations(language)
+                .find { it.specialAbilityId == specialAbility.id }
         }
 
     @Transaction
@@ -49,6 +48,6 @@ interface SpecialAbilityDao {
         type: String
     ): Map<SpecialAbilityEntity, SpecialAbilityTranslationEntity?> =
         getSpecialByTypeAbilities(type).associateWith { specialAbility ->
-            getSpecialAbilityTranslations(language).find { it.specialAbilityId == specialAbility.id }
+            getSpecialAbilitiesTranslations(language).find { it.specialAbilityId == specialAbility.id }
         }
 }

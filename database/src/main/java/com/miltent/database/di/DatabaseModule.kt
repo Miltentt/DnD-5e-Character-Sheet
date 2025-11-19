@@ -42,7 +42,6 @@ interface DatabaseModule {
         @Provides
         @Singleton
         fun provideAppDatabase(@ApplicationContext appContext: Context): Dnd5eDatabase {
-
             lateinit var appDatabase: Dnd5eDatabase
 
             appDatabase = Room.databaseBuilder(
