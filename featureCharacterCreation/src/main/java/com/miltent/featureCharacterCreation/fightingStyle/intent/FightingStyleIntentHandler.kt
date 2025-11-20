@@ -4,7 +4,12 @@ import com.miltent.core.characterprogression.CharacterProgression
 import com.miltent.core.event.EventHandler
 import com.miltent.core.intent.IntentHandler
 import com.miltent.core.ui.ViewStateProvider
+import com.miltent.domain.model.ArmorClass
+import com.miltent.domain.model.Attributes
 import com.miltent.domain.model.Character
+import com.miltent.domain.model.MovementSpeed
+import com.miltent.domain.model.SpecialAbility
+import com.miltent.domain.model.SpecialAbilityType
 import com.miltent.featureCharacterCreation.creationNavigator.CharacterCreationNavigationStateHolder
 import com.miltent.featureCharacterCreation.fightingStyle.event.FightingStyleEvent
 import com.miltent.featureCharacterCreation.fightingStyle.state.FightingStyleViewState

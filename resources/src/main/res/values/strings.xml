@@ -4,7 +4,6 @@
     <string name="common_button_next">Następny</string>
     <string name="unknown_error">Nieznany błąd</string>
 
-
     <!-- Classes -->
     <string name="class_fighter">Wojownik</string>
     <string name="class_ranger">Łowca</string>
@@ -31,6 +30,7 @@
     <string name="button_create_character">Stwórz postać</string>
     <string name="character_tile_level">Level: %s</string>
     <string name="no_characters">Brak stworzonych postaci</string>
+    <string name="delete_character_dialog">Czy na pewno chcesz usunąć postać [%1$s] ?</string>
 
     <!-- Character creation -->
     <string name="character_creation_name">Imię</string>
