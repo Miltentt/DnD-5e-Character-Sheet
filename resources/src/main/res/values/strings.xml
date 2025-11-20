@@ -35,6 +35,7 @@
     <string name="base_info_error_empty_race">Rasa nie może być pusta</string>
     <string name="base_info_error_empty_class">Klasa nie może być pusta</string>
     <string name="base_info_error_statistic_out_of_range">Wartość statystyki nie może być większa niż 18 i mniejsza niż 3</string>"
+    <string name="base_info_error_empty_statistic">Wartość statystyki nie może być pusta</string>"
     <string name="base_info_choose_race_title">Rasa</string>
     <string name="base_info_choose_race_subtitle">Wybierz swoją rasę</string>
     <string name="base_info_choose_class_title">Klasa</string>

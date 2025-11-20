@@ -10,7 +10,7 @@ class BaseInfoViewStateFactoryImpl @Inject constructor(): BaseInfoViewState.Fact
     override fun createEmpty(): BaseInfoViewState = BaseInfoViewState(
         uiState = BaseInfoUiState(
             name = "",
-            attributes = Attributes(),
+            startAttributes = Attributes.startAttributes,
             race = null,
             characterClass = null,
             errors = listOf()

@@ -4,6 +4,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.Alignment
@@ -13,6 +15,7 @@ import com.miltent.designsystem.theme.Spacing
 @Composable
 fun RadioButtonGroup(
     modifier: Modifier = Modifier,
+    isScrollable: Boolean = false,
     groupRadioButtons: List<RadioButtonGroup>,
     title: String,
     supportingText: String?,
@@ -28,30 +31,36 @@ fun RadioButtonGroup(
     ),
     isError: Boolean = false
 ) {
+    val scrollState = rememberScrollState()
     Column(modifier) {
         RadioButtonGroupHeader(
             title = title,
             supportingText = supportingText
         )
-        groupRadioButtons.forEach { radioButtonGroup ->
-            RadioButtonWithContent(
-                selected = radioButtonGroup.selected,
-                enabled = radioButtonGroup.enabled,
-                onClick = { onClick.invoke(radioButtonGroup.id) },
-                verticalAlignment = radioButtonVerticalAlignment,
-                radioButtonContentPaddingValues = radioButtonContentPaddingValues,
-                innerPaddingValues = radioButtonInnerPaddingValues,
-                isError = isError,
-                modifier = Modifier.padding(Spacing.spacing8).run {
-                    if (fillContentWidth) fillMaxWidth() else this
-                },
-                content = {
-                    radioButtonGroup.content()
-                }
-            )
+        Column(modifier = Modifier.run {
+            if (isScrollable) verticalScroll(scrollState, enabled = true)
+            else this
+        })
+        {
+            groupRadioButtons.forEach { radioButtonGroup ->
+                RadioButtonWithContent(
+                    selected = radioButtonGroup.selected,
+                    enabled = radioButtonGroup.enabled,
+                    onClick = { onClick.invoke(radioButtonGroup.id) },
+                    verticalAlignment = radioButtonVerticalAlignment,
+                    radioButtonContentPaddingValues = radioButtonContentPaddingValues,
+                    innerPaddingValues = radioButtonInnerPaddingValues,
+                    isError = isError,
+                    modifier = Modifier.padding(Spacing.spacing8).run {
+                        if (fillContentWidth) fillMaxWidth() else this
+                    },
+                    content = {
+                        radioButtonGroup.content()
+                    }
+                )
+            }
         }
     }
-
 }
 
 @Immutable

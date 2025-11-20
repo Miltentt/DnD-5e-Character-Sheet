@@ -5,8 +5,9 @@ import com.miltent.domain.model.SpecialAbilityType
 import java.util.UUID
 
 class SpecialAbilityEntityFactory {
-    companion object{
-        fun createEmptyFightingStyleSpecialAbilityEntity() = SpecialAbilityEntity(
+    companion object {
+        private const val NUMBER_OF_FIGHTING_STYLES = 11
+        fun createFightingStyleSpecialAbilityEntity() = SpecialAbilityEntity(
             id = UUID.randomUUID().toString(),
             type = SpecialAbilityType.FightingStyle.value,
             strengthModifier = 0,
@@ -18,13 +19,13 @@ class SpecialAbilityEntityFactory {
             movementSpeedModifier = 0.0,
             armorClassModifier = 0
         )
-        private fun someSpecialAbilities(): List<SpecialAbilityEntity>{
+        private fun createFightingStyleSpecialAbilityEntities(): List<SpecialAbilityEntity>{
             val list = mutableListOf<SpecialAbilityEntity>()
-            repeat(11){
-                list += createEmptyFightingStyleSpecialAbilityEntity()
+            repeat(NUMBER_OF_FIGHTING_STYLES){
+                list += createFightingStyleSpecialAbilityEntity()
             }
             return list
         }
-        val someSpecialAbilities = someSpecialAbilities()
+        val fightingStyleSpecialAbilityEntities = createFightingStyleSpecialAbilityEntities()
     }
 }

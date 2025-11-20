@@ -42,7 +42,6 @@ interface DatabaseModule {
         @Provides
         @Singleton
         fun provideAppDatabase(@ApplicationContext appContext: Context): Dnd5eDatabase {
-
             lateinit var appDatabase: Dnd5eDatabase
 
             appDatabase = Room.databaseBuilder(
@@ -55,7 +54,7 @@ interface DatabaseModule {
                         super.onCreate(db)
                         CoroutineScope(Dispatchers.IO).launch {
                             appDatabase.skillsDao().insertAllSkillsWithTranslations()
-                            appDatabase.specialAbilityDao().insertSomeSpecialAbilitiesWithTranslations()
+                            appDatabase.specialAbilityDao().insertFightingStyleSpecialAbilityEntitiesWithTranslations()
                         }
                     }
                 })
