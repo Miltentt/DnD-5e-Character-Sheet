@@ -108,7 +108,6 @@ class BaseInfoIntentHandler @Inject constructor(
                         .mapValues { checkNotNull(it.value){"value for Attributes cannot be null"} }
 
                 )
-//                    startAttributesToAttributes(viewStateProvider.viewState.value.uiState.startAttributes)
             )
 
             characterCreationNavigationStateHolder.initialize(

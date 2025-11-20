@@ -34,13 +34,6 @@ data class Attributes(
     companion object {
         val startAttributes: Map<StatisticType, Attribute?>
             get() = StatisticType.entries.associateWith { Attribute(Attribute.BASE_VALUE) }
-        /*fun startAttributesToAttributes(
-            startAttributes: Map<StatisticType, Attribute?>
-        ): Attributes{
-            val outputMap = Attributes().values.toMutableMap()
-            startAttributes.forEach { outputMap[it.key] = checkNotNull(it.value) }
-            return Attributes(outputMap)
-        }*/
     }
 }
 
