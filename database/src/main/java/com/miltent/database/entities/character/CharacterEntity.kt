@@ -9,8 +9,8 @@ import com.miltent.database.entities.character.CharacterEntity.Companion.TABLE_N
 @Entity(tableName = TABLE_NAME)
 data class CharacterEntity(
     @ColumnInfo(name = "characterId")
-    @PrimaryKey(autoGenerate = true)
-    val id: Int = 0,
+    @PrimaryKey
+    val id: String,
     @ColumnInfo(name = "name")
     val name: String,
     @Embedded

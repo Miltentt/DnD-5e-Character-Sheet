@@ -23,6 +23,7 @@ class CharacterDbToDomainMapper @Inject constructor(
             value.characterClass.characterClassIdentifier
         )
         return Character(
+            id = value.id,
             name = value.name,
             characterClass = characterClass,
             race = raceDbToDomainMapper.map(value.race),

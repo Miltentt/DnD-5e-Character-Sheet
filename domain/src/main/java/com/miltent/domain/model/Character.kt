@@ -1,6 +1,9 @@
 package com.miltent.domain.model
 
+import java.util.UUID
+
 data class Character(
+    override val id: String = UUID.randomUUID().toString(),
     override val name: String,
     override val level: Int,
     override val race: Race,
