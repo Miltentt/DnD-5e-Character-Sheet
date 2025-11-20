@@ -70,6 +70,7 @@ private fun FightingStyleScreen(
                 ) {
                     RadioButtonGroup(
                         modifier = Modifier.fillMaxWidth(),
+                        isScrollable = true,
                         title = stringResource(ResR.string.fighting_style_title),
                         supportingText = stringResource(ResR.string.fighting_style_subtitle),
                         fillContentWidth = true,

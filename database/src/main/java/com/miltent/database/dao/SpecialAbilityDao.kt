@@ -1,13 +1,32 @@
 package com.miltent.database.dao
 
 import androidx.room.Dao
+import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
+import com.miltent.database.domainToDb.SpecialAbilityEntityFactory
+import com.miltent.database.domainToDb.SpecialAbilityTranslationEntitiesFactory
 import com.miltent.database.entities.specialAbility.SpecialAbilityEntity
 import com.miltent.database.entities.specialAbility.SpecialAbilityTranslationEntity
 
 @Dao
 interface SpecialAbilityDao {
+
+    @Insert
+    suspend fun insertFightingStyleSpecialAbilityEntities(abilities: List<SpecialAbilityEntity>)
+
+    @Insert
+    suspend fun insertSpecialAbilitiesTranslations(translations: List<SpecialAbilityTranslationEntity>)
+
+    @Transaction
+    suspend fun insertFightingStyleSpecialAbilityEntitiesWithTranslations() {
+        insertFightingStyleSpecialAbilityEntities(
+            abilities = SpecialAbilityEntityFactory.fightingStyleSpecialAbilityEntities,
+        )
+        insertSpecialAbilitiesTranslations(
+            translations = SpecialAbilityTranslationEntitiesFactory.createSpecialAbilityTranslationEntities()
+        )
+    }
 
     @Query("SELECT * FROM ${SpecialAbilityEntity.TABLE_NAME}")
     suspend fun getSpecialAbilities(): List<SpecialAbilityEntity>
@@ -21,9 +40,8 @@ interface SpecialAbilityDao {
     @Transaction
     suspend fun getAllSpecialAbilities(language: String): Map<SpecialAbilityEntity, SpecialAbilityTranslationEntity?> =
         getSpecialAbilities().associateWith { specialAbility ->
-            getSpecialAbilitiesTranslations(
-                language
-            ).find { it.specialAbilityId == specialAbility.id }
+            getSpecialAbilitiesTranslations(language)
+                .find { it.specialAbilityId == specialAbility.id }
         }
 
     @Transaction

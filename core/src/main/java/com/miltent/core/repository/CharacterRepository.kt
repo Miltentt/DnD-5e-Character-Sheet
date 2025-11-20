@@ -14,5 +14,5 @@ interface CharacterRepository {
 
     fun getCharacterDetailedById(id: Int, language: Locale): Flow<CharacterDetailed>
 
-    suspend fun upsertCharacter(character: Character, skillIds: List<String>, specialAbilityIds: List<String>)
+    suspend fun upsertCharacter(character: Character, skillIds: List<Int>, specialAbilityIds: List<String>)
 }

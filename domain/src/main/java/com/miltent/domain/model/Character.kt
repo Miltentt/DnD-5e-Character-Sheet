@@ -16,7 +16,7 @@ data class Character(
         val baseAttributes: Attributes
         val race: Race
         val characterClass: CharacterClass
-        val skillsIds: List<String>
+        val skillsIds: List<Int>
         val specialAbility: List<SpecialAbility>
 
         fun baseInfo(
@@ -26,7 +26,7 @@ data class Character(
             baseAttributes: Attributes
         )
 
-        fun skills(skillsIds: List<String>)
+        fun skills(skillsIds: List<Int>)
 
         fun specialAbility(vararg specialAbility: SpecialAbility)
 

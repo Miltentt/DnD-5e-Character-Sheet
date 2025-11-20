@@ -51,7 +51,7 @@ class CharacterRepositoryImpl @Inject constructor(
 
     override suspend fun upsertCharacter(
         character: Character,
-        skillIds: List<String>,
+        skillIds: List<Int>,
         specialAbilityIds: List<String>
     ) {
         val characterEntity = characterDomainToEntityMapper.map(character)
