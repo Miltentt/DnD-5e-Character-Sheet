@@ -20,6 +20,12 @@
     <string name="statistic_short_intelligence">INT</string>
     <string name="statistic_short_wisdom">WIS</string>
     <string name="statistic_short_charisma">CHAR</string>
+    <string name="statistic_long_strength">STRENGTH</string>
+    <string name="statistic_long_dexterity">DEXTERITY</string>
+    <string name="statistic_long_constitution">CONSTITUTION</string>
+    <string name="statistic_long_intelligence">INTELLIGENCE</string>
+    <string name="statistic_long_wisdom">WISDOM</string>
+    <string name="statistic_long_charisma">CHARISMA</string>
 
     <!-- Dashboard -->
     <string name="button_create_character">Stwórz postać</string>
