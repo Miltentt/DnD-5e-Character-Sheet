@@ -14,10 +14,12 @@ interface SpecialAbilityDao {
 
     @Insert
     suspend fun insertFightingStyleSpecialAbilityEntities(abilities: List<SpecialAbilityEntity>)
+
     @Insert
     suspend fun insertSpecialAbilitiesTranslations(translations: List<SpecialAbilityTranslationEntity>)
+
     @Transaction
-    suspend fun insertFightingStyleSpecialAbilityEntitiesWithTranslations(){
+    suspend fun insertFightingStyleSpecialAbilityEntitiesWithTranslations() {
         insertFightingStyleSpecialAbilityEntities(
             abilities = SpecialAbilityEntityFactory.fightingStyleSpecialAbilityEntities,
         )
