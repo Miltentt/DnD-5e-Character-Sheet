@@ -23,7 +23,7 @@ class SpecialAbilityTranslationEntitiesFactory {
             )
         }
         fun createSpecialAbilityTranslationEntities(): List<SpecialAbilityTranslationEntity> {
-            val enFightingStyleNamesWithDescriptions = listOf<Pair<String,String>>(
+            val enFightingStylesNameToDescription = listOf<Pair<String,String>>(
                 Pair("Archery","You gain a +2 bonus to attack rolls you make with ranged weapons."),
                 Pair("Blind Fighting","You have blindsight with a range of 10 feet. Within that range," +
                         " you can effectively see anything that isn't behind total cover," +
@@ -65,7 +65,7 @@ class SpecialAbilityTranslationEntitiesFactory {
                         " If you aren't wielding any weapons or a shield when you make the attack roll, the d6 becomes a d8.\n" +
                         "At the start of each of your turns, you can deal 1d4 bludgeoning damage to one creature grappled by you."),
             )
-            val plFightingStyleNamesWithDescriptions = listOf<Pair<String,String>>(
+            val plFightingStylesNameToDescription = listOf<Pair<String,String>>(
                 Pair("Łucznictwo","+2 do rzutów ataku wykonywanych bronią dystansową."),
                 Pair("Obrona","+1 do CA, gdy masz założony pancerz."),
                 Pair("Pojedynkowanie",
@@ -91,8 +91,8 @@ class SpecialAbilityTranslationEntitiesFactory {
                     .fightingStyleSpecialAbilityEntities
                     .mapIndexed { index, it -> Triple(
                         it.id,
-                        enFightingStyleNamesWithDescriptions[index].first,
-                        enFightingStyleNamesWithDescriptions[index].second
+                        enFightingStylesNameToDescription[index].first,
+                        enFightingStylesNameToDescription[index].second
                         )
                     }
             val plFightingStylesIdToNameToDescription : List<Triple<String, String, String>> =
@@ -100,8 +100,8 @@ class SpecialAbilityTranslationEntitiesFactory {
                     .fightingStyleSpecialAbilityEntities
                     .mapIndexed { index, it -> Triple(
                         it.id,
-                        plFightingStyleNamesWithDescriptions[index].first,
-                        plFightingStyleNamesWithDescriptions[index].second
+                        plFightingStylesNameToDescription[index].first,
+                        plFightingStylesNameToDescription[index].second
                     )
                     }
 
