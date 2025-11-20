@@ -20,7 +20,7 @@ class BaseInfoValidatorImplTest {
             name = "name",
             race = Race.Dwarf,
             characterClass = CharacterClass.Fighter(8),
-            attributes = Attributes(),
+            startAttributes = Attributes.startAttributes,
         )
         // Assert
         assertEquals(emptyList<ValidationError>(), result)
@@ -34,7 +34,7 @@ class BaseInfoValidatorImplTest {
             name = "",
             race = Race.Dwarf,
             characterClass = CharacterClass.Fighter(8),
-            attributes = Attributes(),
+            startAttributes = Attributes.startAttributes,
         )
         // Assert
         assertEquals(listOf(ValidationError.EmptyName), result)
@@ -48,7 +48,7 @@ class BaseInfoValidatorImplTest {
             name = "name",
             race = null,
             characterClass = CharacterClass.Fighter(8),
-            attributes = Attributes(),
+            startAttributes = Attributes.startAttributes,
         )
         // Assert
         assertEquals(listOf(ValidationError.EmptyRace), result)
@@ -62,21 +62,86 @@ class BaseInfoValidatorImplTest {
             name = "name",
             race = Race.Dwarf,
             characterClass = null,
-            attributes = Attributes(),
+            startAttributes = Attributes.startAttributes,
         )
         // Assert
         assertEquals(listOf(ValidationError.EmptyClass), result)
     }
-
     @Test
-    fun `should return ValidationError StatisticTooHigh when statistic is over 18`() {
+    fun `should return list with ValidationError EmptyAttribute when statistic is null`(){
         // Arrange
         // Act
         val resultStr = sut.areFieldsValid(
             name = "name",
             race = Race.Dwarf,
             characterClass = CharacterClass.Fighter(8),
-            attributes = Attributes().updateAttribute(StatisticType.STR, Attribute(1)),
+            startAttributes = Attributes.startAttributes.toMutableMap()
+                .apply { this[StatisticType.STR] = null },
+        )
+        // Assert
+        assertEquals(listOf(ValidationError.EmptyAttribute(StatisticType.STR)), resultStr)
+        // Act
+        val resultDex = sut.areFieldsValid(
+            name = "name",
+            race = Race.Dwarf,
+            characterClass = CharacterClass.Fighter(8),
+            startAttributes = Attributes.startAttributes.toMutableMap()
+                .apply { this[StatisticType.DEX] = null },
+        )
+        // Assert
+        assertEquals(listOf(ValidationError.EmptyAttribute(StatisticType.DEX)), resultDex)
+        // Act
+        val resultCon = sut.areFieldsValid(
+            name = "name",
+            race = Race.Dwarf,
+            characterClass = CharacterClass.Fighter(8),
+            startAttributes = Attributes.startAttributes.toMutableMap()
+                .apply { this[StatisticType.CON] = null },
+        )
+        // Assert
+        assertEquals(listOf(ValidationError.EmptyAttribute(StatisticType.CON)), resultCon)
+        // Act
+        val resultInt = sut.areFieldsValid(
+            name = "name",
+            race = Race.Dwarf,
+            characterClass = CharacterClass.Fighter(8),
+            startAttributes = Attributes.startAttributes.toMutableMap()
+                .apply { this[StatisticType.INT] = null },
+        )
+        // Assert
+        assertEquals(listOf(ValidationError.EmptyAttribute(StatisticType.INT)), resultInt)
+        // Act
+        val resultWis = sut.areFieldsValid(
+            name = "name",
+            race = Race.Dwarf,
+            characterClass = CharacterClass.Fighter(8),
+            startAttributes = Attributes.startAttributes.toMutableMap()
+                .apply { this[StatisticType.WIS] = null },
+        )
+        // Assert
+        assertEquals(listOf(ValidationError.EmptyAttribute(StatisticType.WIS)), resultWis)
+        // Act
+        val resultCha = sut.areFieldsValid(
+            name = "name",
+            race = Race.Dwarf,
+            characterClass = CharacterClass.Fighter(8),
+            startAttributes = Attributes.startAttributes.toMutableMap()
+                .apply { this[StatisticType.CHA] = null },
+        )
+        // Assert
+        assertEquals(listOf(ValidationError.EmptyAttribute(StatisticType.CHA)), resultCha)
+    }
+
+    @Test
+    fun `should return list with ValidationError AttributeOutOfRange when statistic is over 18 or below 3`() {
+        // Arrange
+        // Act
+        val resultStr = sut.areFieldsValid(
+            name = "name",
+            race = Race.Dwarf,
+            characterClass = CharacterClass.Fighter(8),
+            startAttributes = Attributes.startAttributes.toMutableMap()
+                .apply { this[StatisticType.STR] = Attribute(2) },
         )
         // Assert
         assertEquals(listOf(ValidationError.AttributeOutOfRange(StatisticType.STR)), resultStr)
@@ -86,7 +151,8 @@ class BaseInfoValidatorImplTest {
             name = "name",
             race = Race.Dwarf,
             characterClass = CharacterClass.Fighter(8),
-            attributes = Attributes().updateAttribute(StatisticType.DEX, Attribute(19)),
+            startAttributes = Attributes.startAttributes.toMutableMap()
+                .apply { this[StatisticType.DEX] = Attribute(20) },
         )
         // Assert
         assertEquals(listOf(ValidationError.AttributeOutOfRange(StatisticType.DEX)), resultDex)
@@ -95,7 +161,8 @@ class BaseInfoValidatorImplTest {
             name = "name",
             race = Race.Dwarf,
             characterClass = CharacterClass.Fighter(8),
-            attributes = Attributes().updateAttribute(StatisticType.CON, Attribute(1)),
+            startAttributes = Attributes.startAttributes.toMutableMap()
+                .apply { this[StatisticType.CON] = Attribute(2) },
         )
         // Assert
         assertEquals(listOf(ValidationError.AttributeOutOfRange(StatisticType.CON)), resultCon)
@@ -104,7 +171,8 @@ class BaseInfoValidatorImplTest {
             name = "name",
             race = Race.Dwarf,
             characterClass = CharacterClass.Fighter(8),
-            attributes = Attributes().updateAttribute(StatisticType.INT, Attribute(19)),
+            startAttributes = Attributes.startAttributes.toMutableMap()
+                .apply { this[StatisticType.INT] = Attribute(20) },
         )
         // Assert
         assertEquals(listOf(ValidationError.AttributeOutOfRange(StatisticType.INT)), resultInt)
@@ -113,7 +181,8 @@ class BaseInfoValidatorImplTest {
             name = "name",
             race = Race.Dwarf,
             characterClass = CharacterClass.Fighter(8),
-            attributes = Attributes().updateAttribute(StatisticType.WIS, Attribute(1)),
+            startAttributes = Attributes.startAttributes.toMutableMap()
+                .apply { this[StatisticType.WIS] = Attribute(1) },
         )
         // Assert
         assertEquals(listOf(ValidationError.AttributeOutOfRange(StatisticType.WIS)), resultWis)
@@ -122,7 +191,8 @@ class BaseInfoValidatorImplTest {
             name = "name",
             race = Race.Dwarf,
             characterClass = CharacterClass.Fighter(8),
-            attributes = Attributes().updateAttribute(StatisticType.CHA, Attribute(19)),
+            startAttributes = Attributes.startAttributes.toMutableMap()
+                .apply { this[StatisticType.CHA] = Attribute(20) },
         )
         // Assert
         assertEquals(listOf(ValidationError.AttributeOutOfRange(StatisticType.CHA)), resultCha)
