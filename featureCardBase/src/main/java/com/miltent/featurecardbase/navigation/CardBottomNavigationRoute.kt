@@ -4,6 +4,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CardBottomNavigationRoute(
-    val name: String
+    val characterId: String
 ) {
 }

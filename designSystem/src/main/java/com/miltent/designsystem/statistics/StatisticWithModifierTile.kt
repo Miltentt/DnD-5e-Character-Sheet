@@ -20,7 +20,7 @@ fun StatisticWithModifierTile(typeText:String, attributeValue: Int, modifierValu
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp)
+            .padding(16.dp)
             .border(
                 shape = RoundedCornerShape(8.dp),
                 width = 2.dp,

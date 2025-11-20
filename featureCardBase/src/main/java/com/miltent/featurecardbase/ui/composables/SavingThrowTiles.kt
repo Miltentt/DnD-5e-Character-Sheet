@@ -1,6 +1,5 @@
 package com.miltent.featurecardbase.ui.composables
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.runtime.Composable
@@ -8,7 +7,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.miltent.domain.model.Attributes
 import com.miltent.domain.model.StatisticType
-import java.nio.file.WatchEvent
 
 @Composable
 fun SavingThrowTiles(attributes: Attributes, savingThrowProficiencies: Pair<StatisticType, StatisticType>) {

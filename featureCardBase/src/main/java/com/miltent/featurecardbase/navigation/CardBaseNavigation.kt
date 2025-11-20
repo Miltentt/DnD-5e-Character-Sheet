@@ -9,6 +9,6 @@ fun NavGraphBuilder.cardBase() {
 
         composable<CardBottomNavigationRoute> {
                 val args = it.toRoute<CardBottomNavigationRoute>()
-                CardBottomNavigationScreen(args.name)
+                CardBottomNavigationScreen(args.characterId)
         }
 }

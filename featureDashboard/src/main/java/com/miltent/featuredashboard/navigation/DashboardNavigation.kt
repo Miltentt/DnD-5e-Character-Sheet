@@ -22,7 +22,7 @@ fun NavGraphBuilder.dashboard(
             DashboardScreen(onEvent = { event ->
                 when (event) {
                     is DashboardEvent.NavigateToCharacterCreation -> navigateToCharacterCreation.invoke()
-                    is DashboardEvent.NavigateToBaseCard -> navigateToCharacterCard.invoke(event.name)
+                    is DashboardEvent.NavigateToBaseCard -> navigateToCharacterCard.invoke(event.characterId)
                 }
             })
         }
