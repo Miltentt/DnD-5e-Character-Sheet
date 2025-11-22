@@ -11,9 +11,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.miltent.domain.model.Attributes
 import com.miltent.domain.model.Character
-import com.miltent.domain.model.StatisticType
 import com.miltent.featurecardbase.characterCard.state.CharacterCardViewState
 import com.miltent.featurecardbase.ui.composables.AttributeTiles
 import com.miltent.featurecardbase.ui.composables.SavingThrowTiles
@@ -38,8 +36,8 @@ internal fun CharacterCardScreen(
     Column {
         AttributeTiles(attributes = character.baseAttributes)
         SavingThrowTiles(
-            Attributes(),
-            savingThrowProficiencies = Pair(StatisticType.STR, StatisticType.DEX)
+            character.baseAttributes,
+            savingThrowProficiencies = character.characterClass.savingThrows
         )
     }
     Box(modifier = Modifier.

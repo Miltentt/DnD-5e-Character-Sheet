@@ -18,8 +18,8 @@ internal class DashboardIntentHandler @Inject internal constructor(
     override suspend fun handle(intent: DashboardIntent) = when(intent) {
         is DashboardIntent.OnCharacterCreateClicked -> eventHandler.emitEvent(DashboardEvent.NavigateToCharacterCreation)
         is DashboardIntent.OnCharacterClicked -> {
-            getCharacterUseCase.invoke(intent.characterId).collect { CharacterCash.update(it) }
             eventHandler.emitEvent(DashboardEvent.NavigateToBaseCard(intent.characterId))
+            getCharacterUseCase.invoke(intent.characterId).collect { CharacterCash.update(it) }
         }
         is DashboardIntent.OnCharacterLongClick -> deleteCharacterUseCase.invoke(id = intent.id)
     }
