@@ -2,9 +2,6 @@ package com.miltent.featurecardbase.di
 
 import com.miltent.core.event.EventHandler
 import com.miltent.core.intent.IntentHandler
-import com.miltent.core.ui.ViewStateProvider
-import com.miltent.featurecardbase.characterCard.state.CharacterCardViewState
-import com.miltent.featurecardbase.characterCard.state.CharacterCardViewStateProvider
 import com.miltent.featurecardbase.event.CardBaseEvent
 import com.miltent.featurecardbase.event.CardBaseEventHandler
 import com.miltent.featurecardbase.intent.CardBaseIntent
@@ -33,8 +30,6 @@ internal interface CardBaseModule {
     @Binds
     fun bindCardBaseEventHandler(handler: CardBaseEventHandler): EventHandler<CardBaseEvent>
 
-    @Binds
-    fun bindCharacterCardViewStateProvider(provider: CharacterCardViewStateProvider): ViewStateProvider<CharacterCardViewState>
 
     companion object {
 

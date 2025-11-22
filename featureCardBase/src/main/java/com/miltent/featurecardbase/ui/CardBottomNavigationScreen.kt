@@ -22,7 +22,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.miltent.featurecardbase.characterCard.CharacterCardRoute
-import com.miltent.featurecardbase.characterCard.CharacterCardScreen
+import com.miltent.featurecardbase.characterCard.ui.CharacterCardScreen
 import com.miltent.featurecardbase.characterEquipment.CharacterEquipmentRoute
 import com.miltent.featurecardbase.characterEquipment.CharacterEquipmentScreen
 import com.miltent.featurecardbase.characterSkills.CharacterSkillsRoute
