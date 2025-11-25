@@ -12,16 +12,17 @@ import javax.inject.Inject
 
 @ViewModelScoped
 class CharacterCardViewStateProvider @Inject constructor(
-    @CharacterCard private val viewmodelScope: CoroutineScope
+    @CharacterCard private val viewmodelScope: CoroutineScope,
+    private val characterCash: CharacterCash
 ) : ViewStateProvider<CharacterCardViewState>() {
     override val _viewState: MutableStateFlow<CharacterCardViewState> =
         MutableStateFlow(CharacterCardViewState(null))
 
     init {
-        viewmodelScope.launch {
-            CharacterCash.characterCash.collect { character ->
-                _viewState.update{ it.copy(character = character) }
-            }
+        viewmodelScope.launch{
+            characterCash.characterCash.collect { characterCash -> updateState(
+                viewState.value.copy(characterCash)
+            ) }
         }
     }
 }
