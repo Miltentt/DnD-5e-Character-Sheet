@@ -39,17 +39,9 @@ internal fun CharacterCardScreen(
             savingThrowProficiencies = character.characterClass.savingThrows
         )
     }
-    Box(modifier = Modifier.
-    fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ){
-        Text(
-            text = character.id
-        )
-    }
 }
 @Preview(showBackground = true)
 @Composable
 fun CharacterCardScreenPreview(){
-    CharacterCardScreen()
+    CharacterCardScreen(Character.dummyCharacter)
 }

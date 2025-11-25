@@ -9,6 +9,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -20,7 +21,7 @@ fun StatisticWithModifierTile(typeText:String, attributeValue: Int, modifierValu
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp)
+            .padding(8.dp)
             .border(
                 shape = RoundedCornerShape(8.dp),
                 width = 2.dp,
@@ -28,7 +29,7 @@ fun StatisticWithModifierTile(typeText:String, attributeValue: Int, modifierValu
             )
             .padding(4.dp)
     ) {
-        Text(text = typeText, fontSize = 12.sp, modifier = Modifier.padding(4.dp))
+        Text(text = typeText, fontSize = 10.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(4.dp))
         Text(
             text = attributeValue.toString(),
             modifier = Modifier
