@@ -31,10 +31,22 @@ fun StatisticTiles(character: Character, modifier: Modifier = Modifier) {
         horizontalArrangement = Arrangement.SpaceEvenly,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        BaseCardStatisticTile(stringResource(ResR.string.proficiency_bonus),character.proficiencyBonus.toString())
-        BaseCardStatisticTile(stringResource(ResR.string.walking_speed), character.movementSpeed.value.toString())
-        BaseCardStatisticTile(stringResource(ResR.string.initiative),character.baseInitiativeBonus.toString())
-        BaseCardStatisticTile(stringResource(ResR.string.armor_class),character.baseArmorClass.value.toString())
+        BaseCardStatisticTile(
+            stringResource(ResR.string.proficiency_bonus),
+            character.proficiencyBonus.toString()
+        )
+        BaseCardStatisticTile(
+            stringResource(ResR.string.walking_speed),
+            character.movementSpeed.value.toString()
+        )
+        BaseCardStatisticTile(
+            stringResource(ResR.string.initiative),
+            character.baseInitiativeBonus.toString()
+        )
+        BaseCardStatisticTile(
+            stringResource(ResR.string.armor_class),
+            character.baseArmorClass.value.toString()
+        )
     }
 
 }
