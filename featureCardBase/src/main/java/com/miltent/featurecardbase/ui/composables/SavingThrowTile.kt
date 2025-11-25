@@ -11,19 +11,29 @@ import com.miltent.domain.model.StatisticType
 
 
 @Composable
-fun SavingThrowTile(type: StatisticType, attributes: Attributes, savingThrowProficiencies: Pair<StatisticType, StatisticType>){
-    SavingThrowTile(type,attributes.values.getValue(type), type in savingThrowProficiencies.toList())
+fun SavingThrowTile(
+    type: StatisticType,
+    attributes: Attributes,
+    savingThrowProficiencies: Pair<StatisticType, StatisticType>,
+    proficiencyBonus: Int
+){
+    SavingThrowTile(
+        type = type,
+        attribute = attributes.values.getValue(type),
+        proficiency = type in savingThrowProficiencies.toList(),
+        proficiencyBonus = proficiencyBonus
+    )
 }
 @Composable
-fun SavingThrowTile(type: StatisticType, attribute: Attribute, proficiency: Boolean) {
+fun SavingThrowTile(type: StatisticType, attribute: Attribute, proficiency: Boolean, proficiencyBonus: Int) {
     StatisticModifierTile(
         typeText = stringResource(StatisticTypeFormatter.formatStatisticTypeLong(type) ),
-        modifierValue = attribute.calculateModifier() + if(proficiency) Attribute.PROFICIENCY_MODIFIER_BONUS else 0
+        modifierValue = attribute.calculateModifier() + if(proficiency) proficiencyBonus else 0
     )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun SavingThrowTilePreview(){
-    SavingThrowTile(StatisticType.INT, Attribute(14),true)
+    SavingThrowTile(StatisticType.INT, Attribute(14),true, 2)
 }

@@ -11,9 +11,9 @@ import com.miltent.domain.model.Attributes
 import com.miltent.domain.model.StatisticType
 
 @Composable
-fun AttributeTiles(attributes: Attributes){
+fun AttributeTiles(attributes: Attributes, modifier: Modifier = Modifier){
     Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
         Column(modifier = Modifier.weight(1f)) {

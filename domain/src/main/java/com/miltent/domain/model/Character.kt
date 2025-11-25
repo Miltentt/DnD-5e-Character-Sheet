@@ -1,6 +1,7 @@
 package com.miltent.domain.model
 
 import java.util.UUID
+import kotlin.math.ceil
 
 data class Character(
     override val id: String = UUID.randomUUID().toString(),
@@ -13,6 +14,10 @@ data class Character(
     val movementSpeed: MovementSpeed,
     val healthPoints: HealthPoints
 ): DashboardCharacter {
+
+    val baseInitiativeBonus = baseAttributes.values.getValue(StatisticType.DEX).calculateModifier()
+    val baseArmorClass = ArmorClass(baseAttributes.values.getValue(StatisticType.DEX).value)
+    val proficiencyBonus = 1 + ceil((level.toDouble()/4)).toInt()
 
     interface Builder1stLevel {
 

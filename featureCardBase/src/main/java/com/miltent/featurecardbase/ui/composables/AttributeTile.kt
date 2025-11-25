@@ -17,9 +17,9 @@ fun AttributeTile(type: StatisticType, attributes: Attributes){
 @Composable
 fun AttributeTile(type: StatisticType, attribute: Attribute) {
     StatisticWithModifierTile(
-        stringResource(StatisticTypeFormatter.formatStatisticTypeLong(type)),
-        attribute.calculateModifier(),
-        attribute.value
+        typeText = stringResource(StatisticTypeFormatter.formatStatisticTypeLong(type)),
+        modifierValue = attribute.calculateModifier(),
+        attributeValue = attribute.value
     )
 }
 

@@ -53,4 +53,12 @@
     <string name="card">Card</string>
     <string name="skills">Skills</string>
     <string name="equipment">Equipment</string>
+    <string name="hit_points">HIT POINTS</string>
+    <string name="condition">CONDITION</string>
+    <string name="initiative">INITIATIVE</string>
+    <string name="armor_class">ARMOR CLASS</string>
+    <string name="walking_speed">WLK. SPEED</string>
+    <string name="proficiency_bonus">PROF. BONUS</string>
+
+
 </resources>

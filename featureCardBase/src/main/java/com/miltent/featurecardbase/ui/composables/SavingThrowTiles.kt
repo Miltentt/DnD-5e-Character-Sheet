@@ -15,21 +15,26 @@ import com.miltent.domain.model.Attributes
 import com.miltent.domain.model.StatisticType
 
 @Composable
-fun SavingThrowTiles(attributes: Attributes, savingThrowProficiencies: Pair<StatisticType, StatisticType>) {
+fun SavingThrowTiles(
+    attributes: Attributes,
+    savingThrowProficiencies: Pair<StatisticType, StatisticType>,
+    proficiencyBonus: Int,
+    modifier: Modifier = Modifier
+) {
 
-    Column {
-        Spacer(modifier = Modifier.padding(8.dp))
+    Column(modifier = modifier) {
+        Spacer(modifier = Modifier.padding(2.dp))
         Text("Saving Throws", fontSize = 20.sp, modifier = Modifier.padding(horizontal = 16.dp))
         Row {
             Column(modifier = Modifier.weight(1f)) {
-                SavingThrowTile(StatisticType.STR, attributes, savingThrowProficiencies)
-                SavingThrowTile(StatisticType.DEX, attributes, savingThrowProficiencies)
-                SavingThrowTile(StatisticType.CON, attributes, savingThrowProficiencies)
+                SavingThrowTile(StatisticType.STR, attributes, savingThrowProficiencies, proficiencyBonus)
+                SavingThrowTile(StatisticType.DEX, attributes, savingThrowProficiencies, proficiencyBonus)
+                SavingThrowTile(StatisticType.CON, attributes, savingThrowProficiencies, proficiencyBonus)
             }
             Column(modifier = Modifier.weight(1f)) {
-                SavingThrowTile(StatisticType.INT, attributes, savingThrowProficiencies)
-                SavingThrowTile(StatisticType.WIS, attributes, savingThrowProficiencies)
-                SavingThrowTile(StatisticType.CHA, attributes, savingThrowProficiencies)
+                SavingThrowTile(StatisticType.INT, attributes, savingThrowProficiencies, proficiencyBonus)
+                SavingThrowTile(StatisticType.WIS, attributes, savingThrowProficiencies, proficiencyBonus)
+                SavingThrowTile(StatisticType.CHA, attributes, savingThrowProficiencies, proficiencyBonus)
             }
         }
     }
@@ -38,5 +43,5 @@ fun SavingThrowTiles(attributes: Attributes, savingThrowProficiencies: Pair<Stat
 @Preview(showBackground = true)
 @Composable
 fun SavingThrowTilesPreview(){
-    SavingThrowTiles(Attributes(), Pair(StatisticType.STR, StatisticType.INT))
+    SavingThrowTiles(Attributes(), Pair(StatisticType.STR, StatisticType.INT), 2)
 }
