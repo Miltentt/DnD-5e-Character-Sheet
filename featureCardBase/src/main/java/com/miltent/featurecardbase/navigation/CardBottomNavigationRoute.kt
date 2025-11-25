@@ -3,7 +3,4 @@ package com.miltent.featurecardbase.navigation
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CardBottomNavigationRoute(
-    val characterId: String
-) {
-}
+data object CardBottomNavigationRoute

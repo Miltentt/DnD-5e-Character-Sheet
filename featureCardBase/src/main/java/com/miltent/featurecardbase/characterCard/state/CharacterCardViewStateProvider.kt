@@ -20,8 +20,8 @@ class CharacterCardViewStateProvider @Inject constructor(
 
     init {
         viewmodelScope.launch{
-            characterCash.characterCash.collect { characterCash -> updateState(
-                viewState.value.copy(characterCash)
+            characterCash.characterCash.collect { characterCash ->
+                updateState(viewState.value.copy(characterCash)
             ) }
         }
     }

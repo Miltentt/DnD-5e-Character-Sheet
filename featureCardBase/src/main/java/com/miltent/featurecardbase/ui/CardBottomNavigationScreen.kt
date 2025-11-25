@@ -39,7 +39,7 @@ data class BottomNavigationItem(
 
 
 @Composable
-fun CardBottomNavigationScreen(characterId: String) {
+fun CardBottomNavigationScreen() {
     val innerNavController = rememberNavController()
     val navBackStackEntry = innerNavController.currentBackStackEntryAsState()
     val currentDestinationRoute = navBackStackEntry.value?.destination?.route
@@ -96,7 +96,7 @@ fun CardBottomNavigationScreen(characterId: String) {
             startDestination = CharacterCardRoute,
             modifier = Modifier.padding(innerPadding)
         ) {
-            composable<CharacterCardRoute> { CharacterCardScreen(characterId) }
+            composable<CharacterCardRoute> { CharacterCardScreen() }
             composable<CharacterSkillsRoute> { CharacterSkillsScreen() }
             composable<CharacterEquipmentRoute> { CharacterEquipmentScreen() }
         }

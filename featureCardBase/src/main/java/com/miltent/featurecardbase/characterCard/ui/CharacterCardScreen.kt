@@ -18,9 +18,8 @@ import com.miltent.featurecardbase.ui.composables.SavingThrowTiles
 
 
 @Composable
-internal fun CharacterCardScreen(
-    characterId: String,
-){
+internal fun CharacterCardScreen(){
+
     val viewModel: CharacterCardViewModel = hiltViewModel()
     val viewState: CharacterCardViewState by viewModel.viewState.collectAsStateWithLifecycle()
     val character = viewState.character ?: throw Exception("character cannot be null")
@@ -52,5 +51,5 @@ internal fun CharacterCardScreen(
 @Preview(showBackground = true)
 @Composable
 fun CharacterCardScreenPreview(){
-    CharacterCardScreen("Tul")
+    CharacterCardScreen()
 }
