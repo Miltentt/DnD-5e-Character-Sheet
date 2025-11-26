@@ -14,37 +14,37 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.miltent.designsystem.theme.Colors
+import com.miltent.designsystem.theme.Spacing
 import com.miltent.resources.R as ResR
 
 @Composable
-fun DeleteCharacterPopUp(name: String, onClick: (Boolean) -> Unit, modifier: Modifier = Modifier) {
+fun DeleteCharacterPopUp(name: String, onClick: (Boolean) -> Unit) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
-            .padding(8.dp)
+            .padding(Spacing.spacing8)
             .background(Colors.primary)
     )
     {
         Text(text = stringResource(ResR.string.delete_character_dialog, name),
             fontSize = 16.sp,
-            modifier = Modifier.padding(16.dp),
+            modifier = Modifier.padding(Spacing.spacing16),
             textAlign = TextAlign.Center
         )
         Row {
-            Text(text = "tak",
+            Text(text = stringResource(ResR.string.yes),
                 Modifier
                     .clickable(onClick = { onClick(true)})
-                    .padding(16.dp),
+                    .padding(Spacing.spacing16),
                 fontSize = 22.sp
             )
-            Spacer(Modifier.width(22.dp))
-            Text(text = "nie",
+            Spacer(Modifier.width(Spacing.spacing24))
+            Text(text = stringResource(ResR.string.no),
                 Modifier
                     .clickable(onClick = { onClick(false)})
-                    .padding(16.dp),
+                    .padding(Spacing.spacing16),
                 fontSize = 22.sp
                 )
         }
@@ -54,5 +54,5 @@ fun DeleteCharacterPopUp(name: String, onClick: (Boolean) -> Unit, modifier: Mod
 @Preview
 @Composable
 fun DeleteCharacterPopUpPreview(){
-    DeleteCharacterPopUp("",{})
+    DeleteCharacterPopUp("Grzegorz",{})
 }
