@@ -19,13 +19,14 @@ internal class DashboardViewStateProvider @Inject constructor(
     @Dashboard private val viewModelScope: CoroutineScope
 ): ViewStateProvider<DashboardViewState>() {
 
-    override val _viewState: MutableStateFlow<DashboardViewState> = MutableStateFlow(DashboardViewState.Empty)
+    override val _viewState: MutableStateFlow<DashboardViewState> =
+        MutableStateFlow(DashboardViewState(emptyList(), DashboardUiState()))
 
     init {
         viewModelScope.launch {
             getDashBoardCharactersUseCase.invoke().collect { dashboardCharacters: List<DashboardCharacter> ->
                 _viewState.update {
-                    DashboardViewState.Loaded(
+                    DashboardViewState(
                         dashboardCharacters,
                         uiState = DashboardUiState()
                     )

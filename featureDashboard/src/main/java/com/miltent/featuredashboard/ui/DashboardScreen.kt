@@ -78,8 +78,19 @@ private fun DashboardScreen(
                 )
             },
             content = { paddingValues: PaddingValues ->
-                when (viewState) {
-                    is DashboardViewState.Loaded -> {
+                when {
+                    viewState.characterList.isEmpty() ->
+                        Text(
+                            stringResource(ResR.string.no_characters),
+                            color = Colors.primary,
+                            fontSize = 22.sp,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(Spacing.spacing16)
+                                .background(Colors.onPrimary)
+                                .padding(Spacing.spacing8)
+                        )
+                    else -> {
                         Box(modifier = Modifier.fillMaxSize()){
                             viewState.uiState.characterLongClickedId?.let { characterId ->
                                 Dialog(
@@ -124,25 +135,17 @@ private fun DashboardScreen(
                                                     )
                                                 )
                                             },
-                                            onLongClick = { DashboardIntent.OnChoosingCharacterToDelete(character.id) }
+                                            onLongClick = {
+                                                onIntent.invoke(
+                                                    DashboardIntent.OnChoosingCharacterToDelete(character.id)
+                                                )
+                                            }
                                         )
                                     })
                             }
                         }
                     }
-                    is DashboardViewState.Empty ->
-                        Text(
-                            stringResource(ResR.string.no_characters),
-                            color = Colors.primary,
-                            fontSize = 22.sp,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(Spacing.spacing16)
-                                .background(Colors.onPrimary)
-                                .padding(Spacing.spacing8)
-                        )
                 }
-
             }
         )
     }
@@ -151,14 +154,14 @@ private fun DashboardScreen(
 @Composable
 @Preview
 fun DashboardScreenEmpty_Preview() {
-    val state = DashboardViewState.Empty
+    val state = DashboardViewState(emptyList(), DashboardUiState())
     DashboardScreen(viewState = state, onIntent = {})
 }
 
 @Composable
 @Preview
 fun DashboardScreenLoaded_Preview() {
-    val state = DashboardViewState.Loaded(
+    val state = DashboardViewState(
         listOf(
             object : DashboardCharacter {
                 override val id = "Nandor"

@@ -2,16 +2,16 @@ package com.miltent.featuredashboard.intent
 
 import com.miltent.core.event.EventHandler
 import com.miltent.core.intent.IntentHandler
+import com.miltent.core.ui.ViewStateProvider
 import com.miltent.core.useCase.DeleteCharacterUseCase
 import com.miltent.featuredashboard.event.DashboardEvent
 import com.miltent.featuredashboard.state.DashboardUiState
 import com.miltent.featuredashboard.state.DashboardViewState
-import com.miltent.featuredashboard.state.provider.DashboardViewStateProvider
 import dagger.hilt.android.scopes.ViewModelScoped
 import javax.inject.Inject
 @ViewModelScoped
 internal class DashboardIntentHandler @Inject internal constructor(
-    private val viewStateProvider: DashboardViewStateProvider,
+    private val viewStateProvider: ViewStateProvider<DashboardViewState>,
     private val eventHandler: EventHandler<DashboardEvent>,
     private val deleteCharacterUseCase: DeleteCharacterUseCase
 ): IntentHandler<DashboardIntent> {
@@ -21,7 +21,7 @@ internal class DashboardIntentHandler @Inject internal constructor(
         is DashboardIntent.OnCharacterDeleteClicked -> deleteCharacterUseCase.invoke(id = intent.id)
         is DashboardIntent.OnChoosingCharacterToDelete ->
             viewStateProvider.updateState(
-                (viewStateProvider.viewState.value as DashboardViewState.Loaded).copy(
+                viewStateProvider.viewState.value.copy(
                     uiState = DashboardUiState(intent.id)
                 )
             )
