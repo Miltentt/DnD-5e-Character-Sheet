@@ -7,5 +7,5 @@ sealed class DashboardViewState: ViewState {
 
     data object Empty: DashboardViewState()
 
-    data class Loaded(val characterList: List<DashboardCharacter>): DashboardViewState()
+    data class Loaded(val characterList: List<DashboardCharacter>, val uiState: DashboardUiState): DashboardViewState()
 }

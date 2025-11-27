@@ -19,7 +19,6 @@ interface CharacterDao {
     @Query("DELETE FROM ${CharacterEntity.TABLE_NAME} WHERE characterId = :id")
     suspend fun deleteCharacter(id: String)
 
-
     @Upsert
     suspend fun upsertCharacter(character: CharacterEntity): Long
 

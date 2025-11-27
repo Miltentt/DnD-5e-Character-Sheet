@@ -37,7 +37,7 @@ class CharacterRepositoryImpl @Inject constructor(
         }
 
     override suspend fun deleteCharacterWithJunctions(id: String) {
-        characterDao.deleteCharacterWithJunctions(id)
+        characterDao.deleteCharacter(id)
     }
 
     override fun getCharacterById(id: String): Flow<Character> =
