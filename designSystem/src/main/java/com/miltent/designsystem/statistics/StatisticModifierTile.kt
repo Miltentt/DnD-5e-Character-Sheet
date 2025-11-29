@@ -37,7 +37,7 @@ fun StatisticModifierTile(typeText: String, modifierValue: Int) {
                     width = 2.dp,
                     color = Colors.primary
                 )
-                .padding(4.dp)
+                .padding(Spacing.spacing4)
             ,
             textAlign = TextAlign.Center
         )

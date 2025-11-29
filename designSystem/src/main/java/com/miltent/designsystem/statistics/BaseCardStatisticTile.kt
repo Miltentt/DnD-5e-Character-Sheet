@@ -10,19 +10,20 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.miltent.designsystem.theme.Spacing
 
 @Composable
 fun BaseCardStatisticTile(statName: String, statValue: String) {
 
     Column(
-        modifier = Modifier.padding(4.dp),
+        modifier = Modifier.padding(Spacing.spacing4),
         horizontalAlignment = Alignment.CenterHorizontally
 
     ) {
         Text(
             text = statValue.toString(),
             modifier = Modifier
-                .padding(horizontal = 12.dp),
+                .padding(horizontal = Spacing.spacing12),
             fontSize = 40.sp,
         )
         Text(text = statName, fontSize = 10.sp, fontWeight = FontWeight.Bold)

@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.miltent.designsystem.theme.Spacing
 import com.miltent.domain.model.Attributes
 import com.miltent.domain.model.StatisticType
 
@@ -23,8 +24,8 @@ fun SavingThrowTiles(
 ) {
 
     Column(modifier = modifier) {
-        Spacer(modifier = Modifier.padding(2.dp))
-        Text("Saving Throws", fontSize = 20.sp, modifier = Modifier.padding(horizontal = 16.dp))
+        Spacer(modifier = Modifier.padding(Spacing.spacing2))
+        Text("Saving Throws", fontSize = 20.sp, modifier = Modifier.padding(horizontal = Spacing.spacing16))
         Row {
             Column(modifier = Modifier.weight(1f)) {
                 SavingThrowTile(StatisticType.STR, attributes, savingThrowProficiencies, proficiencyBonus)
