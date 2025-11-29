@@ -22,7 +22,7 @@ internal class DashboardIntentHandler @Inject internal constructor(
         is DashboardIntent.OnCharacterCreateClicked -> eventHandler.emitEvent(DashboardEvent.NavigateToCharacterCreation)
         is DashboardIntent.OnCharacterClicked -> {
             eventHandler.emitEvent(DashboardEvent.NavigateToBaseCard)
-            characterCash.update(intent.characterId)
+            characterCash.update(intent.id)
         }
         is DashboardIntent.OnCharacterDeleteClicked -> deleteCharacterUseCase.invoke(id = intent.id)
         is DashboardIntent.OnChoosingCharacterToDelete ->

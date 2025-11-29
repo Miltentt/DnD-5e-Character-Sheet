@@ -131,7 +131,7 @@ private fun DashboardScreen(
                                             onClick = {
                                                 onIntent.invoke(
                                                     DashboardIntent.OnCharacterClicked(
-                                                        characterId = character.id
+                                                        id = character.id
                                                     )
                                                 )
                                             },

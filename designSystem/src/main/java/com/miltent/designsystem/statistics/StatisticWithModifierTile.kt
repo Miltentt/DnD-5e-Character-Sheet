@@ -17,6 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.miltent.designsystem.theme.Colors
+import com.miltent.designsystem.theme.Spacing
 
 @Composable
 fun StatisticWithModifierTile(typeText:String, attributeValue: Int, modifierValue: Int) {
@@ -24,13 +25,13 @@ fun StatisticWithModifierTile(typeText:String, attributeValue: Int, modifierValu
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp)
+            .padding(Spacing.spacing8)
             .border(
                 shape = RoundedCornerShape(12.dp),
                 width = 2.dp,
                 color = Colors.primary
             )
-            .padding(4.dp)
+            .padding(Spacing.spacing4)
     ) {
         Text(text = typeText, fontSize = 10.sp, fontWeight = FontWeight.Bold)
         Text(
@@ -38,13 +39,13 @@ fun StatisticWithModifierTile(typeText:String, attributeValue: Int, modifierValu
             textAlign = TextAlign.Center,
             modifier = Modifier
                 .widthIn(min = 100.dp)
-                .padding(4.dp)
+                .padding(Spacing.spacing4)
                 .border(
                     shape = RoundedCornerShape(12.dp),
                     width = 2.dp,
                     color = Colors.primary
                 )
-                .padding(horizontal = 22.dp),
+                .padding(horizontal = Spacing.spacing24),
             fontSize = 40.sp,
         )
         Text(
@@ -58,9 +59,9 @@ fun StatisticWithModifierTile(typeText:String, attributeValue: Int, modifierValu
                     width = 2.dp,
                     color = Colors.primary
                 )
-                .padding(horizontal = 12.dp, vertical = 2.dp)
+                .padding(horizontal = Spacing.spacing12, vertical = Spacing.spacing2)
         )
-        Spacer(Modifier.padding(2.dp))
+        Spacer(Modifier.padding(Spacing.spacing2))
     }
 }
 

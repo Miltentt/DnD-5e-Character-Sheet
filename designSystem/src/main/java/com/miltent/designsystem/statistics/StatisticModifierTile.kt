@@ -16,13 +16,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.miltent.designsystem.theme.Colors
+import com.miltent.designsystem.theme.Spacing
 
 @Composable
 fun StatisticModifierTile(typeText: String, modifierValue: Int) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
-            .padding(horizontal = 8.dp, vertical = 4.dp)
+            .padding(horizontal = Spacing.spacing8, vertical = Spacing.spacing4)
             .fillMaxWidth()
     ) {
         Text(
@@ -51,7 +52,7 @@ fun StatisticModifierTile(typeText: String, modifierValue: Int) {
                     width = 2.dp,
                     color = Colors.primary
                 )
-                .padding(horizontal = 16.dp, vertical = 8.dp))
+                .padding(horizontal = Spacing.spacing16, vertical = Spacing.spacing8))
     }
 }
 

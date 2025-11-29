@@ -13,8 +13,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.miltent.designsystem.theme.Spacing
 import com.miltent.domain.model.Character
 import com.miltent.domain.model.HealthPoints
 import com.miltent.resources.R as ResR
@@ -25,7 +25,7 @@ fun CharacterCardTopBar(modifier: Modifier = Modifier, name: String, condition: 
         horizontalArrangement = Arrangement.SpaceEvenly,
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
-            .padding(4.dp)
+            .padding(vertical = Spacing.spacing4)
             .fillMaxWidth()
     ) {
         Column(
@@ -36,7 +36,7 @@ fun CharacterCardTopBar(modifier: Modifier = Modifier, name: String, condition: 
             Text(
                 text = condition,
                 modifier = Modifier
-                    .padding(horizontal = 12.dp),
+                    .padding(horizontal = Spacing.spacing12),
                 fontSize = 24.sp,
             )
         }
@@ -56,7 +56,7 @@ fun CharacterCardTopBar(modifier: Modifier = Modifier, name: String, condition: 
             Text(
                 text = "${healthPoints.current}/${healthPoints.max}",
                 modifier = Modifier
-                    .padding(horizontal = 12.dp),
+                    .padding(horizontal = Spacing.spacing8),
                 fontSize = 24.sp,
             )
         }

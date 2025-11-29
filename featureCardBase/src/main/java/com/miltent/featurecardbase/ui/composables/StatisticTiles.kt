@@ -14,6 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.miltent.designsystem.statistics.BaseCardStatisticTile
 import com.miltent.designsystem.theme.Colors
+import com.miltent.designsystem.theme.Spacing
 import com.miltent.domain.model.Character
 import com.miltent.resources.R as ResR
 
@@ -22,7 +23,7 @@ fun StatisticTiles(character: Character, modifier: Modifier = Modifier) {
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(8.dp)
+            .padding(Spacing.spacing8)
             .border(
                 shape = RoundedCornerShape(12.dp),
                 width = 2.dp,
