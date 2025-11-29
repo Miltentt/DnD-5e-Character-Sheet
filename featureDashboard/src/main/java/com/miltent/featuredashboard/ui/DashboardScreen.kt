@@ -38,6 +38,7 @@ import com.miltent.domain.model.DashboardCharacter
 import com.miltent.domain.model.Race
 import com.miltent.featuredashboard.event.DashboardEvent
 import com.miltent.featuredashboard.intent.DashboardIntent
+import com.miltent.featuredashboard.state.DashboardUiState
 import com.miltent.featuredashboard.state.DashboardViewState
 import com.miltent.featuredashboard.ui.composables.CharacterTile
 import com.miltent.featuredashboard.ui.composables.DeleteCharacterPopUp
@@ -77,23 +78,35 @@ private fun DashboardScreen(
                 )
             },
             content = { paddingValues: PaddingValues ->
-                when (viewState) {
-                    is DashboardViewState.Loaded -> {
-                        var characterLongClicked by remember { mutableStateOf<DashboardCharacter?>(null) }
+                when {
+                    viewState.characterList.isEmpty() ->
+                        Text(
+                            stringResource(ResR.string.no_characters),
+                            color = Colors.primary,
+                            fontSize = 22.sp,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(Spacing.spacing16)
+                                .background(Colors.onPrimary)
+                                .padding(Spacing.spacing8)
+                        )
+                    else -> {
                         Box(modifier = Modifier.fillMaxSize()){
-                            characterLongClicked?.let {
+                            viewState.uiState.characterLongClickedId?.let { characterId ->
                                 Dialog(
-                                    onDismissRequest = { characterLongClicked = null },
+                                    onDismissRequest = { onIntent.invoke(DashboardIntent.OnChoosingCharacterToDelete(null)) },
                                 ) {
                                     DeleteCharacterPopUp(
-                                        name = characterLongClicked?.name.orEmpty(),
+                                        name = viewState.characterList
+                                            .find { it.id == characterId }
+                                            ?.name ?: "",
                                         onClick = {
                                             if (it) onIntent.invoke(
-                                                DashboardIntent.OnCharacterLongClick(
-                                                    id = characterLongClicked?.id.orEmpty()
+                                                DashboardIntent.OnCharacterDeleteClicked(
+                                                    id = characterId
                                                 )
                                             )
-                                            characterLongClicked = null
+                                            onIntent.invoke(DashboardIntent.OnChoosingCharacterToDelete(null))
                                         }
                                     )
                                 }
@@ -122,25 +135,17 @@ private fun DashboardScreen(
                                                     )
                                                 )
                                             },
-                                            onLongClick = { characterLongClicked = character }
+                                            onLongClick = {
+                                                onIntent.invoke(
+                                                    DashboardIntent.OnChoosingCharacterToDelete(character.id)
+                                                )
+                                            }
                                         )
                                     })
                             }
                         }
                     }
-                    is DashboardViewState.Empty ->
-                        Text(
-                            stringResource(ResR.string.no_characters),
-                            color = Colors.primary,
-                            fontSize = 22.sp,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(Spacing.spacing16)
-                                .background(Colors.onPrimary)
-                                .padding(Spacing.spacing8)
-                        )
                 }
-
             }
         )
     }
@@ -149,14 +154,14 @@ private fun DashboardScreen(
 @Composable
 @Preview
 fun DashboardScreenEmpty_Preview() {
-    val state = DashboardViewState.Empty
+    val state = DashboardViewState(emptyList(), DashboardUiState())
     DashboardScreen(viewState = state, onIntent = {})
 }
 
 @Composable
 @Preview
 fun DashboardScreenLoaded_Preview() {
-    val state = DashboardViewState.Loaded(
+    val state = DashboardViewState(
         listOf(
             object : DashboardCharacter {
                 override val id = "Nandor"
@@ -164,8 +169,9 @@ fun DashboardScreenLoaded_Preview() {
                 override val level = 5
                 override val race = Race.Drow
                 override val characterClass = CharacterClass.Ranger(5)
-            },
-        )
+            }
+        ),
+        uiState = DashboardUiState()
     )
     DashboardScreen(viewState = state, onIntent = {})
 }

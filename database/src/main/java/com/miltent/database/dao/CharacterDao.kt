@@ -19,21 +19,6 @@ interface CharacterDao {
     @Query("DELETE FROM ${CharacterEntity.TABLE_NAME} WHERE characterId = :id")
     suspend fun deleteCharacter(id: String)
 
-    @Query("DELETE FROM ${CharacterSkillCrossJunction.TABLE_NAME} WHERE characterId = :id")
-    suspend fun deleteSkillJunctions(id: String)
-
-    @Query("DELETE FROM ${CharacterSpecialAbilityJunction.TABLE_NAME} WHERE characterId = :id")
-    suspend fun deleteSpecialAbilityJunctions(id: String)
-
-    @Transaction
-    suspend fun deleteCharacterWithJunctions(
-        id: String
-    ){
-        deleteCharacter(id)
-        deleteSkillJunctions(id)
-        deleteSpecialAbilityJunctions(id)
-    }
-
     @Upsert
     suspend fun upsertCharacter(character: CharacterEntity): Long
 
