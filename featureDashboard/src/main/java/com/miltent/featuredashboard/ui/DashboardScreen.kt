@@ -1,9 +1,11 @@
 package com.miltent.featuredashboard.ui
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
@@ -13,10 +15,15 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.miltent.core.compose.ObserveEvents
@@ -31,8 +38,10 @@ import com.miltent.domain.model.DashboardCharacter
 import com.miltent.domain.model.Race
 import com.miltent.featuredashboard.event.DashboardEvent
 import com.miltent.featuredashboard.intent.DashboardIntent
+import com.miltent.featuredashboard.state.DashboardUiState
 import com.miltent.featuredashboard.state.DashboardViewState
 import com.miltent.featuredashboard.ui.composables.CharacterTile
+import com.miltent.featuredashboard.ui.composables.DeleteCharacterPopUp
 import com.miltent.resources.R as ResR
 
 @Composable
@@ -69,31 +78,8 @@ private fun DashboardScreen(
                 )
             },
             content = { paddingValues: PaddingValues ->
-                when (viewState) {
-                    is DashboardViewState.Loaded -> {
-                        LazyColumn(
-                            modifier = Modifier
-                                .padding(Spacing.spacing16)
-                                .padding(paddingValues)
-                        ) {
-                            items(viewState.characterList, itemContent = { character: DashboardCharacter ->
-                                CharacterTile(
-                                    name = character.name,
-                                    race = stringResource(RaceFormatter.formatRace(character.race)),
-                                    level = character.level,
-                                    characterClass = stringResource(
-                                        CharacterClassFormatter.formatCharacterClass(
-                                            character.characterClass::class
-                                        )
-                                    ),
-                                    onClick = {
-                                        onIntent.invoke(DashboardIntent.OnCharacterClicked(name = character.name))
-                                    }
-                                )
-                            })
-                        }
-                    }
-                    is DashboardViewState.Empty ->
+                when {
+                    viewState.characterList.isEmpty() ->
                         Text(
                             stringResource(ResR.string.no_characters),
                             color = Colors.primary,
@@ -104,8 +90,62 @@ private fun DashboardScreen(
                                 .background(Colors.onPrimary)
                                 .padding(Spacing.spacing8)
                         )
+                    else -> {
+                        Box(modifier = Modifier.fillMaxSize()){
+                            viewState.uiState.characterLongClickedId?.let { characterId ->
+                                Dialog(
+                                    onDismissRequest = { onIntent.invoke(DashboardIntent.OnChoosingCharacterToDelete(null)) },
+                                ) {
+                                    DeleteCharacterPopUp(
+                                        name = viewState.characterList
+                                            .find { it.id == characterId }
+                                            ?.name ?: "",
+                                        onClick = {
+                                            if (it) onIntent.invoke(
+                                                DashboardIntent.OnCharacterDeleteClicked(
+                                                    id = characterId
+                                                )
+                                            )
+                                            onIntent.invoke(DashboardIntent.OnChoosingCharacterToDelete(null))
+                                        }
+                                    )
+                                }
+                            }
+                            LazyColumn(
+                                modifier = Modifier
+                                    .padding(Spacing.spacing16)
+                                    .padding(paddingValues)
+                            ) {
+                                items(
+                                    viewState.characterList,
+                                    itemContent = { character: DashboardCharacter ->
+                                        CharacterTile(
+                                            name = character.name,
+                                            race = stringResource(RaceFormatter.formatRace(character.race)),
+                                            level = character.level,
+                                            characterClass = stringResource(
+                                                CharacterClassFormatter.formatCharacterClass(
+                                                    character.characterClass::class
+                                                )
+                                            ),
+                                            onClick = {
+                                                onIntent.invoke(
+                                                    DashboardIntent.OnCharacterClicked(
+                                                        name = character.name
+                                                    )
+                                                )
+                                            },
+                                            onLongClick = {
+                                                onIntent.invoke(
+                                                    DashboardIntent.OnChoosingCharacterToDelete(character.id)
+                                                )
+                                            }
+                                        )
+                                    })
+                            }
+                        }
+                    }
                 }
-
             }
         )
     }
@@ -114,22 +154,24 @@ private fun DashboardScreen(
 @Composable
 @Preview
 fun DashboardScreenEmpty_Preview() {
-    val state = DashboardViewState.Empty
+    val state = DashboardViewState(emptyList(), DashboardUiState())
     DashboardScreen(viewState = state, onIntent = {})
 }
 
 @Composable
 @Preview
 fun DashboardScreenLoaded_Preview() {
-    val state = DashboardViewState.Loaded(
+    val state = DashboardViewState(
         listOf(
             object : DashboardCharacter {
+                override val id = "Nandor"
                 override val name = "Nandor"
                 override val level = 5
                 override val race = Race.Drow
-                override val characterClass = CharacterClass.Fighter(5)
-            },
-        )
+                override val characterClass = CharacterClass.Ranger(5)
+            }
+        ),
+        uiState = DashboardUiState()
     )
     DashboardScreen(viewState = state, onIntent = {})
 }

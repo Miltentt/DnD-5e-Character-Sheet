@@ -1,6 +1,7 @@
 package com.miltent.database.dao
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.Companion.REPLACE
 import androidx.room.Query
@@ -15,6 +16,9 @@ import com.miltent.database.entities.junctionTables.CharacterSpecialAbilityJunct
 @Dao
 interface CharacterDao {
 
+    @Query("DELETE FROM ${CharacterEntity.TABLE_NAME} WHERE characterId = :id")
+    suspend fun deleteCharacter(id: String)
+
     @Upsert
     suspend fun upsertCharacter(character: CharacterEntity): Long
 
@@ -22,11 +26,11 @@ interface CharacterDao {
     fun getAllCharacters(): Flow<List<CharacterEntity>>
 
     @Query("SELECT * FROM ${CharacterEntity.TABLE_NAME} WHERE characterId = :id")
-    fun getCharacterById(id: Int):  Flow<CharacterEntity>
+    fun getCharacterById(id: String):  Flow<CharacterEntity>
 
     @Transaction
     @Query("SELECT * FROM ${CharacterEntity.TABLE_NAME} WHERE characterId = :id")
-    fun getFullCharacterById(id: Int): Flow<CharacterWithSkillsAndSpecialAbilitiesEntity>
+    fun getFullCharacterById(id: String): Flow<CharacterWithSkillsAndSpecialAbilitiesEntity>
 
     @Upsert
     suspend fun insertSkillJunction(junctions: List<CharacterSkillCrossJunction>)
