@@ -9,11 +9,11 @@ import com.miltent.domain.model.Attribute
 import com.miltent.domain.model.Attributes
 import com.miltent.domain.model.StatisticType
 
-
 @Composable
-fun AttributeTile(type: StatisticType, attributes: Attributes){
+fun AttributeTile(type: StatisticType, attributes: Attributes) {
     AttributeTile(type = type, attribute = attributes.values.getValue(type))
 }
+
 @Composable
 fun AttributeTile(type: StatisticType, attribute: Attribute) {
     StatisticWithModifierTile(
@@ -23,9 +23,8 @@ fun AttributeTile(type: StatisticType, attribute: Attribute) {
     )
 }
 
-
 @Preview(showBackground = true)
 @Composable
-fun AttributeTilePreview(){
+fun AttributeTilePreview() {
     AttributeTile(type = StatisticType.DEX, Attribute(12))
 }

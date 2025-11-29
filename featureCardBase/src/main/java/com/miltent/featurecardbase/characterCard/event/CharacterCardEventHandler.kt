@@ -5,5 +5,4 @@ import dagger.hilt.android.scopes.ViewModelScoped
 import javax.inject.Inject
 
 @ViewModelScoped
-class CharacterCardEventHandler @Inject constructor() : EventHandler<CharacterCardEvent>() {
-}
+class CharacterCardEventHandler @Inject constructor() : EventHandler<CharacterCardEvent>()
