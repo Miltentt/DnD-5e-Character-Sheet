@@ -1,6 +1,6 @@
 package com.miltent.featurecardbase.characterCard.state
 
-import com.miltent.core.cash.CharacterCash
+import com.miltent.core.cash.CharacterCache
 import com.miltent.core.ui.ViewStateProvider
 import com.miltent.featurecardbase.characterCard.di.CharacterCard
 import dagger.hilt.android.scopes.ViewModelScoped
@@ -13,15 +13,15 @@ import javax.inject.Inject
 @ViewModelScoped
 class CharacterCardViewStateProvider @Inject constructor(
     @CharacterCard private val viewmodelScope: CoroutineScope,
-    private val characterCash: CharacterCash
+    private val characterCache: CharacterCache
 ) : ViewStateProvider<CharacterCardViewState>() {
     override val _viewState: MutableStateFlow<CharacterCardViewState> =
         MutableStateFlow(CharacterCardViewState(null))
 
     init {
         viewmodelScope.launch{
-            characterCash.characterCash.collect { characterCash ->
-                updateState(viewState.value.copy(characterCash)
+            characterCache.characterCache.collect { characterCache ->
+                updateState(viewState.value.copy(characterCache)
             ) }
         }
     }

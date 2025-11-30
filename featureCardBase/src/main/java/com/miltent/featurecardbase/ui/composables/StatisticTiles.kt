@@ -16,8 +16,10 @@ import com.miltent.designsystem.statistics.BaseCardStatisticTile
 import com.miltent.designsystem.theme.Colors
 import com.miltent.designsystem.theme.Spacing
 import com.miltent.domain.model.Character
+import com.miltent.domain.model.MockCharacter
 import com.miltent.resources.R as ResR
 
+private val STATISTIC_TILES_BORDER_WIDTH = 2.dp
 @Composable
 fun StatisticTiles(character: Character, modifier: Modifier = Modifier) {
     Row(
@@ -26,7 +28,7 @@ fun StatisticTiles(character: Character, modifier: Modifier = Modifier) {
             .padding(Spacing.spacing8)
             .border(
                 shape = RoundedCornerShape(12.dp),
-                width = 2.dp,
+                width = STATISTIC_TILES_BORDER_WIDTH,
                 color = Colors.primary
             ),
         horizontalArrangement = Arrangement.SpaceEvenly,
@@ -49,11 +51,10 @@ fun StatisticTiles(character: Character, modifier: Modifier = Modifier) {
             character.baseArmorClass.value.toString()
         )
     }
-
 }
 
 @Preview
 @Composable
 fun StatisticTilesPreview(){
-    StatisticTiles(Character.dummyCharacter)
+    StatisticTiles(MockCharacter.value)
 }

@@ -26,6 +26,7 @@ import com.miltent.designsystem.theme.Colors
 import com.miltent.designsystem.theme.Spacing
 import com.miltent.resources.R as ResR
 
+private val TILE_HEIGHT = 200.dp
 @Composable
 fun CharacterTile(
     name: String,
@@ -41,7 +42,7 @@ fun CharacterTile(
                 onLongClick = onLongClick
             )
             .fillMaxWidth()
-            .height(200.dp)
+            .height(TILE_HEIGHT)
             .background(Colors.onPrimary),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {

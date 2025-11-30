@@ -8,14 +8,14 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class CharacterCash @Inject constructor(val getCharacterUseCase: GetCharacterUseCase) {
+class CharacterCache @Inject constructor(private val getCharacterUseCase: GetCharacterUseCase) {
 
-    private val _characterCash: MutableStateFlow<Character?> = MutableStateFlow(null)
+    private val _characterCache: MutableStateFlow<Character?> = MutableStateFlow(null)
 
-    val characterCash: StateFlow<Character?> = _characterCash
+    val characterCache: StateFlow<Character?> = _characterCache
 
     suspend fun update(characterId: String){
-        getCharacterUseCase.invoke(characterId).collect {
-            character ->  _characterCash.value = character }
+        getCharacterUseCase.invoke(characterId).collect { character ->
+            _characterCache.value = character }
     }
 }

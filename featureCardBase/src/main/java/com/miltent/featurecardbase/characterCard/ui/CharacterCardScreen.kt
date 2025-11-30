@@ -10,6 +10,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.miltent.domain.model.Character
+import com.miltent.domain.model.MockCharacter
 import com.miltent.featurecardbase.characterCard.state.CharacterCardViewState
 import com.miltent.featurecardbase.ui.composables.AttributeTiles
 import com.miltent.featurecardbase.ui.composables.CharacterCardTopBar
@@ -58,5 +59,5 @@ internal fun CharacterCardScreen(
 @Preview(showBackground = true)
 @Composable
 fun CharacterCardScreenPreview(){
-    CharacterCardScreen(Character.dummyCharacter)
+    CharacterCardScreen(MockCharacter.value)
 }

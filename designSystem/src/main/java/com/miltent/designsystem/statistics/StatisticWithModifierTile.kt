@@ -19,6 +19,10 @@ import androidx.compose.ui.unit.sp
 import com.miltent.designsystem.theme.Colors
 import com.miltent.designsystem.theme.Spacing
 
+private val STATISTIC_TEXT_BORDER_WIDTH = 2.dp
+private val ATTRIBUTE_AREA_MIN_WIDTH = 55.dp
+private val MODIFIER_AREA_MIN_WIDTH = 100.dp
+
 @Composable
 fun StatisticWithModifierTile(typeText:String, attributeValue: Int, modifierValue: Int) {
     Column(
@@ -28,7 +32,7 @@ fun StatisticWithModifierTile(typeText:String, attributeValue: Int, modifierValu
             .padding(Spacing.spacing8)
             .border(
                 shape = RoundedCornerShape(12.dp),
-                width = 2.dp,
+                width = STATISTIC_TEXT_BORDER_WIDTH,
                 color = Colors.primary
             )
             .padding(Spacing.spacing4)
@@ -38,11 +42,11 @@ fun StatisticWithModifierTile(typeText:String, attributeValue: Int, modifierValu
             text = modifierValue.toString(),
             textAlign = TextAlign.Center,
             modifier = Modifier
-                .widthIn(min = 100.dp)
+                .widthIn(min = MODIFIER_AREA_MIN_WIDTH)
                 .padding(Spacing.spacing4)
                 .border(
                     shape = RoundedCornerShape(12.dp),
-                    width = 2.dp,
+                    width = STATISTIC_TEXT_BORDER_WIDTH,
                     color = Colors.primary
                 )
                 .padding(horizontal = Spacing.spacing24),
@@ -53,10 +57,10 @@ fun StatisticWithModifierTile(typeText:String, attributeValue: Int, modifierValu
             fontSize = 22.sp,
             textAlign = TextAlign.Center,
             modifier = Modifier
-                .widthIn(min = 55.dp)
+                .widthIn(min = ATTRIBUTE_AREA_MIN_WIDTH)
                 .border(
                     shape = RoundedCornerShape(20.dp),
-                    width = 2.dp,
+                    width = STATISTIC_TEXT_BORDER_WIDTH,
                     color = Colors.primary
                 )
                 .padding(horizontal = Spacing.spacing12, vertical = Spacing.spacing2)

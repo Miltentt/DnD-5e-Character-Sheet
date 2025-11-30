@@ -1,6 +1,6 @@
 package com.miltent.featuredashboard.intent
 
-import com.miltent.core.cash.CharacterCash
+import com.miltent.core.cash.CharacterCache
 import com.miltent.core.event.EventHandler
 import com.miltent.core.intent.IntentHandler
 import com.miltent.core.ui.ViewStateProvider
@@ -16,13 +16,13 @@ internal class DashboardIntentHandler @Inject internal constructor(
     private val viewStateProvider: ViewStateProvider<DashboardViewState>,
     private val eventHandler: EventHandler<DashboardEvent>,
     private val deleteCharacterUseCase: DeleteCharacterUseCase,
-    private val characterCash: CharacterCash
+    private val characterCache: CharacterCache
 ): IntentHandler<DashboardIntent> {
     override suspend fun handle(intent: DashboardIntent) = when(intent) {
         is DashboardIntent.OnCharacterCreateClicked -> eventHandler.emitEvent(DashboardEvent.NavigateToCharacterCreation)
         is DashboardIntent.OnCharacterClicked -> {
             eventHandler.emitEvent(DashboardEvent.NavigateToBaseCard)
-            characterCash.update(intent.id)
+            characterCache.update(intent.id)
         }
         is DashboardIntent.OnCharacterDeleteClicked -> deleteCharacterUseCase.invoke(id = intent.id)
         is DashboardIntent.OnChoosingCharacterToDelete ->

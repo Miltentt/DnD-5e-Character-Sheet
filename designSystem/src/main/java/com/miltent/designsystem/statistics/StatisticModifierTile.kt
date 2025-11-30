@@ -18,6 +18,8 @@ import androidx.compose.ui.unit.sp
 import com.miltent.designsystem.theme.Colors
 import com.miltent.designsystem.theme.Spacing
 
+private val STATISTIC_TEXT_BORDER_WIDTH = 2.dp
+private val MODIFIER_AREA_MIN_WIDTH = 55.dp
 @Composable
 fun StatisticModifierTile(typeText: String, modifierValue: Int) {
     Row(
@@ -34,7 +36,7 @@ fun StatisticModifierTile(typeText: String, modifierValue: Int) {
                 .weight(1f)
                 .border(
                     shape = RoundedCornerShape(12.dp),
-                    width = 2.dp,
+                    width = STATISTIC_TEXT_BORDER_WIDTH,
                     color = Colors.primary
                 )
                 .padding(Spacing.spacing4)
@@ -46,10 +48,10 @@ fun StatisticModifierTile(typeText: String, modifierValue: Int) {
             fontSize = 22.sp,
             textAlign = TextAlign.Center,
             modifier = Modifier
-                .widthIn(min = 55.dp)
+                .widthIn(min = MODIFIER_AREA_MIN_WIDTH)
                 .border(
                     shape = RoundedCornerShape(20.dp),
-                    width = 2.dp,
+                    width = STATISTIC_TEXT_BORDER_WIDTH,
                     color = Colors.primary
                 )
                 .padding(horizontal = Spacing.spacing16, vertical = Spacing.spacing8))

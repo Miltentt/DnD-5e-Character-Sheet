@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.sp
 import com.miltent.designsystem.theme.Spacing
 import com.miltent.domain.model.Character
 import com.miltent.domain.model.HealthPoints
+import com.miltent.domain.model.MockCharacter
 import com.miltent.resources.R as ResR
 
 @Composable
@@ -66,6 +67,6 @@ fun CharacterCardTopBar(modifier: Modifier = Modifier, name: String, condition: 
 @Preview
 @Composable
 fun CharacterCardTopBarPreview() {
-    CharacterCardTopBar(name = Character.dummyCharacter.name,healthPoints = Character.dummyCharacter.healthPoints, condition = "WELL")
+    CharacterCardTopBar(name = MockCharacter.value.name,healthPoints = MockCharacter.value.healthPoints, condition = "WELL")
 
 }
