@@ -23,14 +23,13 @@ fun SavingThrowTiles(
     attributes: Attributes,
     savingThrowProficiencies: Pair<StatisticType, StatisticType>,
     proficiencyBonus: Int,
-    modifier: Modifier = Modifier,
-    title: String = stringResource(ResR.string.saving_throws)
+    modifier: Modifier = Modifier
 ) {
 
     Column(modifier = modifier) {
         Spacer(modifier = Modifier.padding(Spacing.spacing2))
         Text(
-            text = title,
+            text = stringResource(ResR.string.saving_throws),
             fontSize = 20.sp,
             modifier = Modifier.padding(horizontal = Spacing.spacing16)
         )
@@ -76,8 +75,7 @@ fun SavingThrowTilesPreview(){
     SavingThrowTiles(
         Attributes(),
         Pair(StatisticType.STR, StatisticType.INT),
-        3,
-        title = "Saving Throws")
+        2)
 }
 
 @Preview(showBackground = true)
