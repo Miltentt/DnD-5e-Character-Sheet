@@ -10,6 +10,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.miltent.domain.model.Character
+import com.miltent.domain.model.HealthPoints
 import com.miltent.domain.model.MockCharacter
 import com.miltent.featurecardbase.characterCard.state.CharacterCardViewState
 import com.miltent.featurecardbase.ui.composables.AttributeTiles
@@ -17,16 +18,33 @@ import com.miltent.featurecardbase.ui.composables.CharacterCardTopBar
 import com.miltent.featurecardbase.ui.composables.SavingThrowTiles
 import com.miltent.featurecardbase.ui.composables.StatisticTiles
 
-
+private const val EMPTY_TEXT = "-"
 @Composable
 internal fun CharacterCardScreen(){
 
     val viewModel: CharacterCardViewModel = hiltViewModel()
     val viewState: CharacterCardViewState by viewModel.viewState.collectAsStateWithLifecycle()
-    val character = viewState.character ?: throw Exception("character cannot be null")
-    CharacterCardScreen(character)
+    val character = viewState.character
+    if (character != null) {
+        CharacterCardScreen(character)
+    } else{
+        EmptyCharacterCardScreen()
+    }
 }
-
+@Composable
+internal fun EmptyCharacterCardScreen(){
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ){
+        CharacterCardTopBar(
+            modifier = Modifier,
+            name = EMPTY_TEXT,
+            healthPoints = HealthPoints(0),
+            condition = EMPTY_TEXT
+        )
+    }
+}
 
 @Composable
 internal fun CharacterCardScreen(
@@ -60,4 +78,9 @@ internal fun CharacterCardScreen(
 @Composable
 fun CharacterCardScreenPreview(){
     CharacterCardScreen(MockCharacter.value)
+}
+@Preview(showBackground = true)
+@Composable
+fun EmptyCharacterCardScreenPreview(){
+    EmptyCharacterCardScreen()
 }
