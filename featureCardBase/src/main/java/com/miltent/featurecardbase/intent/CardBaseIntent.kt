@@ -1,4 +1,5 @@
 package com.miltent.featurecardbase.intent
 
-interface CardBaseIntent {
-}
+import com.miltent.core.intent.Intent
+
+interface CardBaseIntent: Intent

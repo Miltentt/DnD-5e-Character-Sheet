@@ -20,8 +20,8 @@ fun MainNavHost() {
             navigateToCharacterCreation = {
                 navController.navigate(CharacterCreationNavigation)
             },
-            navigateToCharacterCard = { name ->
-                navController.navigate(CardBottomNavigationRoute(name))
+            navigateToCharacterCard = {
+                navController.navigate(CardBottomNavigationRoute)
             }
         )
         characterCreation(navController = navController)

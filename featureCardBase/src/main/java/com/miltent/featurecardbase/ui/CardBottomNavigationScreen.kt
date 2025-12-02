@@ -22,7 +22,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.miltent.featurecardbase.characterCard.CharacterCardRoute
-import com.miltent.featurecardbase.characterCard.CharacterCardScreen
+import com.miltent.featurecardbase.characterCard.ui.CharacterCardScreen
 import com.miltent.featurecardbase.characterEquipment.CharacterEquipmentRoute
 import com.miltent.featurecardbase.characterEquipment.CharacterEquipmentScreen
 import com.miltent.featurecardbase.characterSkills.CharacterSkillsRoute
@@ -39,7 +39,7 @@ data class BottomNavigationItem(
 
 
 @Composable
-fun CardBottomNavigationScreen(name: String) {
+fun CardBottomNavigationScreen() {
     val innerNavController = rememberNavController()
     val navBackStackEntry = innerNavController.currentBackStackEntryAsState()
     val currentDestinationRoute = navBackStackEntry.value?.destination?.route
@@ -96,7 +96,7 @@ fun CardBottomNavigationScreen(name: String) {
             startDestination = CharacterCardRoute,
             modifier = Modifier.padding(innerPadding)
         ) {
-            composable<CharacterCardRoute> { CharacterCardScreen(name) }
+            composable<CharacterCardRoute> { CharacterCardScreen() }
             composable<CharacterSkillsRoute> { CharacterSkillsScreen() }
             composable<CharacterEquipmentRoute> { CharacterEquipmentScreen() }
         }

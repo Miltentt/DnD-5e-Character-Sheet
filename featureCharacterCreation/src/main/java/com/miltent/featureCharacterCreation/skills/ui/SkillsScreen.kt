@@ -78,7 +78,7 @@ private fun SkillsScreen(viewState: SkillsViewState, onIntent: (SkillsIntent) ->
                                 onIntent.invoke(SkillsIntent.OnSkillClicked(skill.id))
                             },
                             modificator = stringResource(
-                                StatisticTypeFormatter.formatStatisticTypeShort(
+                                StatisticTypeFormatter.formatStatisticTypeToShortName(
                                     skill.statisticType
                                 )
                             ),

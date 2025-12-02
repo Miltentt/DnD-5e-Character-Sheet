@@ -4,5 +4,5 @@ import com.miltent.core.event.Event
 
 internal sealed interface DashboardEvent: Event {
     data object NavigateToCharacterCreation: DashboardEvent
-    data class NavigateToBaseCard(val name: String): DashboardEvent
+    data object NavigateToBaseCard: DashboardEvent
 }

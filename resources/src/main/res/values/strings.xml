@@ -19,6 +19,12 @@
     <string name="statistic_short_intelligence">INT</string>
     <string name="statistic_short_wisdom">WIS</string>
     <string name="statistic_short_charisma">CHAR</string>
+    <string name="statistic_full_name_strength">STRENGTH</string>
+    <string name="statistic_full_name_dexterity">DEXTERITY</string>
+    <string name="statistic_full_name_constitution">CONSTITUTION</string>
+    <string name="statistic_full_name_intelligence">INTELLIGENCE</string>
+    <string name="statistic_full_name_wisdom">WISDOM</string>
+    <string name="statistic_full_name_charisma">CHARISMA</string>
 
     <!-- Dashboard -->
     <string name="button_create_character">Stwórz postać</string>
@@ -47,7 +53,15 @@
     <string name="skills_available_points">Pozostałe punkty umiejętnośći %s</string>
 
     <!-- Card Base -->
+    <string name="saving_throws">Saving Throws</string>
     <string name="card">Card</string>
     <string name="skills">Skills</string>
     <string name="equipment">Equipment</string>
+    <string name="hit_points">HIT POINTS</string>
+    <string name="condition">CONDITION</string>
+    <string name="initiative">INITIATIVE</string>
+    <string name="armor_class">ARMOR CLASS</string>
+    <string name="walking_speed">WLK. SPEED</string>
+    <string name="proficiency_bonus">PROF. BONUS</string>
+
 </resources>

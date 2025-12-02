@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import com.miltent.designsystem.theme.Colors
 import com.miltent.designsystem.theme.Spacing
 
+private val STATISTIC_TEXT_BORDER_WIDTH = 1.dp
 @Composable
 fun Skill(modifier: Modifier = Modifier, modificator: String, name: String, value: String) {
     Column(modifier = modifier) {
@@ -33,7 +34,7 @@ fun Skill(modifier: Modifier = Modifier, modificator: String, name: String, valu
             Text(
                 text = value,
                 modifier
-                    .border(1.dp, Colors.primary, CutCornerShape(0))
+                    .border(STATISTIC_TEXT_BORDER_WIDTH, Colors.primary, CutCornerShape(0))
                     .padding(Spacing.spacing4)
             )
         }

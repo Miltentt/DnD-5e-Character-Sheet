@@ -12,7 +12,7 @@ data object Dashboard
 
 fun NavGraphBuilder.dashboard(
     navigateToCharacterCreation: () -> Unit,
-    navigateToCharacterCard: (String) -> Unit
+    navigateToCharacterCard: () -> Unit
 ) {
 
     navigation<Dashboard>(
@@ -21,8 +21,8 @@ fun NavGraphBuilder.dashboard(
         composable<DashboardRoute> {
             DashboardScreen(onEvent = { event ->
                 when (event) {
-                    is DashboardEvent.NavigateToCharacterCreation -> navigateToCharacterCreation.invoke()
-                    is DashboardEvent.NavigateToBaseCard -> navigateToCharacterCard.invoke(event.name)
+                    is DashboardEvent.NavigateToCharacterCreation -> navigateToCharacterCreation()
+                    is DashboardEvent.NavigateToBaseCard -> navigateToCharacterCard()
                 }
             })
         }
