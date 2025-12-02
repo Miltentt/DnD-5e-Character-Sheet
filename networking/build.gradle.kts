@@ -38,6 +38,12 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":core"))
     implementation(project(":resources"))
+    implementation(libs.moshi)
+    implementation(libs.moshi.kotlin)
+    implementation(libs.retrofit)
+    implementation(libs.converter.moshi)
+    implementation(libs.okhttp)
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
