@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.compose.compiler)
 }
 
 apply {
@@ -43,7 +44,6 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.moshi)
     implementation(libs.okhttp)
-
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
