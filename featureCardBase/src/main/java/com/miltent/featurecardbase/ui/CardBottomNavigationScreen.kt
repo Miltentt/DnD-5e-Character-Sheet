@@ -3,9 +3,11 @@ package com.miltent.featurecardbase.ui
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Build
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.Build
+import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.Star
 import androidx.compose.material3.Icon
@@ -27,6 +29,8 @@ import com.miltent.featurecardbase.characterEquipment.CharacterEquipmentRoute
 import com.miltent.featurecardbase.characterEquipment.CharacterEquipmentScreen
 import com.miltent.featurecardbase.characterSkills.CharacterSkillsRoute
 import com.miltent.featurecardbase.characterSkills.CharacterSkillsScreen
+import com.miltent.featurecardbase.dogs.DogsRoute
+import com.miltent.featurecardbase.dogs.DogsScreen
 import com.miltent.featurecardbase.navigation.CardBaseRoute
 import com.miltent.resources.R as ResR
 
@@ -62,6 +66,12 @@ fun CardBottomNavigationScreen() {
             route = CharacterEquipmentRoute,
             selectedIcon = Icons.Filled.Build,
             unselectedIcon = Icons.Outlined.Build
+        ),
+        BottomNavigationItem(
+            title = "Dogs",
+            route = DogsRoute,
+            selectedIcon = Icons.Filled.Info,
+            unselectedIcon = Icons.Outlined.Info
         )
     )
 
@@ -99,6 +109,7 @@ fun CardBottomNavigationScreen() {
             composable<CharacterCardRoute> { CharacterCardScreen() }
             composable<CharacterSkillsRoute> { CharacterSkillsScreen() }
             composable<CharacterEquipmentRoute> { CharacterEquipmentScreen() }
+            composable<DogsRoute> { DogsScreen() }
         }
     }
 }

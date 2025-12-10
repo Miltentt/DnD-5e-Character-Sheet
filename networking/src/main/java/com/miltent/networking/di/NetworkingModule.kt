@@ -27,7 +27,7 @@ import javax.inject.Singleton
 interface NetworkingModule {
 
     @Binds
-    fun bindTheDogApi(repository: TheDogRepositoryImpl): TheDogRepository
+    fun bindTheDogRepository(repository: TheDogRepositoryImpl): TheDogRepository
 
     companion object{
 
