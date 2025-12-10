@@ -19,11 +19,9 @@ class DogsViewModel @Inject constructor(
 
     private val _breedText = MutableStateFlow("")
     val breedText = _breedText.asStateFlow()
-    private var _breedId = MutableStateFlow<Int?>(null)
-    val breedId = _breedId.asStateFlow()
-    private var _dogBreeds = MutableStateFlow<List<Breed>>(emptyList())
+    private val _dogBreeds = MutableStateFlow<List<Breed>>(emptyList())
     val dogBreeds = _dogBreeds.asStateFlow()
-    private var _breedFacts = MutableStateFlow<List<DogFact>>(emptyList())
+    private var _breedFacts = MutableStateFlow<List<DogFact>?>(null)
     val breedFacts = _breedFacts.asStateFlow()
     fun changeText(newText: String){
         _breedText.value = newText
@@ -33,9 +31,13 @@ class DogsViewModel @Inject constructor(
             _dogBreeds.value = theDogRepository.getDogBreeds(breedText.value)
         }
     }
-    fun searchBreedFacts(){
-        viewModelScope.launch {
-            _breedFacts.value = theDogRepository.getDogBreedFacts(breedId.value!!)
+    fun searchBreedFacts(breedId: Int?){
+        if (breedId == null) {
+            _breedFacts.value = null
+        } else {
+            viewModelScope.launch {
+                _breedFacts.value = theDogRepository.getDogBreedFacts(breedId)
+            }
         }
     }
 }
