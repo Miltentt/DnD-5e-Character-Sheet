@@ -63,5 +63,11 @@
     <string name="armor_class">ARMOR CLASS</string>
     <string name="walking_speed">WLK. SPEED</string>
     <string name="proficiency_bonus">PROF. BONUS</string>
+    
+    <!-- DOGS -->
+    <string name="dogs_coming">THEM  DOGS  COMING</string>
+    <string name="dogs_not_coming">NO BREEDS LIKE THIS</string>
+    <string name="facts_coming">BREED  FACTS  COMING</string>
+    <string name="networking_failed">ERROR %s</string>
 
 </resources>
