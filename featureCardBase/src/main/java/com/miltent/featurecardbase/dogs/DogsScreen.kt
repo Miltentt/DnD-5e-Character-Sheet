@@ -7,7 +7,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.material3.Button
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -17,23 +18,19 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.miltent.designsystem.theme.Spacing
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.window.Dialog
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
-import com.miltent.domain.model.networking.Breed
-import com.miltent.domain.model.networking.DogFact
 
 @Composable
 fun DogsScreen() {
     val viewModel = hiltViewModel<DogsViewModel>()
-    val breedText = viewModel.breedText.collectAsStateWithLifecycle()
-    val listOfBreeds = viewModel.dogBreeds.collectAsStateWithLifecycle()
-    val listOfBreedFacts = viewModel.breedFacts.collectAsStateWithLifecycle()
-
+    val uiState = viewModel.uiState.collectAsStateWithLifecycle()
+    val events = viewModel.searchEvent
+    Effects(events)
     DogsScreen(
-        breedText = breedText.value,
-        listOfBreeds = listOfBreeds.value,
-        listOfBreedFacts = listOfBreedFacts.value,
+        uiState = uiState.value,
         changeText = viewModel::changeText,
         searchDogBreeds = viewModel::searchDogBreeds,
         searchBreedFacts = viewModel::searchBreedFacts
@@ -42,9 +39,7 @@ fun DogsScreen() {
 
 @Composable
 fun DogsScreen(
-    breedText: String,
-    listOfBreeds: List<Breed>,
-    listOfBreedFacts: List<DogFact>?,
+    uiState: DogsUiState,
     changeText: (String) -> Unit,
     searchDogBreeds: () -> Unit,
     searchBreedFacts: (Int?) -> Unit
@@ -56,15 +51,17 @@ fun DogsScreen(
         horizontalAlignment = Alignment.CenterHorizontally
         ){
         TextField(
-            value = breedText,
+            value = uiState.breedText,
             onValueChange = { changeText(it) },
-        )
-        Button(
-            onClick = { searchDogBreeds() },
-            content = { Text(text = "SEARCH") }
+            keyboardOptions = KeyboardOptions.Default.copy(
+                imeAction = ImeAction.Search
+            ),
+            keyboardActions = KeyboardActions(
+                onSearch = { searchDogBreeds() }
+            )
         )
         LazyVerticalGrid(columns = GridCells.Fixed(2)){
-            items(listOfBreeds) { breed ->
+            items(uiState.dogBreeds) { breed ->
                 AsyncImage(
                     modifier = Modifier.clickable(onClick = { searchBreedFacts(breed.id) }),
                     model = breed.image.url,
@@ -73,11 +70,11 @@ fun DogsScreen(
                 )
             }
         }
-        if(listOfBreedFacts != null) {
+        if(uiState.breedFacts != null) {
             Dialog(onDismissRequest = { searchBreedFacts(null)} ) {
                 Column {
-                    listOfBreedFacts.forEach { fact ->
-                        Text(listOfBreeds.find { it.id.toString() == fact.id }?.name ?: "No Name")
+                    uiState.breedFacts.forEach { fact ->
+                        Text(uiState.dogBreeds.find { it.id.toString() == fact.id }?.name ?: "No Name")
                         Text(fact.fact)
                     }
                 }
@@ -89,11 +86,11 @@ fun DogsScreen(
 @Composable
 fun DogsScreenPreview(){
     DogsScreen(
-        "",
-        emptyList(),
-        null,
-        {},
-        {},
-        {}
+        uiState = DogsUiState("",
+            emptyList(),
+        null),
+        changeText = {},
+        searchDogBreeds = {},
+        searchBreedFacts = {}
     )
 }

@@ -20,6 +20,6 @@ class TheDogRepositoryImpl @Inject constructor(val api: TheDogApi): TheDogReposi
         val apiResponse = api.getDogBreedFacts(breedId)
         if(apiResponse.isSuccessful) {
             return  apiResponse.body() ?: throw Exception("getDogBreedFacts() returned null")
-        } else throw Exception("getDogBreedFacts() failed with ${apiResponse.code()}")
+        } else throw Exception("${apiResponse.code()}")
     }
 }
