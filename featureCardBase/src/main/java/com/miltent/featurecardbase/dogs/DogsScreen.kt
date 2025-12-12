@@ -18,6 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.miltent.designsystem.theme.Spacing
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.window.Dialog
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -44,6 +45,7 @@ fun DogsScreen(
     searchDogBreeds: () -> Unit,
     searchBreedFacts: (Int?) -> Unit
     ) {
+    val localFocusManager = LocalFocusManager.current
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -57,7 +59,10 @@ fun DogsScreen(
                 imeAction = ImeAction.Search
             ),
             keyboardActions = KeyboardActions(
-                onSearch = { searchDogBreeds() }
+                onSearch = {
+                    localFocusManager.clearFocus()
+                    searchDogBreeds()
+                }
             )
         )
         LazyVerticalGrid(columns = GridCells.Fixed(2)){
@@ -86,9 +91,7 @@ fun DogsScreen(
 @Composable
 fun DogsScreenPreview(){
     DogsScreen(
-        uiState = DogsUiState("",
-            emptyList(),
-        null),
+        uiState = DogsUiState("", emptyList(), null),
         changeText = {},
         searchDogBreeds = {},
         searchBreedFacts = {}
