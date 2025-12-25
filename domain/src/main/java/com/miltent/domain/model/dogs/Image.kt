@@ -1,4 +1,4 @@
-package com.miltent.domain.model.networking
+package com.miltent.domain.model.dogs
 
 data class Image(
     val height: Int,

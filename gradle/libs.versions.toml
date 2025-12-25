@@ -1,5 +1,4 @@
 [versions]
-coil = "2.5.0"
 compileSdk = "35"
 minSdk = "29"
 buildTools = "35.0.0"
@@ -31,6 +30,7 @@ jetbrainsKotlinJvm = "2.2.10"
 uiTooling = "1.9.4"
 runtimeKtx = "2.10.2"
 serialization-json = "1.9.0"
+coil = "2.5.0"
 
 
 [libraries]

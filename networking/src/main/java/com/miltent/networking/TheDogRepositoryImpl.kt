@@ -1,25 +1,33 @@
 package com.miltent.networking
 
 import com.miltent.core.repository.TheDogRepository
-import com.miltent.domain.model.networking.Breed
-import com.miltent.domain.model.networking.DogFact
+import com.miltent.domain.model.dogs.Breed
+import com.miltent.domain.model.dogs.BreedFact
+import com.miltent.networking.mappers.networkingToDomain.BreedFactNetworkingToDomainMapper
+import com.miltent.networking.mappers.networkingToDomain.BreedNetworkingToDomainMapper
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class TheDogRepositoryImpl @Inject constructor(val api: TheDogApi): TheDogRepository {
+class TheDogRepositoryImpl @Inject constructor(
+    val api: TheDogApi,
+    val breedMapper: BreedNetworkingToDomainMapper,
+    val breedFactMapper: BreedFactNetworkingToDomainMapper
+): TheDogRepository {
 
     override suspend fun getDogBreeds(breedName: String): List<Breed> {
         val apiResponse = api.getDogBreeds(breedName)
         if(apiResponse.isSuccessful) {
-            return  apiResponse.body() ?: throw Exception("getDogBreeds() returned null")
+            val apiResponseBody = apiResponse.body() ?: throw Exception("getDogBreeds() returned null")
+            return  apiResponseBody.map { breedMapper.map(it) }
         } else throw Exception("getDogBreeds() failed with ${apiResponse.code()}")
     }
 
-    override suspend fun getDogBreedFacts(breedId: Int): List<DogFact> {
+    override suspend fun getDogBreedFacts(breedId: Int): List<BreedFact> {
         val apiResponse = api.getDogBreedFacts(breedId)
         if(apiResponse.isSuccessful) {
-            return  apiResponse.body() ?: throw Exception("getDogBreedFacts() returned null")
-        } else throw Exception("${apiResponse.code()}")
+            val apiResponseBody = apiResponse.body() ?: throw Exception("getDogBreedFacts() returned null")
+            return apiResponseBody.map { breedFactMapper.map(it) }
+        } else throw Exception("getDogBreedFacts() failed with ${apiResponse.code()}")
     }
 }

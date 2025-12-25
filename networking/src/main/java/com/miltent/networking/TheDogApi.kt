@@ -1,7 +1,7 @@
 package com.miltent.networking
 
-import com.miltent.domain.model.networking.Breed
-import com.miltent.domain.model.networking.DogFact
+import com.miltent.networking.model.BreedFactNetworking
+import com.miltent.networking.model.BreedNetworking
 import com.miltent.networking.util.BASE_BREEDS_END_POINT
 import retrofit2.Response
 import retrofit2.http.GET
@@ -13,10 +13,10 @@ interface TheDogApi {
     @GET(BASE_BREEDS_END_POINT + "search")
     suspend fun getDogBreeds(
         @Query("q") breedName: String
-    ): Response<List<Breed>>
+    ): Response<List<BreedNetworking>>
 
     @GET(BASE_BREEDS_END_POINT + "{breed_id}/facts")
     suspend fun getDogBreedFacts(
         @Path("breed_id") breed_id: Int
-    ): Response<List<DogFact>>
+    ): Response<List<BreedFactNetworking>>
 }
