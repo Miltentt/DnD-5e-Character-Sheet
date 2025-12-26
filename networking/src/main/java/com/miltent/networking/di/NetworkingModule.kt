@@ -1,8 +1,15 @@
 package com.miltent.networking.di
 
 import com.miltent.core.repository.TheDogRepository
+import com.miltent.core.utility.Mapper
+import com.miltent.domain.model.dogs.Breed
+import com.miltent.domain.model.dogs.BreedFact
 import com.miltent.networking.TheDogApi
 import com.miltent.networking.TheDogRepositoryImpl
+import com.miltent.networking.mappers.networkingToDomain.BreedFactNetworkingToDomainMapper
+import com.miltent.networking.mappers.networkingToDomain.BreedNetworkingToDomainMapper
+import com.miltent.networking.model.BreedFactNetworking
+import com.miltent.networking.model.BreedNetworking
 import com.miltent.networking.util.BASE_URL
 import com.miltent.networking.util.HEADER_NAME
 import com.miltent.networking.util.THE_DOG_API_KEY
@@ -28,6 +35,12 @@ interface NetworkingModule {
 
     @Binds
     fun bindTheDogRepository(repository: TheDogRepositoryImpl): TheDogRepository
+
+    @Binds
+    fun bindBreedMapper(mapper: BreedNetworkingToDomainMapper): Mapper<BreedNetworking, Breed>
+
+    @Binds
+    fun bindBreedFactMapper(mapper: BreedFactNetworkingToDomainMapper): Mapper<BreedFactNetworking, BreedFact>
 
     companion object{
 
