@@ -1,5 +1,7 @@
 package com.miltent.featurecardbase.ui
 
+import android.util.Log
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Build
@@ -16,6 +18,10 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
@@ -45,8 +51,7 @@ data class BottomNavigationItem(
 @Composable
 fun CardBottomNavigationScreen() {
     val innerNavController = rememberNavController()
-    val navBackStackEntry = innerNavController.currentBackStackEntryAsState()
-    val currentDestinationRoute = navBackStackEntry.value?.destination?.route
+    var currentDestinationRoute: CardBaseRoute by remember { mutableStateOf(CharacterCardRoute) }
 
     val items = listOf(
         BottomNavigationItem(
@@ -80,18 +85,18 @@ fun CardBottomNavigationScreen() {
             NavigationBar {
                 items.forEach { item ->
                     NavigationBarItem(
-                        selected = item.route::class.qualifiedName == currentDestinationRoute,
+                        selected = item.route == currentDestinationRoute,
                         onClick = {
+                            currentDestinationRoute = item.route
                             innerNavController.navigate(item.route){
-                                popUpTo(innerNavController.graph.startDestinationId)
-                                launchSingleTop = true
+                                popUpTo(0)
                             }
-                        },
-                        label = { Text(text = item.title) },
-                        icon = {
-                                Icon(
+                        },                                        
+                        label = { Text(text = item.title) },      
+                        icon = {                                  
+                                Icon(                             
                                     imageVector =
-                                        if (item.route::class.qualifiedName == currentDestinationRoute) item.selectedIcon
+                                    if ( item.route == currentDestinationRoute) item.selectedIcon
                                         else item.unselectedIcon,
                                     contentDescription = item.title
                                 )
