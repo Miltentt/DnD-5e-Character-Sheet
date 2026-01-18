@@ -1,7 +1,5 @@
 package com.miltent.featurecardbase.ui
 
-import android.util.Log
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Build
@@ -27,7 +25,6 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.miltent.featurecardbase.characterCard.CharacterCardRoute
 import com.miltent.featurecardbase.characterCard.ui.CharacterCardScreen
@@ -46,7 +43,6 @@ data class BottomNavigationItem(
     val selectedIcon: ImageVector,
     val unselectedIcon: ImageVector
 )
-
 
 @Composable
 fun CardBottomNavigationScreen() {
@@ -96,7 +92,7 @@ fun CardBottomNavigationScreen() {
                         icon = {                                  
                                 Icon(                             
                                     imageVector =
-                                    if ( item.route == currentDestinationRoute) item.selectedIcon
+                                    if (item.route == currentDestinationRoute) item.selectedIcon
                                         else item.unselectedIcon,
                                     contentDescription = item.title
                                 )
