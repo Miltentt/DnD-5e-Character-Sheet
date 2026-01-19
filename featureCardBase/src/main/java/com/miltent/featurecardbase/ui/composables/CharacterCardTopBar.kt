@@ -1,5 +1,6 @@
 package com.miltent.featurecardbase.ui.composables
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -15,13 +16,17 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.miltent.designsystem.theme.Spacing
-import com.miltent.domain.model.Character
 import com.miltent.domain.model.HealthPoints
 import com.miltent.domain.model.MockCharacter
 import com.miltent.resources.R as ResR
 
 @Composable
-fun CharacterCardTopBar(modifier: Modifier = Modifier, name: String, condition: String, healthPoints: HealthPoints) {
+fun CharacterCardTopBar(
+    modifier: Modifier = Modifier,
+    name: String, condition: String,
+    healthPoints: HealthPoints,
+    onClickHealthPoints: () -> Unit
+) {
     Row(
         horizontalArrangement = Arrangement.SpaceEvenly,
         verticalAlignment = Alignment.CenterVertically,
@@ -51,7 +56,9 @@ fun CharacterCardTopBar(modifier: Modifier = Modifier, name: String, condition: 
 
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.weight(1f)
+            modifier = Modifier
+                .weight(1f)
+                .clickable(onClick = onClickHealthPoints)
         ) {
             Text(text = stringResource(ResR.string.hit_points), fontSize = 10.sp, fontWeight = FontWeight.Bold)
             Text(
@@ -67,6 +74,6 @@ fun CharacterCardTopBar(modifier: Modifier = Modifier, name: String, condition: 
 @Preview
 @Composable
 fun CharacterCardTopBarPreview() {
-    CharacterCardTopBar(name = MockCharacter.value.name,healthPoints = MockCharacter.value.healthPoints, condition = "WELL")
+    CharacterCardTopBar(name = MockCharacter.value.name,healthPoints = MockCharacter.value.healthPoints, condition = "WELL", onClickHealthPoints = {})
 
 }

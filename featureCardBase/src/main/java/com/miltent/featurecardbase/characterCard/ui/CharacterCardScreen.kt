@@ -5,6 +5,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -15,6 +18,7 @@ import com.miltent.domain.model.MockCharacter
 import com.miltent.featurecardbase.characterCard.state.CharacterCardViewState
 import com.miltent.featurecardbase.ui.composables.AttributeTiles
 import com.miltent.featurecardbase.ui.composables.CharacterCardTopBar
+import com.miltent.featurecardbase.ui.composables.HitPointsDialog
 import com.miltent.featurecardbase.ui.composables.SavingThrowTiles
 import com.miltent.featurecardbase.ui.composables.StatisticTiles
 
@@ -41,7 +45,8 @@ internal fun EmptyCharacterCardScreen(){
             modifier = Modifier,
             name = EMPTY_TEXT,
             healthPoints = HealthPoints(0),
-            condition = EMPTY_TEXT
+            condition = EMPTY_TEXT,
+            onClickHealthPoints = {}
         )
     }
 }
@@ -56,12 +61,22 @@ internal fun CharacterCardScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     )
     {
+        var hitPointsClicked: Boolean by remember { mutableStateOf(false) }
+
         CharacterCardTopBar(
             modifier = Modifier.weight(0.7f),
             name = character.name,
             healthPoints = character.healthPoints,
-            condition = "WELL"
+            condition = "WELL",
+            onClickHealthPoints = { hitPointsClicked = true }
             )
+
+        if(hitPointsClicked) {
+            HitPointsDialog(
+                healthPoints = character.healthPoints
+            ) { hitPointsClicked = false }
+        }
+
         StatisticTiles(character, modifier = Modifier.weight(1f))
         AttributeTiles(
             attributes = character.baseAttributes,
