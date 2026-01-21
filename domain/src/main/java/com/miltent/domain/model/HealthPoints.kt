@@ -1,9 +1,8 @@
 package com.miltent.domain.model
 
-import com.sun.jdi.Value
-
-
-class HealthPoints (val max: Int, ){
+class HealthPoints (
+    val max: Int
+){
     var temporary: Int = 0
         private set
 
@@ -14,8 +13,8 @@ class HealthPoints (val max: Int, ){
         current = max
         temporary = 0
     }
-    fun changeHealthPointsValue(action: HealthPointsAction, value: Int){
-        when(action){
+    fun changeHealthPointsValue(action: HealthPointsAction, value: Int, new: Boolean = false): HealthPoints {
+        when(action) {
 
             HealthPointsAction.HEAL -> {
                 current += value
@@ -34,6 +33,8 @@ class HealthPoints (val max: Int, ){
             }
             else -> throw Exception()
         }
+        return if(new){ HealthPoints(max).changeHealthPointsValue(HealthPointsAction.ADD_TEMPORARY, temporary)
+        } else this
     }
 
     companion object{

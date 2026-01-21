@@ -5,6 +5,7 @@ import com.miltent.core.intent.Intent
 import com.miltent.core.intent.IntentHandler
 import com.miltent.core.ui.ViewStateProvider
 import com.miltent.core.viewmodel.BaseViewModel
+import com.miltent.domain.model.HealthPoints
 import com.miltent.featurecardbase.characterCard.di.CharacterCard
 import com.miltent.featurecardbase.characterCard.event.CharacterCardEvent
 import com.miltent.featurecardbase.characterCard.intent.CharacterCardIntent
@@ -21,11 +22,24 @@ class CharacterCardViewModel @Inject constructor(
     @CharacterCard private val viewmodelScope: CoroutineScope,
     private val intentHandler: IntentHandler<CharacterCardIntent>,
     eventHandler: EventHandler<CharacterCardEvent>,
-    viewStateProvider: ViewStateProvider<CharacterCardViewState>,
+    private val viewStateProvider: ViewStateProvider<CharacterCardViewState>,
 ) : BaseViewModel<CharacterCardViewState>(viewmodelScope) {
 
     override val event: SharedFlow<CharacterCardEvent> = eventHandler.event
     override val viewState: StateFlow<CharacterCardViewState> = viewStateProvider.viewState
+
+    fun onOffHpDialog(){
+        viewStateProvider.updateState(
+            viewState.value.copy(hpClicked = !viewStateProvider.viewState.value.hpClicked)
+        )
+    }
+    fun changeHp(hp: HealthPoints){
+        viewStateProvider.updateState(
+            viewState.value.copy(
+                character = viewState.value.character?.copy(healthPoints = hp)
+            )
+        )
+    }
 
 
     override fun setIntent(intent: Intent) {

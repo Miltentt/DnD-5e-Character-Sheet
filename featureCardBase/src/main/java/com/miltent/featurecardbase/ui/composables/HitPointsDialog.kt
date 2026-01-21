@@ -31,7 +31,8 @@ private val actions = mapOf<HealthPointsAction, String>(
 fun HitPointsDialog(
     modifier: Modifier = Modifier,
     healthPoints: HealthPoints,
-    hideThisDialog: () -> Unit
+    hideThisDialog: () -> Unit,
+    changeHp: (HealthPoints) -> Unit
     ) {
     var changeHitPointsDialogOn: HealthPointsAction? by remember { mutableStateOf(null) }
     var text: String by remember { mutableStateOf("") }
@@ -66,7 +67,7 @@ fun HitPointsDialog(
                     }
                     Button(
                         onClick = {
-                            healthPoints.changeHealthPointsValue(hitPointAction, text.toInt())
+                            changeHp(healthPoints.changeHealthPointsValue(hitPointAction,text.toInt(), new = true))
                             changeHitPointsDialogOn = null
                             hideThisDialog()
                         }
@@ -84,7 +85,8 @@ fun HitPointsDialog(
 fun HitPointsDialogPreview(modifier: Modifier = Modifier) {
     HitPointsDialog(
         healthPoints = HealthPoints(50),
-        hideThisDialog = {}
+        hideThisDialog = {},
+        changeHp = {}
     )
 
 }

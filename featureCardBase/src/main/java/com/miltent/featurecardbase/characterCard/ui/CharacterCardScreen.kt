@@ -28,9 +28,12 @@ internal fun CharacterCardScreen(){
 
     val viewModel: CharacterCardViewModel = hiltViewModel()
     val viewState: CharacterCardViewState by viewModel.viewState.collectAsStateWithLifecycle()
-    val character = viewState.character
-    if (character != null) {
-        CharacterCardScreen(character)
+    if (viewState.character != null) {
+        CharacterCardScreen(
+            viewState = viewState,
+            onOffHpDialog = viewModel::onOffHpDialog,
+            changeHp = viewModel::changeHp
+        )
     } else{
         EmptyCharacterCardScreen()
     }
@@ -53,46 +56,51 @@ internal fun EmptyCharacterCardScreen(){
 
 @Composable
 internal fun CharacterCardScreen(
-    character: Character,
+    viewState: CharacterCardViewState,
+    onOffHpDialog: () -> Unit,
+    changeHp: (HealthPoints) -> Unit
 ){
+    viewState.character?.let { character ->
 
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally
-    )
-    {
-        var hitPointsClicked: Boolean by remember { mutableStateOf(false) }
-
-        CharacterCardTopBar(
-            modifier = Modifier.weight(0.7f),
-            name = character.name,
-            healthPoints = character.healthPoints,
-            condition = "WELL",
-            onClickHealthPoints = { hitPointsClicked = true }
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        )
+        {
+            CharacterCardTopBar(
+                modifier = Modifier.weight(0.7f),
+                name = character.name,
+                healthPoints = character.healthPoints,
+                condition = "WELL",
+                onClickHealthPoints = onOffHpDialog
             )
 
-        if(hitPointsClicked) {
-            HitPointsDialog(
-                healthPoints = character.healthPoints
-            ) { hitPointsClicked = false }
-        }
+            if(viewState.hpClicked) {
+                HitPointsDialog(
+                    healthPoints = character.healthPoints,
+                    changeHp = changeHp,
+                    hideThisDialog = onOffHpDialog
+                )
+            }
 
-        StatisticTiles(character, modifier = Modifier.weight(1f))
-        AttributeTiles(
-            attributes = character.baseAttributes,
-            modifier = Modifier.weight(3f))
-        SavingThrowTiles(
-            attributes = character.baseAttributes,
-            savingThrowProficiencies = character.characterClass.savingThrows,
-            character.proficiencyBonus,
-            modifier = Modifier.weight(2f)
-        )
+            StatisticTiles(character, modifier = Modifier.weight(1f))
+            AttributeTiles(
+                attributes = character.baseAttributes,
+                modifier = Modifier.weight(3f))
+            SavingThrowTiles(
+                attributes = character.baseAttributes,
+                savingThrowProficiencies = character.characterClass.savingThrows,
+                character.proficiencyBonus,
+                modifier = Modifier.weight(2f)
+            )
+        }
     }
 }
 @Preview(showBackground = true)
 @Composable
 fun CharacterCardScreenPreview(){
-    CharacterCardScreen(MockCharacter.value)
+    val viewState = CharacterCardViewState(character = MockCharacter.value)
+    CharacterCardScreen(viewState, {}, {})
 }
 @Preview(showBackground = true)
 @Composable
