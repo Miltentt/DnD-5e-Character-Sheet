@@ -32,7 +32,7 @@ internal fun CharacterCardScreen(){
         CharacterCardScreen(
             viewState = viewState,
             onOffHpDialog = viewModel::onOffHpDialog,
-            changeHp = viewModel::changeHp
+            changeHp = viewModel::updateHp
         )
     } else{
         EmptyCharacterCardScreen()

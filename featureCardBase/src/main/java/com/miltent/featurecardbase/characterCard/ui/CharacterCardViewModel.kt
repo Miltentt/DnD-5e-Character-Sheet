@@ -33,7 +33,7 @@ class CharacterCardViewModel @Inject constructor(
             viewState.value.copy(hpClicked = !viewStateProvider.viewState.value.hpClicked)
         )
     }
-    fun changeHp(hp: HealthPoints){
+    fun updateHp(hp: HealthPoints){
         viewStateProvider.updateState(
             viewState.value.copy(
                 character = viewState.value.character?.copy(healthPoints = hp)

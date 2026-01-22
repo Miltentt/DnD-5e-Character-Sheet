@@ -67,7 +67,8 @@ fun HitPointsDialog(
                     }
                     Button(
                         onClick = {
-                            changeHp(healthPoints.changeHealthPointsValue(hitPointAction,text.toInt(), new = true))
+                            val newHp = healthPoints.changeHealthPointsValue(hitPointAction,text.toInt())
+                            changeHp(HealthPoints.newHealthPointsObject(newHp))
                             changeHitPointsDialogOn = null
                             hideThisDialog()
                         }

@@ -13,7 +13,7 @@ class HealthPoints (
         current = max
         temporary = 0
     }
-    fun changeHealthPointsValue(action: HealthPointsAction, value: Int, new: Boolean = false): HealthPoints {
+    fun changeHealthPointsValue(action: HealthPointsAction, value: Int): HealthPoints {
         when(action) {
 
             HealthPointsAction.HEAL -> {
@@ -33,11 +33,16 @@ class HealthPoints (
             }
             else -> throw Exception()
         }
-        return if(new){ HealthPoints(max).changeHealthPointsValue(HealthPointsAction.ADD_TEMPORARY, temporary)
-        } else this
+        return this
     }
 
     companion object{
+        fun newHealthPointsObject(hp: HealthPoints): HealthPoints {
+            return HealthPoints(hp.max)
+                .changeHealthPointsValue(HealthPointsAction.DAMAGE, hp.max-hp.current)
+                .changeHealthPointsValue(HealthPointsAction.ADD_TEMPORARY, hp.temporary)
+
+        }
         fun makeFromData(max: Int, current: Int, temporary: Int): HealthPoints {
             return HealthPoints(max)
                     .apply {
