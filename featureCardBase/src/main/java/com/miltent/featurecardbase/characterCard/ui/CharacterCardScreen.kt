@@ -5,6 +5,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -15,6 +18,7 @@ import com.miltent.domain.model.MockCharacter
 import com.miltent.featurecardbase.characterCard.state.CharacterCardViewState
 import com.miltent.featurecardbase.ui.composables.AttributeTiles
 import com.miltent.featurecardbase.ui.composables.CharacterCardTopBar
+import com.miltent.featurecardbase.ui.composables.HitPointsDialog
 import com.miltent.featurecardbase.ui.composables.SavingThrowTiles
 import com.miltent.featurecardbase.ui.composables.StatisticTiles
 
@@ -24,9 +28,12 @@ internal fun CharacterCardScreen(){
 
     val viewModel: CharacterCardViewModel = hiltViewModel()
     val viewState: CharacterCardViewState by viewModel.viewState.collectAsStateWithLifecycle()
-    val character = viewState.character
-    if (character != null) {
-        CharacterCardScreen(character)
+    if (viewState.character != null) {
+        CharacterCardScreen(
+            viewState = viewState,
+            onOffHpDialog = viewModel::onOffHpDialog,
+            changeHp = viewModel::updateHp
+        )
     } else{
         EmptyCharacterCardScreen()
     }
@@ -41,43 +48,59 @@ internal fun EmptyCharacterCardScreen(){
             modifier = Modifier,
             name = EMPTY_TEXT,
             healthPoints = HealthPoints(0),
-            condition = EMPTY_TEXT
+            condition = EMPTY_TEXT,
+            onClickHealthPoints = {}
         )
     }
 }
 
 @Composable
 internal fun CharacterCardScreen(
-    character: Character,
+    viewState: CharacterCardViewState,
+    onOffHpDialog: () -> Unit,
+    changeHp: (HealthPoints) -> Unit
 ){
+    viewState.character?.let { character ->
 
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally
-    )
-    {
-        CharacterCardTopBar(
-            modifier = Modifier.weight(0.7f),
-            name = character.name,
-            healthPoints = character.healthPoints,
-            condition = "WELL"
-            )
-        StatisticTiles(character, modifier = Modifier.weight(1f))
-        AttributeTiles(
-            attributes = character.baseAttributes,
-            modifier = Modifier.weight(3f))
-        SavingThrowTiles(
-            attributes = character.baseAttributes,
-            savingThrowProficiencies = character.characterClass.savingThrows,
-            character.proficiencyBonus,
-            modifier = Modifier.weight(2f)
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally
         )
+        {
+            CharacterCardTopBar(
+                modifier = Modifier.weight(0.7f),
+                name = character.name,
+                healthPoints = character.healthPoints,
+                condition = "WELL",
+                onClickHealthPoints = onOffHpDialog
+            )
+
+            if(viewState.hpClicked) {
+                HitPointsDialog(
+                    healthPoints = character.healthPoints,
+                    changeHp = changeHp,
+                    hideThisDialog = onOffHpDialog
+                )
+            }
+
+            StatisticTiles(character, modifier = Modifier.weight(1f))
+            AttributeTiles(
+                attributes = character.baseAttributes,
+                modifier = Modifier.weight(3f))
+            SavingThrowTiles(
+                attributes = character.baseAttributes,
+                savingThrowProficiencies = character.characterClass.savingThrows,
+                character.proficiencyBonus,
+                modifier = Modifier.weight(2f)
+            )
+        }
     }
 }
 @Preview(showBackground = true)
 @Composable
 fun CharacterCardScreenPreview(){
-    CharacterCardScreen(MockCharacter.value)
+    val viewState = CharacterCardViewState(character = MockCharacter.value)
+    CharacterCardScreen(viewState, {}, {})
 }
 @Preview(showBackground = true)
 @Composable
