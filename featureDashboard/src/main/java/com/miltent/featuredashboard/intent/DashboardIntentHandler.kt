@@ -1,6 +1,6 @@
 package com.miltent.featuredashboard.intent
 
-import com.miltent.core.cash.CharacterCache
+import com.miltent.core.cache.CharacterCache
 import com.miltent.core.event.EventHandler
 import com.miltent.core.intent.IntentHandler
 import com.miltent.core.ui.ViewStateProvider

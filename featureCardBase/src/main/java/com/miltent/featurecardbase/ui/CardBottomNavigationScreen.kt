@@ -28,7 +28,7 @@ import com.miltent.featurecardbase.characterCard.ui.CharacterCardScreen
 import com.miltent.featurecardbase.characterEquipment.CharacterEquipmentRoute
 import com.miltent.featurecardbase.characterEquipment.CharacterEquipmentScreen
 import com.miltent.featurecardbase.characterSkills.CharacterSkillsRoute
-import com.miltent.featurecardbase.characterSkills.CharacterSkillsScreen
+import com.miltent.featurecardbase.characterSkills.ui.CharacterSkillsScreen
 import com.miltent.featurecardbase.dogs.DogsRoute
 import com.miltent.featurecardbase.dogs.DogsScreen
 import com.miltent.featurecardbase.navigation.CardBaseRoute

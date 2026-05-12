@@ -1,14 +1,19 @@
 package com.miltent.domain.model
 
 data class CharacterDetailed(
-    override val id: String,
-    override val name: String,
-    override val level: Int,
-    override val race: Race,
-    override val characterClass: CharacterClass,
-    val baseAttributes: Attributes,
-    val temporaryModifiers: Attributes,
-    val movementSpeed: MovementSpeed,
+    val character: Character,
     val skills: List<Skill>,
     val specialAbilities: List<SpecialAbility>
-): DashboardCharacter
+){
+    fun getSkillsWithModifier(): List<SkillWithModifier> =
+        skills.map { skill -> SkillWithModifier(
+            id = skill.id,
+            name = skill.name,
+            modifier = with(skill.statisticType){
+                val attribute = character.baseAttributes.values[this] ?: Attribute(Attribute.BASE_VALUE)
+                val temporaryModifier = character.temporaryAttributes.values[this]  ?: Attribute(
+                    Attribute.BASE_MODIFIER_VALUE)
+                attribute.calculateModifier(temporaryModifier)
+            }
+        ) }
+}
