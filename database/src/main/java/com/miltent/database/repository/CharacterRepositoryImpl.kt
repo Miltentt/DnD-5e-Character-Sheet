@@ -44,12 +44,12 @@ class CharacterRepositoryImpl @Inject constructor(
             characterEntityToDomainMapper.map(characterEntity)
         }
 
-    override fun getCharacterDetailedById(id: String, language: Locale): Flow<CharacterDetailed> =
+    override fun getCharacterDetailedById(id: String, locale: Locale): Flow<CharacterDetailed> =
         characterDao.getFullCharacterById(id).map { characterDetailed ->
             characterDetailedFactory.create(
                 characterDetailed,
-                skillsDao.getSkillTranslations(language.language),
-                specialAbilityDao.getSpecialAbilitiesTranslations(language.language)
+                skillsDao.getSkillTranslations(locale.language),
+                specialAbilityDao.getSpecialAbilitiesTranslations(locale.language)
             )
         }
 

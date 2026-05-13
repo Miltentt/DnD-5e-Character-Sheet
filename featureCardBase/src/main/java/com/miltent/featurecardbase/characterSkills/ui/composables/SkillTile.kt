@@ -16,22 +16,22 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.miltent.designsystem.theme.Colors
+import com.miltent.designsystem.theme.Spacing
 
-private val signForInt: (Int) -> String = { "%+d".format(it) }
 @Composable
 fun SkillTile(skillName: String, skillModifier: Int) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 30.dp, vertical = 5.dp)
+            .padding(horizontal = Spacing.spacing32, vertical = Spacing.spacing8)
             .background(color = Colors.onSecondary, shape = RoundedCornerShape(16.dp))
             .border(
                 width = 1.dp,
                 shape = RoundedCornerShape(16.dp),
                 color = Colors.secondary
             )
-            .padding(start = 32.dp, end = 16.dp)
-            .padding(vertical = 10.dp),
+            .padding(start = Spacing.spacing32, end = Spacing.spacing16)
+            .padding(vertical = Spacing.spacing12),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -42,7 +42,7 @@ fun SkillTile(skillName: String, skillModifier: Int) {
             fontWeight = FontWeight.Bold,
         )
         Text(
-            text = signForInt(skillModifier),
+            text = "%+d".format(skillModifier.toString()),
             fontSize = 22.sp,
             fontWeight = FontWeight.Bold,
             color = Colors.primary

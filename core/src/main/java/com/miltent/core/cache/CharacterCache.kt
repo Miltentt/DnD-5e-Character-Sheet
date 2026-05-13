@@ -22,7 +22,7 @@ class CharacterCache @Inject constructor(
     suspend fun update(characterId: String) {
         getCharacterDetailedUseCase.invoke(characterId).collect { characterDetailed ->
             _character.value = characterDetailed.character
-            _characterSkills.value = characterDetailed.getSkillsWithModifier()
+            _characterSkills.value = characterDetailed.skills
         }
     }
 }

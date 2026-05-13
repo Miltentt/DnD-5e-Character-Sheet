@@ -26,6 +26,6 @@ class CharacterSkillsViewModel @Inject constructor(
     override val viewState: StateFlow<CharacterSkillsViewState> = viewStateProvider.viewState
 
     override fun setIntent(intent: Intent) {
-        TODO("Not yet implemented")
+        //not yet planned
     }
 }

@@ -16,13 +16,13 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
 import javax.inject.Qualifier
 
-
 @Module
 @InstallIn(ViewModelComponent::class)
 interface CharacterSkillsModule {
 
     @Binds
     fun bindCharacterSkillsViewStateProvider(stateProvider: CharacterSkillsViewStateProvider): ViewStateProvider<CharacterSkillsViewState>
+
     companion object {
 
         @Provides
@@ -45,8 +45,8 @@ interface CharacterSkillsModule {
             dispatcher: CoroutineDispatcher,
         ) = CoroutineScope(job + dispatcher)
     }
-
 }
+
 @Qualifier
 @Retention(AnnotationRetention.RUNTIME)
 annotation class CharacterSkills
