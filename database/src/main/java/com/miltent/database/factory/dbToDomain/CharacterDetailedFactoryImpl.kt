@@ -8,10 +8,12 @@ import com.miltent.database.entities.specialAbility.SpecialAbilityTranslationEnt
 import com.miltent.domain.model.ArmorClass
 import com.miltent.domain.model.Attribute
 import com.miltent.domain.model.Attributes
+import com.miltent.domain.model.Character
 import com.miltent.domain.model.CharacterDetailed
+import com.miltent.domain.model.HealthPoints
 import com.miltent.domain.model.MovementSpeed
 import com.miltent.domain.model.Race
-import com.miltent.domain.model.Skill
+import com.miltent.domain.model.SkillWithModifier
 import com.miltent.domain.model.SpecialAbility
 import com.miltent.domain.model.SpecialAbilityType
 import com.miltent.domain.model.StatisticType
@@ -20,7 +22,7 @@ import javax.inject.Inject
 class CharacterDetailedFactoryImpl @Inject constructor(
     private val raceDbToDomainMapper: Mapper<RaceEntity, Race>,
     private val characterClassDbToDomainFactory: CharacterClassDbToDomainFactory,
-): CharacterDetailedFactory {
+) : CharacterDetailedFactory {
 
     override fun create(
         characterWithAdditionalInfo: CharacterWithSkillsAndSpecialAbilitiesEntity,
@@ -28,41 +30,62 @@ class CharacterDetailedFactoryImpl @Inject constructor(
         specialAbilityTranslations: List<SpecialAbilityTranslationEntity>
     ): CharacterDetailed =
         with(characterWithAdditionalInfo) {
-            val characterClass = characterClassDbToDomainFactory.createCharacterClass(character.characterClass.level, character.characterClass.characterClassIdentifier)
+            val baseAttributes = Attributes(
+                mapOf<StatisticType, Attribute>(
+                    StatisticType.STR to Attribute(character.baseStrength),
+                    StatisticType.DEX to Attribute(character.baseDexterity),
+                    StatisticType.CON to Attribute(character.baseConstitution),
+                    StatisticType.INT to Attribute(character.baseIntelligence),
+                    StatisticType.WIS to Attribute(character.baseWisdom),
+                    StatisticType.CHA to Attribute(character.baseCharisma)
+                )
+            )
+            val temporaryAttributes = Attributes(
+                mapOf<StatisticType, Attribute>(
+                    StatisticType.STR to Attribute(character.temporaryStrModifier),
+                    StatisticType.DEX to Attribute(character.temporaryDexModifier),
+                    StatisticType.CON to Attribute(character.temporaryConModifier),
+                    StatisticType.INT to Attribute(character.temporaryIntModifier),
+                    StatisticType.WIS to Attribute(character.temporaryWisModifier),
+                    StatisticType.CHA to Attribute(character.temporaryChaModifier)
+                )
+            )
+            val skillsWithModifier = skills.map { skill ->
+                SkillWithModifier(
+                    id = skill.id,
+                    name = skillTranslations.find { it.skillId == skill.id }?.name.orEmpty(),
+                    modifier = with(skill.statisticType) {
+                        val statisticType = StatisticType.getStatisticType(this)
+                        val attribute =
+                            baseAttributes.values[statisticType] ?: Attribute(Attribute.BASE_VALUE)
+                        val temporaryModifier =
+                            temporaryAttributes.values[statisticType] ?: Attribute(
+                                Attribute.BASE_MODIFIER_VALUE
+                            )
+                        attribute.calculateModifier(temporaryModifier)
+                    })
+            }
+            val characterClass = characterClassDbToDomainFactory.createCharacterClass(
+                character.characterClass.level,
+                character.characterClass.characterClassIdentifier
+            )
             CharacterDetailed(
-                id = character.id,
-                name = character.name,
-                characterClass = characterClass,
-                race = raceDbToDomainMapper.map(character.race),
-                level = characterClass.level,
-                baseAttributes = Attributes(
-                    mapOf<StatisticType, Attribute>(
-                        StatisticType.STR to Attribute(character.baseStrength),
-                        StatisticType.DEX to Attribute(character.baseDexterity),
-                        StatisticType.CON to Attribute(character.baseConstitution),
-                        StatisticType.INT to Attribute(character.baseIntelligence),
-                        StatisticType.WIS to Attribute(character.baseWisdom),
-                        StatisticType.CHA to Attribute(character.baseCharisma)
+                character = Character(
+                    id = character.id,
+                    name = character.name,
+                    level = characterClass.level,
+                    race = raceDbToDomainMapper.map(character.race),
+                    characterClass = characterClass,
+                    baseAttributes = baseAttributes,
+                    temporaryAttributes = temporaryAttributes,
+                    movementSpeed = MovementSpeed(character.movementSpeed),
+                    healthPoints = HealthPoints.makeFromData(
+                        character.maxHealthPoints,
+                        character.currantHealthPoints,
+                        character.temporaryHealthPoints
                     )
                 ),
-                temporaryModifiers = Attributes(
-                    mapOf<StatisticType, Attribute>(
-                        StatisticType.STR to Attribute(character.temporaryStrModifier),
-                        StatisticType.DEX to Attribute(character.temporaryDexModifier),
-                        StatisticType.CON to Attribute(character.temporaryConModifier),
-                        StatisticType.INT to Attribute(character.temporaryIntModifier),
-                        StatisticType.WIS to Attribute(character.temporaryWisModifier),
-                        StatisticType.CHA to Attribute(character.temporaryChaModifier)
-                    )
-                ),
-                movementSpeed = MovementSpeed(character.movementSpeed),
-                skills = skills.map { skill ->
-                    Skill(
-                        id = skill.id,
-                        name = skillTranslations.find { it.skillId == skill.id }?.name.orEmpty(),
-                        statisticType = StatisticType.getStatisticType(skill.statisticType)
-                    )
-                },
+                skills = skillsWithModifier,
                 specialAbilities = specialAbilities.map { specialAbility ->
                     SpecialAbility(
                         id = specialAbility.id,

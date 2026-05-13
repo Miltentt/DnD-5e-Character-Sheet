@@ -56,6 +56,7 @@
     <string name="saving_throws">Saving Throws</string>
     <string name="card">Card</string>
     <string name="skills">Skills</string>
+    <string name="skills_capital_l">SKILLS</string>
     <string name="equipment">Equipment</string>
     <string name="hit_points">HIT POINTS</string>
     <string name="condition">CONDITION</string>

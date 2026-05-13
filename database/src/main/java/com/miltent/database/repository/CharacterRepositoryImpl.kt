@@ -9,7 +9,6 @@ import com.miltent.database.entities.character.CharacterEntity
 import com.miltent.database.entities.junctionTables.CharacterSkillCrossJunction
 import com.miltent.database.entities.junctionTables.CharacterSpecialAbilityJunction
 import com.miltent.database.factory.dbToDomain.CharacterDetailedFactory
-import com.miltent.database.mapper.domainToDb.CharacterDomainToEntityMapper
 import com.miltent.domain.model.Character
 import com.miltent.domain.model.CharacterDetailed
 import com.miltent.domain.model.DashboardCharacter
@@ -45,12 +44,12 @@ class CharacterRepositoryImpl @Inject constructor(
             characterEntityToDomainMapper.map(characterEntity)
         }
 
-    override fun getCharacterDetailedById(id: String, language: Locale): Flow<CharacterDetailed> =
+    override fun getCharacterDetailedById(id: String, locale: Locale): Flow<CharacterDetailed> =
         characterDao.getFullCharacterById(id).map { characterDetailed ->
             characterDetailedFactory.create(
                 characterDetailed,
-                skillsDao.getSkillTranslations(language.displayLanguage),
-                specialAbilityDao.getSpecialAbilitiesTranslations(language.displayLanguage)
+                skillsDao.getSkillTranslations(locale.language),
+                specialAbilityDao.getSpecialAbilitiesTranslations(locale.language)
             )
         }
 
