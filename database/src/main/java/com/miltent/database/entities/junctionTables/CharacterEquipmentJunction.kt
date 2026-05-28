@@ -16,12 +16,6 @@ import com.miltent.database.entities.junctionTables.CharacterEquipmentJunction.C
             parentColumns = ["characterId"],
             childColumns = ["characterId"],
             onDelete = ForeignKey.CASCADE
-        ),
-        ForeignKey(
-            entity = EquipmentEntity::class,
-            parentColumns = ["equipmentId"],
-            childColumns = ["equipmentId"],
-            onDelete = ForeignKey.CASCADE
         )
     ]
 )
