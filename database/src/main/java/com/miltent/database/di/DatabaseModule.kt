@@ -5,13 +5,16 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.miltent.core.repository.CharacterRepository
+import com.miltent.core.repository.EquipmentRepository
 import com.miltent.core.repository.SkillsRepository
 import com.miltent.core.repository.SpecialAbilityRepository
 import com.miltent.database.Dnd5eDatabase
 import com.miltent.database.dao.CharacterDao
+import com.miltent.database.dao.EquipmentDao
 import com.miltent.database.dao.SkillsDao
 import com.miltent.database.dao.SpecialAbilityDao
 import com.miltent.database.repository.CharacterRepositoryImpl
+import com.miltent.database.repository.EquipmentRepositoryImpl
 import com.miltent.database.repository.SkillsRepositoryImpl
 import com.miltent.database.repository.SpecialAbilityRepositoryImpl
 import dagger.Binds
@@ -28,6 +31,9 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 interface DatabaseModule {
+
+    @Binds
+    fun bindEquipmentRepository(repository: EquipmentRepositoryImpl): EquipmentRepository
 
     @Binds
     fun bindCharacterRepository(repository: CharacterRepositoryImpl): CharacterRepository
@@ -75,6 +81,11 @@ interface DatabaseModule {
         @Provides
         fun provideSpecialAbilityDao(database: Dnd5eDatabase): SpecialAbilityDao {
             return database.specialAbilityDao()
+        }
+
+        @Provides
+        fun provideEquipmentDao(database: Dnd5eDatabase): EquipmentDao {
+            return database.equipmentDao()
         }
     }
 }

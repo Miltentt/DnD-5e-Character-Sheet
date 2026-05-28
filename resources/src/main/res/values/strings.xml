@@ -70,4 +70,18 @@
     <string name="facts_coming">BREED  FACTS  COMING</string>
     <string name="networking_failed">ERROR %s</string>
 
+    <!-- Equipment-->
+    <string name="armor_category">Armor Category</string>
+    <string name="armor_class_ac">Armor Class (AC)</string>
+    <string name="strength_req">Strength Req</string>
+    <string name="stealth_disadvantage">Stealth Disadvantage</string>
+    <string name="imposes_disadvantage">Imposes disadvantage</string>
+    <string name="properties">Properties</string>
+    <string name="name">Name</string>
+    <string name="type">Type</string>
+    <string name="rarity">Rarity</string>
+    <string name="description">Description</string>
+    <string name="place">place</string>
+    <string name="add_image">add image</string>
+
 </resources>

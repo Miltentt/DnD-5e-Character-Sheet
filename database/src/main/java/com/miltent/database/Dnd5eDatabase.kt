@@ -3,9 +3,12 @@ package com.miltent.database
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.miltent.database.dao.CharacterDao
+import com.miltent.database.dao.EquipmentDao
 import com.miltent.database.dao.SkillsDao
 import com.miltent.database.dao.SpecialAbilityDao
 import com.miltent.database.entities.character.CharacterEntity
+import com.miltent.database.entities.equipment.EquipmentEntity
+import com.miltent.database.entities.junctionTables.CharacterEquipmentJunction
 import com.miltent.database.entities.junctionTables.CharacterSkillCrossJunction
 import com.miltent.database.entities.junctionTables.CharacterSpecialAbilityJunction
 import com.miltent.database.entities.skills.SkillEntity
@@ -21,7 +24,9 @@ import com.miltent.database.entities.specialAbility.SpecialAbilityTranslationEnt
         CharacterSkillCrossJunction::class,
         CharacterSpecialAbilityJunction::class,
         SkillTranslationEntity::class,
-        SpecialAbilityTranslationEntity::class
+        SpecialAbilityTranslationEntity::class,
+        EquipmentEntity::class,
+        CharacterEquipmentJunction::class
     ],
     version = 1
 )
@@ -33,4 +38,6 @@ abstract class Dnd5eDatabase : RoomDatabase() {
     abstract fun skillsDao(): SkillsDao
 
     abstract fun specialAbilityDao(): SpecialAbilityDao
+
+    abstract fun equipmentDao(): EquipmentDao
 }
