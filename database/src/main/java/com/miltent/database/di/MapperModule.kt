@@ -4,13 +4,17 @@ import com.miltent.core.utility.Mapper
 import com.miltent.database.entities.character.CharacterClassEntity
 import com.miltent.database.entities.character.CharacterEntity
 import com.miltent.database.entities.character.RaceEntity
+import com.miltent.database.entities.equipment.EquipmentEntity
 import com.miltent.database.mapper.dbToDomain.CharacterDbToDomainMapper
+import com.miltent.database.mapper.dbToDomain.EquipmentEntityToDomainMapper
 import com.miltent.database.mapper.dbToDomain.RaceDbToDomainMapper
 import com.miltent.database.mapper.domainToDb.CharacterClassDomainToDbMapper
 import com.miltent.database.mapper.domainToDb.CharacterDomainToEntityMapper
+import com.miltent.database.mapper.domainToDb.EquipmentDomainToEntityMapper
 import com.miltent.database.mapper.domainToDb.RaceDomainToDbMapper
 import com.miltent.domain.model.Character
 import com.miltent.domain.model.CharacterClass
+import com.miltent.domain.model.Equipment
 import com.miltent.domain.model.Race
 import dagger.Binds
 import dagger.Module
@@ -45,4 +49,14 @@ interface MapperModule {
     fun bindRaceDomainToEntityMapper(
         raceDomainToEntityMapper: RaceDomainToDbMapper
     ): Mapper<Race, RaceEntity>
+
+    @Binds
+    fun bindEquipmentDomainToEntityMapperMapper(
+        raceDomainToEntityMapper: EquipmentDomainToEntityMapper
+    ): Mapper<Equipment, EquipmentEntity>
+
+    @Binds
+    fun bindEquipmentEntityToDomainMapperMapper(
+        raceDomainToEntityMapper: EquipmentEntityToDomainMapper
+    ): Mapper<EquipmentEntity, Equipment>
 }
